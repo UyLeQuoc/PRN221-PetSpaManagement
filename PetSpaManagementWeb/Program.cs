@@ -1,3 +1,5 @@
+using Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-
+builder.Services.AddDbContext<PetSpaManagementDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB"));
+});
 
 var app = builder.Build();
 
