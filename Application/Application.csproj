@@ -11,8 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utils\" />
     <Folder Include="ViewModels\AppointmentDTOs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
 </Project>
