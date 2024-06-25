@@ -11,12 +11,12 @@ namespace Application.Utils
 {
     public static class AuthenTools
     {
-        public static string GetCurrentAccountId(ClaimsIdentity identity)
+        public static string GetCurrentUserId(ClaimsIdentity identity)
         {
             if (identity != null)
             {
                 var userClaims = identity.Claims;
-                return userClaims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")?.Value;
+                return userClaims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value; // THAY VÌ .Name thì đặt tên gì cũng dc cưng
             }
             return null;
         }
