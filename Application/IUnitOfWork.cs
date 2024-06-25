@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Application
 {
-    internal interface IUnitOfWork
+    public interface IUnitOfWork
     {
+        Task<int> SaveChangesAsync();
     }
 }

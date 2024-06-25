@@ -5,6 +5,7 @@ namespace Application.Repositories
 {
     public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {
+        IUnitOfWork UnitOfWork { get; }
         Task<List<TEntity>> GetAllAsync(params Expression<Func<TEntity, object>>[] includes);
         Task<TEntity?> GetByIdAsync(int id, params Expression<Func<TEntity, object>>[] includes);
         Task AddAsync(TEntity entity);
