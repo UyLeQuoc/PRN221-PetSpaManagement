@@ -21,13 +21,18 @@ namespace Infrastructure.Repositories
             //_timeService = timeService;
             //_claimsService = claimsService;
         }
-        public Task<List<TEntity>> GetAllAsync(params Expression<Func<TEntity, object>>[] includes)
+        public Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = _dbSet;
 
             foreach (var include in includes)
             {
                 query = query.Include(include);
+            }
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
             }
 
             return query.ToListAsync();
@@ -44,12 +49,15 @@ namespace Infrastructure.Repositories
             // todo should throw exception when not found
             return result;
         }
+        public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _dbSet.AnyAsync(predicate);
+        }
 
         public async Task AddAsync(TEntity entity)
         {
             //entity.CreationDate = _timeService.GetCurrentTime();
             //entity.CreatedBy = _claimsService.GetCurrentUserId;
-            entity.IsDeleted = false;
             await _dbSet.AddAsync(entity);
         }
 
