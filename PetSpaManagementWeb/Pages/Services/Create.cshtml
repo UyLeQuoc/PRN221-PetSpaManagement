@@ -6,7 +6,8 @@
 }
 @if (!string.IsNullOrEmpty(Model.ResultMessage))
 {
-    <div class="alert alert-success">
+    var alertClass = Model.ResultMessageType == "success" ? "alert-success" : "alert-danger";
+    <div id="resultMessage" class="alert @alertClass">
         @Model.ResultMessage
     </div>
 }
@@ -39,3 +40,12 @@
         </form>
     </div>
 </div>
+<script>
+    setTimeout(function() {
+        var element = document.getElementById('resultMessage');
+        if (element) {
+            element.style.display = 'none';
+        }
+    }, 7000); 
+</script>
+

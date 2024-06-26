@@ -24,6 +24,9 @@ namespace PetSpaManagementWeb.Pages.Services
         [TempData]
         public string ResultMessage { get; set; }
 
+        [TempData]
+        public string ResultMessageType { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid /*|| _serviceService.GetSeaAreas() == null*/ || Service == null)
@@ -31,9 +34,18 @@ namespace PetSpaManagementWeb.Pages.Services
                 return Page();
             }
 
-            ResultMessage = await _serviceService.CreateService(Service);
+            //try
+            //{
+            //    ResultMessage = await _serviceService.CreateService(Service);
+            //    ResultMessageType = "success"; 
+            //}
+            //catch (Exception ex)
+            //{
+            //    ResultMessage = ex.Message;
+            //    ResultMessageType = "error"; 
+            //}
 
-            return Page();
+            return RedirectToPage("./Index");
         }
     }
 }

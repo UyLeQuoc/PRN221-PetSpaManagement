@@ -23,5 +23,24 @@ namespace Application.Services
              return await _serviceRepository.CreateService(service);
         }
 
+        public async Task<string> DeleteService(int id)
+        {
+            return await _serviceRepository.DeleteService(id);
+        }
+
+        public async Task<List<Service>> GetService()
+        {
+            return await _serviceRepository.GetService();
+        }
+
+        public async Task<Service> GetServiceByID(int id)
+        {
+            return await _serviceRepository.GetServiceByID(id);
+        }
+
+        public async Task<string> UpdateService(int id, Service service)
+        {
+            return await _serviceRepository.UpdateService(id, service);
+        }
     }
 }
