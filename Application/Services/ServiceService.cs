@@ -11,16 +11,16 @@ namespace Application.Services
 {
     public class ServiceService : IServiceService
     {
-        private readonly IServiceService _serviceService;
+        private readonly IServiceRepository _serviceRepository;
 
-        public ServiceService(IServiceService serviceService)
+        public ServiceService(IServiceRepository serviceRepository)
         {
-            _serviceService = serviceService;
+            _serviceRepository = serviceRepository;
         }
 
-        public async Task<string> AddAsync(Service service)
+        public async Task<string> CreateService(Service service)
         {
-             return await _serviceService.AddAsync(service);
+             return await _serviceRepository.CreateService(service);
         }
 
     }

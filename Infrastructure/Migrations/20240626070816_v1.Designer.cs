@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(PetSpaManagementDbContext))]
-    [Migration("20240601154318_qwudhwq")]
-    partial class qwudhwq
+    [Migration("20240626070816_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
