@@ -8,15 +8,25 @@ using System.Threading.Tasks;
 
 namespace Application.Repositories
 {
-    public class ServiceRepository 
+    public class ServiceRepository : IServiceRepository
     {
-        private readonly IServiceRepository _serviceRepository;
-        public async Task<string> AddAsync(Service service)
+        private readonly IGenericRepository<Service> _genericRepository;
+
+        public ServiceRepository(IGenericRepository<Service> genericRepository)
+        {
+            _genericRepository = genericRepository;
+        }
+
+        public async Task<string> CreateService(Service service)
         {   
-            //service.CreatedBy = ID;
-            service.CreationDate = DateTime.Now;
-            _serviceRepository.AddAsync(service);
-            if( await _serviceRepository.UnitOfWork.SaveChangesAsync() > 0)
+            var newService = new Service()
+            {
+                Name = service.Name,
+                Description = service.Description,
+                Duration = service.Duration,
+            };
+            _genericRepository.AddAsync(newService);
+            if( await _genericRepository.SaveChangesAsync() > 0)
                 return "Create Successfully";
             else
                 return "Create Failed";

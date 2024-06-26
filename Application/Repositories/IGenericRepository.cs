@@ -5,7 +5,6 @@ namespace Application.Repositories
 {
     public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {
-        IUnitOfWork UnitOfWork { get; }
         Task<List<TEntity>> GetAllAsync(params Expression<Func<TEntity, object>>[] includes);
         Task<TEntity?> GetByIdAsync(int id, params Expression<Func<TEntity, object>>[] includes);
         Task AddAsync(TEntity entity);
@@ -14,6 +13,6 @@ namespace Application.Repositories
         void SoftRemove(TEntity entity);
         Task AddRangeAsync(List<TEntity> entities);
         void SoftRemoveRange(List<TEntity> entities);
-
+        Task<int> SaveChangesAsync();
     }
 }

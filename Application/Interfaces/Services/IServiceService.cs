@@ -10,6 +10,6 @@ namespace Application.Interfaces.IServices
 {
     public interface IServiceService
     {
-        Task<string> AddAsync(Service service);
+        Task<string> CreateService(Service service);
     }
 }

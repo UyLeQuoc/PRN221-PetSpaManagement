@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces.IServices
 {
-    public interface IServiceRepository : IGenericRepository<Service>
+    public interface IServiceRepository
     {
+        Task<string> CreateService(Service service);
     }
 }

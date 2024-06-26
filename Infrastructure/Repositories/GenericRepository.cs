@@ -21,7 +21,6 @@ namespace Infrastructure.Repositories
             //_timeService = timeService;
             //_claimsService = claimsService;
         }
-        public IUnitOfWork UnitOfWork => (IUnitOfWork)_context;
         public Task<List<TEntity>> GetAllAsync(params Expression<Func<TEntity, object>>[] includes)
         {
             IQueryable<TEntity> query = _dbSet;
@@ -50,6 +49,7 @@ namespace Infrastructure.Repositories
         {
             //entity.CreationDate = _timeService.GetCurrentTime();
             //entity.CreatedBy = _claimsService.GetCurrentUserId;
+            entity.IsDeleted = false;
             await _dbSet.AddAsync(entity);
         }
 
@@ -96,6 +96,11 @@ namespace Infrastructure.Repositories
                 //entity.CreatedBy = _claimsService.GetCurrentUserId;
             }
             _dbSet.UpdateRange(entities);
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync();
         }
     }
 }
