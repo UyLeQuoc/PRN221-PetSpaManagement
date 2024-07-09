@@ -1,6 +1,9 @@
-﻿namespace Infrastructure
+﻿using Application;
+
+namespace Infrastructure
 {
-    public class UnitOfWork
+    public class UnitOfWork 
     {
+        
     }
 }

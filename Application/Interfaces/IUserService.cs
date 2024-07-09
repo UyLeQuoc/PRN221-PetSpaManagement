@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application
+namespace Application.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IUserService
     {
+        public Task<string> Meomaybe();
     }
 }
