@@ -44,7 +44,19 @@ namespace PetSpaManagementWeb.Pages
                 HttpContext.Session.SetString("Name", user.User.Name);
                 HttpContext.Session.SetInt32("RoleId", user.User.RoleId ?? 4);
 
-                return RedirectToPage("/Index");
+                switch (user.User.RoleId)
+                {
+                    case 1:
+                        return RedirectToPage("/AdminDashboard/Index");
+                    case 2:
+                        return RedirectToPage("/ManagerDashboard/Index");
+                    case 3:
+                        return RedirectToPage("/PetSitterDashboard/Index");
+                    case 4:
+                        return RedirectToPage("/CustomerDashboard/Index");
+                    default:
+                        return RedirectToPage("/Index");
+                }
             }
             catch (UnauthorizedAccessException ex)
             {

@@ -1,3 +1,24 @@
 ﻿@{
-    Layout = "_Layout";
+    var routeUrl = ViewContext.RouteData.Values["Page"].ToString();
+    //you can put pages' name into pages
+    var admin = new List<string> { "Admin" };
+    var manager = new List<string> { "Manager" };
+    var petSitter = new List<string> { "PetSitter" };
+    //if routeUrl contains any of pages,the page will use _Layout as Layout page,the other pages will use _Layout1 ad Layout page
+    if (admin.Any(routeUrl.Contains))
+    {
+        Layout = "_AdminLayout";
+    }
+    else if (manager.Any(routeUrl.Contains))
+    {
+        Layout = "_ManagerLayout";
+    }
+    else if (petSitter.Any(routeUrl.Contains))
+    {
+        Layout = "_PetSitterLayout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
