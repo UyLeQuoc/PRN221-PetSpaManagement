@@ -6,26 +6,23 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Appointment:BaseEntity
+    public class Appointment : BaseEntity
     {
         public int UserId { get; set; }
         public int SpaPackageId { get; set; }
-        public int PetId {  get; set; }
-        public int? StaffId { get; set; }
+        public int PetId { get; set; }
+        public int? PetSitterId { get; set; }
         public DateTime DateTime { get; set; }
-        public string Status {  get; set; }
-        public string Notes {  get; set; }
+        public string Status { get; set; }
+        public string Notes { get; set; }
+        public decimal? Price { get; set; }
 
         //navigation
 
-        //public virtual User? User { get; set; }
-        //public virtual User? Staff { get; set; }
-        public virtual Pet? Pet { get; set; }
+        public virtual Pet Pet { get; set; }
+        public virtual User User { get; set; }
+
         public virtual SpaPackage? SpaPackage { get; set; }
-        public virtual ICollection<Payment>? Payments { get; set; } = new List<Payment>();
-
-
-
-
+        public virtual ICollection<Payment>? Payments { get; set; }
     }
 }

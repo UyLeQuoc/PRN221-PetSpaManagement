@@ -9,17 +9,17 @@ using RepositoryLayer;
 
 #nullable disable
 
-namespace Infrastructure.Migrations
+namespace RepositoryLayer.Migrations
 {
-	[DbContext(typeof(PetSpaManagementDbContext))]
-    [Migration("20240626070816_v1")]
-    partial class v1
+    [DbContext(typeof(PetSpaManagementDbContext))]
+    [Migration("20240712193430_changefield")]
+    partial class changefield
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.22")
+                .HasAnnotation("ProductVersion", "6.0.32")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -32,60 +32,62 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime");
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeleteBy")
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModificationBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModificationDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Notes")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PetId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SpaPackageId")
+                    b.Property<int?>("PetSitterId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StaffId")
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("SpaPackageId")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("Appointment_pk");
+                    b.HasKey("Id");
 
                     b.HasIndex("PetId");
 
                     b.HasIndex("SpaPackageId");
 
-                    b.ToTable("Appointment", (string)null);
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("Domain.Entities.PackageService", b =>
@@ -96,26 +98,26 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeleteBy")
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModificationBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModificationDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ServiceId")
                         .HasColumnType("int");
@@ -123,14 +125,13 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("SpaPackageId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("PackageService_pk");
+                    b.HasKey("Id");
 
                     b.HasIndex("ServiceId");
 
                     b.HasIndex("SpaPackageId");
 
-                    b.ToTable("PackageService", (string)null);
+                    b.ToTable("PackageServices");
                 });
 
             modelBuilder.Entity("Domain.Entities.Payment", b =>
@@ -141,46 +142,58 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("AppointmentId")
+                    b.Property<int>("AppointmentId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeleteBy")
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModificationBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModificationDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("PaymentDate")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("PaymentMethod")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("Payment_pk");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId1")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("AppointmentId");
 
-                    b.ToTable("Payment", (string)null);
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Pet", b =>
@@ -191,45 +204,51 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeleteBy")
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModificationBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModificationDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("Pet_pk");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Pet", (string)null);
+                    b.ToTable("Pets");
                 });
 
             modelBuilder.Entity("Domain.Entities.Review", b =>
@@ -244,29 +263,31 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Comment")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeleteBy")
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModificationBy")
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ModificationDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Rating")
                         .HasColumnType("int");
@@ -274,14 +295,13 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("Review_pk");
+                    b.HasKey("Id");
 
                     b.HasIndex("AppointmentId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Review", (string)null);
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
@@ -292,36 +312,34 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeleteBy")
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModificationBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModificationDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("Role_pk");
+                    b.HasKey("Id");
 
-                    b.ToTable("Role", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Domain.Entities.Service", b =>
@@ -332,43 +350,43 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeleteBy")
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModificationBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModificationDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id")
-                        .HasName("Service_pk");
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Service", (string)null);
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("Domain.Entities.SpaPackage", b =>
@@ -379,50 +397,46 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeleteBy")
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("EstimatedTime")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModificationBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModificationDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PictureUrl")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id")
-                        .HasName("SpaPackage_pk");
+                    b.HasKey("Id");
 
-                    b.ToTable("SpaPackage", (string)null);
+                    b.ToTable("SpaPackages");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -433,86 +447,87 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CreationDate")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeleteBy")
+                    b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModificationBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModificationDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id")
-                        .HasName("User_pk");
+                    b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Domain.Entities.Appointment", b =>
                 {
                     b.HasOne("Domain.Entities.Pet", "Pet")
-                        .WithMany("Appointments")
+                        .WithMany()
                         .HasForeignKey("PetId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("Appointment_Pet_fk");
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.SpaPackage", "SpaPackage")
                         .WithMany("Appointments")
                         .HasForeignKey("SpaPackageId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("Appointment_SpaPackage_fk");
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Pet");
 
                     b.Navigation("SpaPackage");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.PackageService", b =>
                 {
                     b.HasOne("Domain.Entities.Service", "Service")
                         .WithMany("PackageServices")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("PackageService_Service_fk");
+                        .HasForeignKey("ServiceId");
 
                     b.HasOne("Domain.Entities.SpaPackage", "SpaPackage")
                         .WithMany("PackageServices")
-                        .HasForeignKey("SpaPackageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("PackageService_SpaPackage_fk");
+                        .HasForeignKey("SpaPackageId");
 
                     b.Navigation("Service");
 
@@ -525,17 +540,28 @@ namespace Infrastructure.Migrations
                         .WithMany("Payments")
                         .HasForeignKey("AppointmentId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("Payment_Appointment_fk");
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.User", null)
+                        .WithMany("Payments")
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("Appointment");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.Pet", b =>
                 {
                     b.HasOne("Domain.Entities.User", "User")
                         .WithMany("Pets")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -544,15 +570,11 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.Appointment", "Appointment")
                         .WithMany()
-                        .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("Review_Appointment_fk");
+                        .HasForeignKey("AppointmentId");
 
                     b.HasOne("Domain.Entities.User", "User")
-                        .WithMany("Reviews")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .HasConstraintName("Review_User_fk");
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Appointment");
 
@@ -563,9 +585,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("User_Role_fk");
+                        .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
                 });
@@ -573,11 +593,6 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Appointment", b =>
                 {
                     b.Navigation("Payments");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Pet", b =>
-                {
-                    b.Navigation("Appointments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
@@ -599,9 +614,9 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
-                    b.Navigation("Pets");
+                    b.Navigation("Payments");
 
-                    b.Navigation("Reviews");
+                    b.Navigation("Pets");
                 });
 #pragma warning restore 612, 618
         }
