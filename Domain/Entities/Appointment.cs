@@ -15,11 +15,13 @@ namespace Domain.Entities
         public DateTime DateTime { get; set; }
         public string Status { get; set; }
         public string Notes { get; set; }
+        public decimal? Price { get; set; }
 
         //navigation
 
         public virtual Pet Pet { get; set; }
         public virtual User User { get; set; }
+
         public virtual SpaPackage? SpaPackage { get; set; }
         public virtual ICollection<Payment>? Payments { get; set; }
     }

@@ -8,11 +8,12 @@ namespace Domain.Entities
 {
     public class Payment : BaseEntity
     {
-        public int UserId { get; set; }
-        public int AppointmentId { get; set; }
         public decimal TotalAmount { get; set; }
         public string? PaymentMethod { get; set; }
         public DateTime? PaymentDate { get; set; }
+        public string Status { get; set; }
+        public int UserId { get; set; }
+        public int AppointmentId { get; set; }
 
         //navigation
         public virtual Appointment Appointment { get; set; }

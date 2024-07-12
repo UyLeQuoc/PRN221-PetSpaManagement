@@ -1,6 +1,10 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Tracing;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RepositoryLayer
 {
@@ -10,14 +14,14 @@ namespace RepositoryLayer
         public virtual DbSet<Pet> Pets { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
 
-        //public virtual DbSet<PackageService> PackageServices { get; set; }
+        public virtual DbSet<PackageService> PackageServices { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
 
-        //public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
 
-        //public virtual DbSet<Service> Services { get; set; }
-        //public virtual DbSet<SpaPackage> SpaPackages { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<SpaPackage> SpaPackages { get; set; }
 
         public PetSpaManagementDbContext(DbContextOptions<PetSpaManagementDbContext> options) : base(options)
         {
@@ -31,9 +35,9 @@ namespace RepositoryLayer
                 entity.HasKey(e => e.Id);
 
                 entity.HasOne(e => e.User)
-                      .WithMany(e => e.Payments)
+                      .WithMany()
                       .HasForeignKey(e => e.UserId)
-                      .OnDelete(DeleteBehavior.NoAction);
+                      .OnDelete(DeleteBehavior.Restrict);
             });
 
             //modelBuilder.Entity<User>(entity =>
