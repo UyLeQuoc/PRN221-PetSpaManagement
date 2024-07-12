@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="~/css/style.css">
 </head>
 <body>
-    <header>
+    <header class="position-sticky top-0 z-3">
         <div class="wrap">
             <div class="container">
                 <div class="row">
@@ -56,13 +56,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                        <li class="nav-item"><a href="services.html" class="nav-link">Your order</a></li>
-                        <li class="nav-item"><a href="pricing.html" class="nav-link">Dashboard</a></li>
                         @if (Context.Session.GetString("Email") != null)
                         {
-                            <li class="nav-item"><a href="#" class="nav-link">@Context.Session.GetString("Email")</a></li>
+                            <li class="nav-item active"><a href="#" class="nav-link">@Context.Session.GetString("Email")</a></li>
                             <li class="nav-item"><a href="/LogoutPage" class="nav-link">Logout</a></li>
                         }
                         else
@@ -75,14 +71,44 @@
             </div>
         </nav>
     </header>
-    <div class="grid row">
-        <div class="col-4">
-            Admin Sidebar
+            @* Sidebar *@
+        <div class="container-fluid z-2">
+            <div class="row flex-nowrap ">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-white">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 " style="min-height: 85vh">
+                        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
+                            <span class="fs-5 d-none d-sm-inline">Menu</span>
+                        </a>
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link align-middle px-0">
+                                    <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link align-middle px-0">
+                                    <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Manager</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0 align-middle">
+                                    <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">PetSitter</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link px-0 align-middle">
+                                    <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <hr>
+                    </div>
+                </div>
+            <div class="col py-3 bg-light">
+                    @RenderBody()
+                </div>
+            </div>
         </div>
-        <main role="main" class="col-8">
-            @RenderBody()
-        </main>
-    </div>
 
 
 
