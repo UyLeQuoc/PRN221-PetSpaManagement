@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using RepositoryLayer;
 using RepositoryLayer.Commons;
+using RepositoryLayer.Commons.ServiceLayer.Services;
 using RepositoryLayer.Interfaces;
 using RepositoryLayer.Repositories;
 using ServiceLayer.Interfaces;
@@ -16,26 +17,29 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<PetSpaManagementDbContext>(options =>
 {
-	options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB"));
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-	.AddJwtBearer(opt =>
-	{
-		opt.TokenValidationParameters = new TokenValidationParameters
-		{
-			ValidateAudience = false,
-			ValidateIssuer = false,
-			ValidateLifetime = false,
-			ValidateIssuerSigningKey = false,
-			IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-			.GetBytes(builder.Configuration["JWTSettings:SecretKey"]))
-		};
-	});
+    .AddJwtBearer(opt =>
+    {
+        opt.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ValidateLifetime = false,
+            ValidateIssuerSigningKey = false,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+            .GetBytes(builder.Configuration["JWTSettings:SecretKey"]))
+        };
+    });
+
+builder.Services.AddSession();
 builder.Services.AddAuthorization();
 
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ICurrentTime, CurrentTime>();
 builder.Services.AddScoped<IClaimsService, ClaimsService>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -60,20 +64,21 @@ var context = scope.ServiceProvider.GetRequiredService<PetSpaManagementDbContext
 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 try
 {
-	await DBInitializer.Initialize(context);
+    await DBInitializer.Initialize(context);
 }
 catch (Exception ex)
 {
-	logger.LogError(ex, "An problem occurred during migration!");
+    logger.LogError(ex, "An problem occurred during migration!");
 }
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-	app.UseExceptionHandler("/Error");
+    app.UseExceptionHandler("/Error");
 }
 app.UseStaticFiles();
 
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthentication();

@@ -1,7 +1,12 @@
-﻿namespace ServiceLayer.Interfaces
+﻿using Domain.Entities;
+using RepositoryLayer.Models;
+
+namespace ServiceLayer.Interfaces
 {
 	public interface IUserService
 	{
-		public Task<string> Meomaybe();
+		Task<User> GetUserByEmailAsync(string email);
+		Task<LoginResponse> LoginAsync(string email, string password);
+		Task<User> RegisterAsync(User user);
 	}
 }
