@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Infrastructure
+namespace RepositoryLayer
 {
 	public static class DBInitializer
 	{

@@ -1,9 +1,14 @@
-using Application.Interfaces.IServices;
-using Application.Repositories;
-using Application.Services;
-using Infrastructure;
-using Infrastructure.Repositories;
+using Domain.Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using RepositoryLayer;
+using RepositoryLayer.Commons;
+using RepositoryLayer.Interfaces;
+using RepositoryLayer.Repositories;
+using ServiceLayer.Interfaces;
+using ServiceLayer.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +19,35 @@ builder.Services.AddDbContext<PetSpaManagementDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB"));
 });
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+	.AddJwtBearer(opt =>
+	{
+		opt.TokenValidationParameters = new TokenValidationParameters
+		{
+			ValidateAudience = false,
+			ValidateIssuer = false,
+			ValidateLifetime = false,
+			ValidateIssuerSigningKey = false,
+			IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+			.GetBytes(builder.Configuration["JWTSettings:SecretKey"]))
+		};
+	});
+builder.Services.AddAuthorization();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<ICurrentTime, CurrentTime>();
+builder.Services.AddScoped<IClaimsService, ClaimsService>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+//user
+builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+//pet-service
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+
 
 
 
@@ -45,6 +76,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

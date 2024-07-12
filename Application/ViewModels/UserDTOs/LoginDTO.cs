@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.ViewModels.UserDTOs
+namespace ServiceLayer.ViewModels.UserDTOs
 {
-    internal class LoginDTO
-    {
-    }
+	internal class LoginDTO
+	{
+	}
 }

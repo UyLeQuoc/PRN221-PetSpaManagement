@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetSpaManagementWeb", "PetS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{00106FA2-146F-4F0A-9AB6-4994F45418C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{72ED1A8E-3F51-4999-BD23-E332CEE41A4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceLayer", "Application\ServiceLayer.csproj", "{72ED1A8E-3F51-4999-BD23-E332CEE41A4A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{3493A07B-CD95-4EED-8964-6DA66D93D4D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryLayer", "Infrastructure\RepositoryLayer.csproj", "{3493A07B-CD95-4EED-8964-6DA66D93D4D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

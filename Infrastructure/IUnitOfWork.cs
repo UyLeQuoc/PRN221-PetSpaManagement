@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application
+namespace RepositoryLayer
 {
-    public interface IUnitOfWork
-    {
-    }
+	public interface IUnitOfWork
+	{
+	}
 }

@@ -1,9 +1,9 @@
-using Application.Interfaces.IServices;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ServiceLayer.Interfaces;
 
 namespace PetSpaManagementWeb.Pages.Services
 {

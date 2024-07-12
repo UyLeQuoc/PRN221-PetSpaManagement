@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.Interfaces
+﻿namespace ServiceLayer.Interfaces
 {
-    public interface IUserService
-    {
-        public Task<string> Meomaybe();
-    }
+	public interface IUserService
+	{
+		public Task<string> Meomaybe();
+	}
 }

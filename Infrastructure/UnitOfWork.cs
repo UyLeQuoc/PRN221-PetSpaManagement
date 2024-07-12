@@ -1,9 +1,8 @@
-﻿using Application;
-
-namespace Infrastructure
+﻿
+namespace RepositoryLayer
 {
-    public class UnitOfWork 
-    {
-        
-    }
+	public class UnitOfWork
+	{
+
+	}
 }
