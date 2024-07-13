@@ -19,9 +19,9 @@ namespace RepositoryLayer.Repositories
 
 		public async Task<string> CreateService(Service service)
 		{
-			var checkService = await _genericRepository.AnyAsync(x => x.Name.ToLower().Trim().Equals(service.Name.ToLower().Trim()) && x.IsDeleted == false);
-			if (checkService)
-				throw new Exception("Service already exists");
+			//var checkService = await _genericRepository.AnyAsync(x => x.Name.ToLower().Trim().Equals(service.Name.ToLower().Trim()) && x.IsDeleted == false);
+			//if (checkService)
+			//	throw new Exception("Service already exists");
 
 			await _genericRepository.AddAsync(service);
 			if (await _genericRepository.SaveChangesAsync() > 0)

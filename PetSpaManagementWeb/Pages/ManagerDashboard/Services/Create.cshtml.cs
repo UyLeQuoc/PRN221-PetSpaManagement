@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLayer.Interfaces;
 
-namespace PetSpaManagementWeb.Pages.Services
+namespace PetSpaManagementWeb.Pages.ManagerDashboard.Services
 {
     public class CreateModel : PageModel
     {
@@ -34,16 +34,16 @@ namespace PetSpaManagementWeb.Pages.Services
                 return Page();
             }
 
-            //try
-            //{
-            //    ResultMessage = await _serviceService.CreateService(Service);
-            //    ResultMessageType = "success"; 
-            //}
-            //catch (Exception ex)
-            //{
-            //    ResultMessage = ex.Message;
-            //    ResultMessageType = "error"; 
-            //}
+            try
+            {
+                ResultMessage = await _serviceService.CreateService(Service);
+                ResultMessageType = "success";
+            }
+            catch (Exception ex)
+            {
+                ResultMessage = ex.Message;
+                ResultMessageType = "error";
+            }
 
             return RedirectToPage("./Index");
         }

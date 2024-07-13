@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ServiceLayer.Interfaces;
 
-namespace PetSpaManagementWeb.Pages.Services
+namespace PetSpaManagementWeb.Pages.ManagerDashboard.Services
 {
     public class EditModel : PageModel
     {

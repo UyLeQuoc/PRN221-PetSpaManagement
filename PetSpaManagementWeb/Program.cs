@@ -51,7 +51,9 @@ builder.Services.AddScoped<IUserService, UserService>();
 //pet-service
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
-
+//spa-package
+builder.Services.AddScoped<ISpaPackageService, SpaPackageService>();
+builder.Services.AddScoped<ISpaPackageRepository, SpaPackageRepository>();
 
 
 

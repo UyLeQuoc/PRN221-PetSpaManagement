@@ -1,9 +1,9 @@
 ﻿@page
-@model PetSpaManagementWeb.Pages.Services.IndexModel
+@model PetSpaManagementWeb.Pages.ManagerDashboard.Services.IndexModel
 @{
     ViewData["Title"] = "Index";
 }
-<h1>Index</h1>
+<h1>Services</h1>
 <p>
     <a asp-page="Create">Create New</a>
 </p>
@@ -33,7 +33,21 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Duration)
+                    @{
+                        var duration = item.Duration; 
+                        string displayText;
+
+                        if (duration >= 60)
+                        {
+                            displayText = $"{(duration / 60.0):0.0} hours";
+                        }
+                        else
+                        {
+                            displayText = $"{duration} minutes";
+                        }
+                    }
+
+                    @Html.DisplayFor(modelItem => displayText)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

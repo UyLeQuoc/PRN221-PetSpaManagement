@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLayer.Interfaces;
 
-namespace PetSpaManagementWeb.Pages.Services
+namespace PetSpaManagementWeb.Pages.ManagerDashboard.Services
 {
     public class IndexModel : PageModel
     {
