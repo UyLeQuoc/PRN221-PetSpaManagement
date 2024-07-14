@@ -32,7 +32,7 @@ namespace RepositoryLayer.Repositories
 
 		public async Task<List<Service>> GetService()
 		{
-			var serviceList = await _genericRepository.GetAllAsync(s => s.IsDeleted == false);
+			var serviceList = await _genericRepository.GetAllAsync(s => s.IsDeleted == false, s => s.Weight);
 			if (serviceList != null)
 				return serviceList;
 			else
@@ -70,6 +70,7 @@ namespace RepositoryLayer.Repositories
 			serVice.Name = service.Name;
 			serVice.Description = service.Description;
 			serVice.Duration = service.Duration;
+			serVice.WeightId = service.WeightId;
 
 			_genericRepository.Update(serVice);
 			if (await _genericRepository.SaveChangesAsync() > 0)

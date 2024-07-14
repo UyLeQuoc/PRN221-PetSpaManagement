@@ -54,7 +54,9 @@ builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 //spa-package
 builder.Services.AddScoped<ISpaPackageService, SpaPackageService>();
 builder.Services.AddScoped<ISpaPackageRepository, SpaPackageRepository>();
-
+//weight
+builder.Services.AddScoped<IWeightService, WeightService>();
+builder.Services.AddScoped<IWeightRepository, WeightRepository>();
 
 
 var app = builder.Build();

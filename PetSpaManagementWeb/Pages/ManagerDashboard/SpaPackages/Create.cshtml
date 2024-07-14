@@ -58,7 +58,14 @@
                         </div>
                         <div style="width: 25%;">@service.Name</div>
                             @* Chưa có làm Weight *@
-                        <div style="width: 20%;">@service.Duration</div>
+                            <div style="width: 20%;">
+                                @{
+                                    var fromWeight = service.Weight.FromWeight;
+                                    var toWeight = service.Weight.ToWeight;
+                                    string displayWeight = $"{fromWeight} - {toWeight}kg";
+                                }
+                                @Html.DisplayFor(modelItem => displayWeight)
+                            </div>
                         <div style="width: 10%;">
                             @{
                                 var duration = service.Duration;
