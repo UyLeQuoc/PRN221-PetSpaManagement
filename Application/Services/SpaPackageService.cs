@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using RepositoryLayer.Interfaces;
+using RepositoryLayer.Models;
 using ServiceLayer.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,11 @@ namespace ServiceLayer.Services
         public async Task<string> CreateSpaPackage(SpaPackage spaPackage, List<int> serviceIds)
         {
             return await _spaPackageRrepository.CreateSpaPackage(spaPackage, serviceIds);
+        }
+
+        public async Task<SpaPackageDetailResponse> GetSpaPackageByID(int id)
+        {
+            return await _spaPackageRrepository.GetSpaPackageByID(id);
         }
 
         public async Task<List<SpaPackage>> GetSpaPackages()

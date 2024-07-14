@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using RepositoryLayer.Interfaces;
+using RepositoryLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace RepositoryLayer.Repositories
             try
             {
                 if (spaPackage == null)
-                 throw new Exception ("Package Infomation is null");
+                    throw new Exception("Package Infomation is null");
 
                 if (!serviceIds.Any())
                     throw new Exception("No Service selected");
@@ -59,5 +60,30 @@ namespace RepositoryLayer.Repositories
             return await _genericRepositorySpaPackage.GetAllAsync(x => x.IsDeleted == false);
         }
 
+        public async Task<SpaPackageDetailResponse> GetSpaPackageByID(int id)
+        {
+            var spaPackage = await _genericRepositorySpaPackage.GetByIdAsync(id, x => x.IsDeleted == false);
+            if (spaPackage == null)
+                throw new Exception("Package not found");
+
+            var packageServices = await _genericRepositoryPackageService.GetAllAsync(x => x.SpaPackageId == id && x.IsDeleted == false, x => x.Service, x => x.Service.Weight );
+            if (packageServices == null)
+                throw new Exception("Package Services not found");
+
+            SpaPackageDetailResponse response = new SpaPackageDetailResponse();
+            response.SpaPackage = spaPackage;
+
+            if (response.Services == null)
+            {
+                response.Services = new List<Service>();
+            }
+
+            foreach (var packageService in packageServices)
+            {
+                response.Services.Add(packageService.Service);
+            }
+
+            return response;
+        }
     }
 }

@@ -28,6 +28,17 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Service.Duration)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Service.Weight)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var fromWeight = Model.Service.Weight.FromWeight;
+                var toWeight = Model.Service.Weight.ToWeight;
+                string displayWeight = $"{fromWeight} - {toWeight}kg";
+            }
+            @Html.DisplayFor(modelItem => displayWeight)
+        </dd>
     </dl>
 
     <form method="post">

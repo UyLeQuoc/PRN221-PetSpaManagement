@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using RepositoryLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace ServiceLayer.Interfaces
     {
         Task<string> CreateSpaPackage(SpaPackage spaPackage, List<int> serviceIds);
         Task<List<SpaPackage>> GetSpaPackages();
+        Task<SpaPackageDetailResponse> GetSpaPackageByID(int id);
     }
 }

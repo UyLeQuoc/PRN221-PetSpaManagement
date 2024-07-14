@@ -4,16 +4,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ServiceLayer.Interfaces;
+using ServiceLayer.Services;
 
 namespace PetSpaManagementWeb.Pages.ManagerDashboard.Services
 {
     public class EditModel : PageModel
     {
         private readonly IServiceService _service;
+        private readonly IWeightService _weightService;
 
-        public EditModel(IServiceService service)
+        public EditModel(IServiceService service, IWeightService weightService)
         {
             _service = service;
+            _weightService = weightService;
         }
 
         [BindProperty]
@@ -32,17 +35,20 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.Services
                 return NotFound();
             }
             Service = service;
+
+            var weights = await _weightService.GetWeights();
+            var weightSelectList = weights.Select(w => new
+            {
+                Id = w.Id,
+                WeightDisplay = $"{w.FromWeight} - {w.ToWeight}kg"
+            }).ToList();
+
+            ViewData["WeightId"] = new SelectList(weightSelectList, "Id", "WeightDisplay");
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            //_context.Attach(SeaArea).State = EntityState.Modified;
 
             try
             {
