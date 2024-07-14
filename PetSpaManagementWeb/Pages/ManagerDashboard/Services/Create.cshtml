@@ -1,17 +1,24 @@
 ﻿@page
-@model PetSpaManagementWeb.Pages.Services.EditModel
-@{
-    ViewData["Title"] = "Edit";
-}
-<h1>Edit</h1>
+@model PetSpaManagementWeb.Pages.ManagerDashboard.Services.CreateModel
 
-<h4>Service</h4>
+@{
+    ViewData["Title"] = "Create";
+}
+@if (!string.IsNullOrEmpty(Model.ResultMessage))
+{
+    var alertClass = Model.ResultMessageType == "success" ? "alert-success" : "alert-danger";
+    <div id="resultMessage" class="alert @alertClass">
+        @Model.ResultMessage
+    </div>
+}
+<h1>Create</h1>
+
+<h4>Services</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Service.Id" />
             <div class="form-group">
                 <label asp-for="Service.Name" class="control-label"></label>
                 <input asp-for="Service.Name" class="form-control" />
@@ -28,12 +35,27 @@
                 <span asp-validation-for="Service.Duration" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="Service.WeightId" class="control-label">Weight</label>
+                <select asp-for="Service.WeightId" class="form-control" asp-items="ViewBag.WeightId"></select>
+                <span asp-validation-for="Service.WeightId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+<script>
+    setTimeout(function() {
+        var element = document.getElementById('resultMessage');
+        if (element) {
+            element.style.display = 'none';
+        }
+    }, 7000); 
+</script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>

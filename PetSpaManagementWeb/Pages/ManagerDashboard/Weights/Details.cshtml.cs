@@ -3,35 +3,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLayer.Interfaces;
 
-namespace PetSpaManagementWeb.Pages.Services
+namespace PetSpaManagementWeb.Pages.ManagerDashboard.Weights
 {
     public class DetailModel : PageModel
     {
-        private readonly IServiceService _serviceService;
+        private readonly IWeightService _weightService;
 
-        public DetailModel(IServiceService serviceService)
+        public DetailModel(IWeightService weightService)
         {
-            _serviceService = serviceService;
+            _weightService = weightService;
         }
 
-        public Service Service { get; set; } = default!;
+        public Weight Weight { get; set; } = default!;
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || await _serviceService.GetService() == null)
+            if (id == null || await _weightService.GetWeights() == null)
             {
                 return NotFound();
             }
 
-            var service = await _serviceService.GetServiceByID(id);
-            if (service == null)
+            var weight = await _weightService.GetWeightById(id);
+            if (weight == null)
             {
                 return NotFound();
             }
             else
             {
-                Service = service;
+                Weight = weight;
             }
             return Page();
         }
     }
 }
+

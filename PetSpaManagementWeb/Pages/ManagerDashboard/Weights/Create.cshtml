@@ -1,0 +1,35 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.ManagerDashboard.Weights.CreateModel
+@{
+}
+
+<h1>Create</h1>
+
+<h4>Weight</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Weight.FromWeight" class="control-label">From Weight</label>
+                <input asp-for="Weight.FromWeight" class="form-control" />
+                <span asp-validation-for="Weight.FromWeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weight.ToWeight" class="control-label">To Weight</label>
+                <input asp-for="Weight.ToWeight" class="form-control" />
+                <span asp-validation-for="Weight.ToWeight" class="text-danger"></span>
+            </div>
+            @if (Model.ErrorMessage != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @Model.ErrorMessage
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

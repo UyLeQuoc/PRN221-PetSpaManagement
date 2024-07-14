@@ -1,0 +1,115 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<h2>Edit Spa Package</h2>
+<form method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SpaPackageDetailResponse.SpaPackage.Name" class="control-label"></label>
+                <input asp-for="SpaPackageDetailResponse.SpaPackage.Name" class="form-control" />
+                <span asp-validation-for="SpaPackageDetailResponse.SpaPackage.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpaPackageDetailResponse.SpaPackage.Description" class="control-label"></label>
+                <input asp-for="SpaPackageDetailResponse.SpaPackage.Description" class="form-control" />
+                <span asp-validation-for="SpaPackageDetailResponse.SpaPackage.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpaPackageDetailResponse.SpaPackage.Price" class="control-label"></label>
+                <input asp-for="SpaPackageDetailResponse.SpaPackage.Price" class="form-control" />
+                <span asp-validation-for="SpaPackageDetailResponse.SpaPackage.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpaPackageDetailResponse.SpaPackage.PictureUrl" class="control-label"></label>
+                <input type="file" name="Picture" class="form-control-file" />
+                <span asp-validation-for="SpaPackageDetailResponse.SpaPackage.PictureUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Estimated Time: <span id="estimatedTime">@(Model.EstimatedTime ?? 0)</span></label>
+                <input type="hidden" id="estimatedTimeInput" name="SpaPackage.EstimatedTime" />
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div style="max-height: 85vh; overflow-x: auto;">
+                <h6 class="d-flex justify-content-between align-items-center">
+                    <span style="width: 15%;">Check</span>
+                    <span style="width: 25%;">Name</span>
+                    <span style="width: 20%;">Weight</span>
+                    <span style="width: 10%;">Duration</span>
+                </h6>
+                <ul class="list-group">
+                    @foreach (var service in Model.Services)
+                    {
+                        var isChecked = Model.SelectedServiceIds.Contains(service.Id);
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div style="width: 15%;">
+                                <div class="form-check">
+                                    <input type="checkbox" name="SelectedServiceIds" value="@service.Id" class="form-check-input" id="service-@service.Id" style="transform: scale(1.5);" data-duration="@service.Duration" onchange="updateEstimatedTime()" @(isChecked ? "checked" : "") />
+                                </div>
+                            </div>
+                            <div style="width: 25%;">@service.Name</div>
+                            <div style="width: 20%;">
+                                @{
+                                    var fromWeight = service.Weight.FromWeight;
+                                    var toWeight = service.Weight.ToWeight;
+                                    string displayWeight = $"{fromWeight} - {toWeight}kg";
+                                }
+                                @Html.DisplayFor(modelItem => displayWeight)
+                            </div>
+                            <div style="width: 10%;">
+                                @{
+                                    var duration = service.Duration;
+                                    string displayText;
+
+                                    if (duration >= 60)
+                                    {
+                                        displayText = $"{(duration / 60.0):0.0} h";
+                                    }
+                                    else
+                                    {
+                                        displayText = $"{duration} m";
+                                    }
+                                }
+                                @displayText
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    <script>
+        function updateEstimatedTime() {
+            var checkboxes = document.querySelectorAll('input[name="SelectedServiceIds"]:checked');
+            var totalMinutes = 0;
+
+            checkboxes.forEach(function (checkbox) {
+                var duration = parseInt(checkbox.getAttribute('data-duration'));
+                totalMinutes += duration;
+            });
+
+            var estimatedTimeElement = document.getElementById('estimatedTime');
+            if (estimatedTimeElement) {
+                var hours = Math.floor(totalMinutes / 60);
+                var minutes = totalMinutes % 60;
+                var estimatedTime = hours > 0 ? `${hours} h` : "";
+                estimatedTime += minutes > 0 ? ` ${minutes} m` : "";
+                estimatedTimeElement.textContent = estimatedTime.trim() || "0 m";
+            }
+            document.getElementById("estimatedTimeInput").value = totalMinutes;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            updateEstimatedTime();
+        });
+    </script>
+}
