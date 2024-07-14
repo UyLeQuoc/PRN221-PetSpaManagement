@@ -24,6 +24,11 @@ namespace ServiceLayer.Services
             return await _spaPackageRrepository.CreateSpaPackage(spaPackage, serviceIds);
         }
 
+        public async Task<string> DeleteSpaPackage(int id)
+        {
+            return await _spaPackageRrepository.DeleteSpaPackage(id);
+        }
+
         public async Task<SpaPackageDetailResponse> GetSpaPackageByID(int id)
         {
             return await _spaPackageRrepository.GetSpaPackageByID(id);
@@ -32,6 +37,11 @@ namespace ServiceLayer.Services
         public async Task<List<SpaPackage>> GetSpaPackages()
         {
             return await _spaPackageRrepository.GetSpaPackages(); 
+        }
+
+        public async Task<string> UpdateSpaPackage(int id, SpaPackage spaPackage, List<int> serviceIds)
+        {
+            return await _spaPackageRrepository.UpdateSpaPackage(id, spaPackage, serviceIds);
         }
     }
 }
