@@ -41,7 +41,7 @@ namespace RepositoryLayer.Repositories
 
 		public async Task<Service> GetServiceByID(int id)
 		{
-			var service = await _genericRepository.GetByIdAsync(id);
+			var service = await _genericRepository.GetByIdAsync(id, x => x.IsDeleted == false);
 			if (service != null)
 				return service;
 			else
@@ -50,7 +50,7 @@ namespace RepositoryLayer.Repositories
 
 		public async Task<string> DeleteService(int id)
 		{
-			var service = await _genericRepository.GetByIdAsync(id);
+			var service = await _genericRepository.GetByIdAsync(id, x => x.IsDeleted == false );
 			if (service == null)
 				return "Service not found";
 
@@ -63,7 +63,7 @@ namespace RepositoryLayer.Repositories
 
 		public async Task<string> UpdateService(int id, Service service)
 		{
-			var serVice = await _genericRepository.GetByIdAsync(id);
+			var serVice = await _genericRepository.GetByIdAsync(id, x => x.IsDeleted == false);
 			if (serVice == null)
 				return "Service not found";
 

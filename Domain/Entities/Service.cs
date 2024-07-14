@@ -15,5 +15,6 @@ namespace Domain.Entities
 
         //navigation
         public virtual ICollection<PackageService>? PackageServices { get; set; } = new List<PackageService>();
+        public virtual Weight Weight { get; set; }
     }
 }

@@ -56,7 +56,7 @@ namespace RepositoryLayer.Repositories
 
         public async Task<List<SpaPackage>> GetSpaPackages()
         {
-            return await _genericRepositorySpaPackage.GetAllAsync();
+            return await _genericRepositorySpaPackage.GetAllAsync(x => x.IsDeleted == false);
         }
 
     }
