@@ -24,6 +24,7 @@ namespace PetSpaManagementWeb.Pages.AdminDashboard.CustomerManagement
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
             await _userService.DeleteAsync(id);
+            TempData["Message"] = "User deleted successfully!";
             return RedirectToPage();
         }
     }

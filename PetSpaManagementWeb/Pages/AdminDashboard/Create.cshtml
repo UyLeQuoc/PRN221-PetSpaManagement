@@ -1,10 +1,15 @@
-﻿@page
+﻿@page "{role?}"
 @model PetSpaManagementWeb.Pages.AdminDashboard.CreateModel
 @{
-    ViewData["Title"] = "Create Customer";
+    ViewData["Title"] = "Create User";
 }
 
-<h1>Create Customer</h1>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<h1>Create User</h1>
 
 <form method="post">
     <div class="form-group">
@@ -30,3 +35,7 @@
     <button type="submit" class="btn btn-primary">Create</button>
     <a asp-page="./Index" class="btn btn-secondary">Cancel</a>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

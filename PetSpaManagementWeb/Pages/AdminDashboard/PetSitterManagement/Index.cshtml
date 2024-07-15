@@ -7,7 +7,10 @@
 <h1>PetSitter Management</h1>
 
 <a class="btn btn-primary" asp-page="/AdminDashboard/Create">Create New PetSitter</a>
-
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
 <table class="table">
     <thead>
         <tr>
