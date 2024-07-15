@@ -43,7 +43,7 @@ builder.Services.AddSession();
 builder.Services.AddAuthorization();
 
 builder.Services.AddHttpContextAccessor();
-
+//infrastructure
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ICurrentTime, CurrentTime>();
 builder.Services.AddScoped<IClaimsService, ClaimsService>();
@@ -52,12 +52,10 @@ builder.Services.AddScoped<IStorageService, S3StorageService>();
 //user
 builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-//pet-service
+//service
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 //spa-package
 builder.Services.AddScoped<ISpaPackageRepository, SpaPackageRepository>();
-
-builder.Services.AddScoped<ISpaPackageService, SpaPackageService>();
 //weight
 builder.Services.AddScoped<IWeightRepository, WeightRepository>();
 //pet
@@ -67,14 +65,22 @@ builder.Services.AddScoped<IPetRepository, PetRepository>();
 builder.Services.AddScoped<IGenericRepository<Appointment>, GenericRepository<Appointment>>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 
+//payment
+builder.Services.AddScoped<IGenericRepository<Payment>, GenericRepository<Payment>>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+
 //UOW
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //Services
+builder.Services.AddScoped<IStorageService, S3StorageService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IWeightService, WeightService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPetService, PetService>();
+builder.Services.AddScoped<ISpaPackageService, SpaPackageService>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
 var app = builder.Build();
 

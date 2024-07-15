@@ -13,8 +13,8 @@ namespace Domain.Entities
         public int PetId { get; set; }
         public int? PetSitterId { get; set; }
         public DateTime DateTime { get; set; }
-        public string Status { get; set; }
-        public string Notes { get; set; }
+        public string? Status { get; set; }
+        public string? Notes { get; set; }
         public decimal? Price { get; set; }
 
         //navigation
