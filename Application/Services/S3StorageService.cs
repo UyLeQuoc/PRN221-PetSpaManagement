@@ -13,12 +13,11 @@ namespace ServiceLayer.Services
     public class S3StorageService : IStorageService
     {
         private readonly IAmazonS3 _s3Client;
-        private readonly string _bucketName;
+        private readonly string _bucketName = "image-petspamanagement";
 
-        public S3StorageService(IAmazonS3 s3Client, string bucketName)
+        public S3StorageService()
         {
-            _s3Client = s3Client;
-            _bucketName = bucketName;
+            _s3Client = new AmazonS3Client();
         }
 
         public async Task<string> UploadAsync(IFormFile file)
@@ -39,6 +38,26 @@ namespace ServiceLayer.Services
 
             await _s3Client.PutObjectAsync(putRequest);
             return $"https://{_bucketName}.s3.amazonaws.com/{file.FileName}";
+        }
+
+        public async Task DeleteAsync(string imageUrl)
+        {
+            // Parse image key from URL
+            Uri uri;
+            if (!Uri.TryCreate(imageUrl, UriKind.Absolute, out uri))
+            {
+                throw new ArgumentException("Invalid image URL");
+            }
+
+            var imageKey = Path.GetFileName(uri.LocalPath);
+
+            var deleteRequest = new DeleteObjectRequest
+            {
+                BucketName = _bucketName,
+                Key = imageKey
+            };
+
+            await _s3Client.DeleteObjectAsync(deleteRequest);
         }
     }
 }

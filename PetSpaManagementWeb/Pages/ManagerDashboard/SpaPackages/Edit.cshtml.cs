@@ -12,7 +12,8 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
     public class EditModel : PageModel
     {
         private readonly ISpaPackageService _spaPackageService;
-        private readonly IServiceRepository _serviceRepository;
+        private readonly IServiceService _serviceService;
+        private readonly IStorageService _storageService;
 
         [BindProperty]
         public SpaPackageDetailResponse SpaPackageDetailResponse { get; set; }
@@ -21,16 +22,22 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
 
         [BindProperty]
         public List<int> SelectedServiceIds { get; set; }
+        [BindProperty]
+        public IFormFile Picture { get; set; }
 
         public IEnumerable<Service> Services { get; set; }
 
         public int? EstimatedTime { get; set; }
 
-        public EditModel(ISpaPackageService spaPackageService, IServiceRepository serviceRepository)
+        public string ErrorMessage { get; set; }
+
+        public EditModel(ISpaPackageService spaPackageService, IServiceService serviceService, IStorageService storageService)
         {
             _spaPackageService = spaPackageService;
-            _serviceRepository = serviceRepository;
+            _serviceService = serviceService;
+            _storageService = storageService;
             SelectedServiceIds = new List<int>();
+            
         }
 
         public async Task<IActionResult> OnGetAsync(int id)
@@ -50,7 +57,7 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
             // Để hiển thị check có sẵn của spaPackage trong Services LIst
             SelectedServiceIds = spaPackageDetail.Services.Select(s => s.Id).ToList();
 
-            Services = await _serviceRepository.GetService();
+            Services = await _serviceService.GetService();
 
             return Page();
 
@@ -61,13 +68,36 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
 
             try
             {
-                SpaPackage.Name = SpaPackageDetailResponse.SpaPackage.Name;
-                SpaPackage.Description = SpaPackageDetailResponse.SpaPackage.Description;
-                SpaPackage.Price = SpaPackageDetailResponse.SpaPackage.Price;
-                SpaPackage.PictureUrl = SpaPackageDetailResponse.SpaPackage.PictureUrl;
-                SpaPackage.EstimatedTime = SpaPackageDetailResponse.SpaPackage.EstimatedTime;
+                string pictureUrl = SpaPackageDetailResponse.SpaPackage.PictureUrl;
 
-                await _spaPackageService.UpdateSpaPackage(id, SpaPackage, SelectedServiceIds);
+                if (SpaPackageDetailResponse.SpaPackage.Name == null)
+                {
+                    ErrorMessage = "Name is required.";
+                }
+                else if (SpaPackageDetailResponse.SpaPackage.Price == null)
+                {
+                    ErrorMessage = "Price is required.";
+                }
+                else
+                {
+                    if (Picture != null)
+                    {
+                        if(SpaPackageDetailResponse.SpaPackage.PictureUrl != null)
+                        {
+                            await _storageService.DeleteAsync(SpaPackageDetailResponse.SpaPackage.PictureUrl);
+                        }
+
+                        pictureUrl = await _storageService.UploadAsync(Picture);
+                    }
+
+                    SpaPackage.Name = SpaPackageDetailResponse.SpaPackage.Name;
+                    SpaPackage.Description = SpaPackageDetailResponse.SpaPackage.Description;
+                    SpaPackage.Price = SpaPackageDetailResponse.SpaPackage.Price;
+                    SpaPackage.PictureUrl = pictureUrl;
+                    SpaPackage.EstimatedTime = SpaPackageDetailResponse.SpaPackage.EstimatedTime;
+
+                    await _spaPackageService.UpdateSpaPackage(id, SpaPackage, SelectedServiceIds);
+                }
             }
             catch (DbUpdateConcurrencyException)
             {
