@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using RepositoryLayer;
 using RepositoryLayer.Models;
+using RepositoryLayer.Repositories;
 using ServiceLayer.Interfaces;
 
 namespace ServiceLayer.Services

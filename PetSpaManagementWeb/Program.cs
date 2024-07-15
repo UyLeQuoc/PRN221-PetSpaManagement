@@ -52,7 +52,9 @@ builder.Services.AddScoped<IStorageService, S3StorageService>();
 //user
 builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-//service
+builder.Services.AddScoped<IUserService, UserService>();
+//pet-service
+builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 //spa-package
 builder.Services.AddScoped<ISpaPackageRepository, SpaPackageRepository>();

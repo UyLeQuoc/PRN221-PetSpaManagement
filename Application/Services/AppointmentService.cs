@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ServiceLayer.Services
 {
@@ -24,10 +25,51 @@ namespace ServiceLayer.Services
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<List<Appointment>> GetAppointments()
+        {
+            var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false,
+                                                            a => a.User,
+                                                            a => a.SpaPackage,
+                                                            a => a.Pet);
+
+            if (list == null)
+                throw new Exception("Empty Appoiments");
+            else
+                return list;
+        }
+
+        public async Task<Appointment> GetAppointmentById(int id)
+        {
+            var appointment = await _unitOfWork.AppointmentRepository.GetByIdAsync(id);
+
+            if (appointment == null)
+                throw new Exception("No Appointment found");
+            else
+                return appointment;
+        }
+
+        //public async Task<string> CreateAppoiment(Appointment appointment)
+        //{
+        //    var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointment.Id, e => e.IsDeleted == false);
+
+        //    if (exist != null)
+        //        return "Service exists";
+        //    await _unitOfWork.AppointmentRepository.AddAsync(appointment);
+        //    if (await _unitOfWork.AppointmentRepository.SaveChangesAsync() > 0)
+        //        return "Create Successfully";
+        //    else
+        //        return "Create Failed";
+        //}
+
         public async Task<Appointment> CreateNewAppointment(Appointment appointment)
         {
             try
             {
+                var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointment.Id, e => e.IsDeleted == false);
+                if (exist != null)
+                {
+                    throw new Exception("existed appointment");
+                }
                 var existingSpapackage = await _unitOfWork.SpaPackageRepository.GetSpaPackageByID(appointment.SpaPackageId);
                 if (existingSpapackage == null)
                 {
@@ -48,7 +90,9 @@ namespace ServiceLayer.Services
                     DateTime = appointment.DateTime,
                     Status = appointment.Status,
                     Notes = appointment.Notes,
-                    Price = appointment.SpaPackage.Price
+                    Price = existingSpapackage.SpaPackage.Price,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = 1
                 };
 
                 await _unitOfWork.AppointmentRepository.AddAsync(newAppointment);
@@ -63,6 +107,47 @@ namespace ServiceLayer.Services
             {
                 throw;
             }
+        }
+
+        public async Task<string> UpdateAppoiment(Appointment appointment)
+        {
+            var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointment.Id, e => e.IsDeleted == false);
+            if (exist == null)
+                return "Service not found";
+
+            var existingSpapackage = await _unitOfWork.SpaPackageRepository.GetSpaPackageByID(appointment.SpaPackageId);
+            if (existingSpapackage == null)
+            {
+                throw new Exception("Non-existed spa package");
+            }
+
+            exist.UserId = appointment.UserId;
+            exist.SpaPackageId = appointment.SpaPackageId;
+            exist.PetId = appointment.PetId;
+            exist.PetSitterId = appointment.PetSitterId;
+            exist.DateTime = appointment.DateTime;
+            exist.Status = appointment.Status;
+            exist.Notes = appointment.Notes;
+            exist.Price = existingSpapackage.SpaPackage.Price;
+
+            _unitOfWork.AppointmentRepository.Update(exist);
+            if (await _unitOfWork.AppointmentRepository.SaveChangesAsync() > 0)
+                return "Create Successfully";
+            else
+                return "Service not found";
+        }
+
+        public async Task<string> DeleteAppoiment(int Id)
+        {
+            var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(Id, e => e.IsDeleted == false);
+            if (exist == null)
+                return "Service not found";
+
+            _unitOfWork.AppointmentRepository.SoftRemove(exist);
+            if (await _unitOfWork.AppointmentRepository.SaveChangesAsync() > 0)
+                return "Create Successfully";
+            else
+                return "Service not found";
         }
     }
 }

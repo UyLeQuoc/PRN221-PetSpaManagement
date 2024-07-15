@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,9 @@ namespace Domain.Entities
         public decimal? Price { get; set; }
 
         //navigation
-
+        [ValidateNever]
         public virtual Pet Pet { get; set; }
+        [ValidateNever]
         public virtual User User { get; set; }
 
         public virtual SpaPackage? SpaPackage { get; set; }

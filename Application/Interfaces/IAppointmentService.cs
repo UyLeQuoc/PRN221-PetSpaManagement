@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace ServiceLayer.Interfaces
 {
     public interface IAppointmentService
     {
+        Task<List<Appointment>> GetAppointments();
+        Task<Appointment> GetAppointmentById(int id);
+        Task<Appointment> CreateNewAppointment(Appointment appointment);
+        Task<string> UpdateAppoiment(Appointment appointment);
+        Task<string> DeleteAppoiment(int Id);
     }
 }
