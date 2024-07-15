@@ -16,11 +16,15 @@
         @TempData["ErrorMessage"]
     </div>
 }
-<p>
-    <form method="get" asp-page="./Create">
-        <button type="submit" class="btn btn-primary">Create new pet</button>
+<div class="d-flex">
+    <form method="get" asp-page="./Create" class="me-2">
+        <button type="submit" class="btn btn-primary">Create new profile for your pet</button>
     </form>
-</p>
+
+    <form method="get" asp-page="/Appointments/Create">
+        <button type="submit" class="btn btn-primary">Make an appointment</button>
+    </form>
+</div>
 <table class="table">
     <thead>
         <tr>

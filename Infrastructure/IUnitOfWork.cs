@@ -7,6 +7,8 @@ namespace RepositoryLayer
         IPetRepository PetRepository { get; }
         IAppointmentRepository AppointmentRepository { get; }
         IUserRepository UserRepository { get; }
+        IPaymentRepository PaymentRepository { get; }
+        ISpaPackageRepository SpaPackageRepository { get; }
 
         Task<int> SaveChangeAsync();
     }

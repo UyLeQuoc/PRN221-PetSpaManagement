@@ -28,7 +28,7 @@ namespace ServiceLayer.Services
 
         public async Task<List<Pet>> GetAllPets()
         {
-            return await _unitOfWork.PetRepository.GetAllAsync(x => x.IsDeleted==false, x => x.User);
+            return await _unitOfWork.PetRepository.GetAllAsync(x => x.IsDeleted == false, x => x.User);
         }
 
         public async Task<Pet> GetPetById(int id)
