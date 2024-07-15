@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Interfaces
 {
-	public interface IAppointmentService
-	{
-		Task<List<Appointment>> GetAppointments();
-		Task<Appointment> GetAppointmentById(int id);
-		Task<string> CreateAppoiment(Appointment appointment);
-		Task<string> UpdateAppoiment(Appointment appointment);
-		Task<string> DeleteAppoiment(int id);
-	}
+    public interface IAppointmentService
+    {
+        Task<List<Appointment>> GetAppointments();
+        Task<Appointment> GetAppointmentById(int id);
+        Task<Appointment> CreateNewAppointment(Appointment appointment);
+        Task<string> UpdateAppoiment(Appointment appointment);
+        Task<string> DeleteAppoiment(int Id);
+    }
 }

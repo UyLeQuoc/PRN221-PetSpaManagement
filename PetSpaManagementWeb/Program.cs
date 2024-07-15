@@ -2,12 +2,14 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using PetSpaManagementWeb.Pages.ManagerDashboard.Services;
 using RepositoryLayer;
 using RepositoryLayer.Commons;
 using RepositoryLayer.Commons.ServiceLayer.Services;
 using RepositoryLayer.Interfaces;
 using RepositoryLayer.Repositories;
 using ServiceLayer.Interfaces;
+using ServiceLayer.Mappers;
 using ServiceLayer.Services;
 using System.Text;
 
@@ -15,6 +17,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddAutoMapper(typeof(MapperConfigProfile).Assembly);
+builder.Services.AddScoped<ILogger<EditModel>, Logger<EditModel>>();
+
 builder.Services.AddDbContext<PetSpaManagementDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB"));
@@ -38,29 +43,46 @@ builder.Services.AddSession();
 builder.Services.AddAuthorization();
 
 builder.Services.AddHttpContextAccessor();
-
+//infrastructure
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ICurrentTime, CurrentTime>();
 builder.Services.AddScoped<IClaimsService, ClaimsService>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
+builder.Services.AddScoped<IStorageService, S3StorageService>();
 //user
 builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
-//appointment
-builder.Services.AddScoped<IAppointmentService, AppointmentService>();
-builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 //pet-service
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 //spa-package
-builder.Services.AddScoped<ISpaPackageService, SpaPackageService>();
 builder.Services.AddScoped<ISpaPackageRepository, SpaPackageRepository>();
 //weight
-builder.Services.AddScoped<IWeightService, WeightService>();
 builder.Services.AddScoped<IWeightRepository, WeightRepository>();
+//pet
+builder.Services.AddScoped<IGenericRepository<Pet>, GenericRepository<Pet>>();
+builder.Services.AddScoped<IPetRepository, PetRepository>();
+//appointment
+builder.Services.AddScoped<IGenericRepository<Appointment>, GenericRepository<Appointment>>();
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 
+//payment
+builder.Services.AddScoped<IGenericRepository<Payment>, GenericRepository<Payment>>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+
+//UOW
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+//Services
+builder.Services.AddScoped<IStorageService, S3StorageService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<IWeightService, WeightService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPetService, PetService>();
+builder.Services.AddScoped<ISpaPackageService, SpaPackageService>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
 var app = builder.Build();
 

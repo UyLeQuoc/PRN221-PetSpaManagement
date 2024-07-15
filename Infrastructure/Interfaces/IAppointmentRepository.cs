@@ -8,12 +8,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryLayer.Interfaces
 {
-	public interface IAppointmentRepository
-	{
-		Task<List<Appointment>> GetAppointments();
-		Task<Appointment> GetAppointmentById(int id);
-		Task<string> CreateAppoiment(Appointment appointment);
-		Task<string> UpdateAppoiment(Appointment appointment);
-		Task<string> DeleteAppoiment(int id);
-	}
+    public interface IAppointmentRepository : IGenericRepository<Appointment>
+    {
+    }
 }

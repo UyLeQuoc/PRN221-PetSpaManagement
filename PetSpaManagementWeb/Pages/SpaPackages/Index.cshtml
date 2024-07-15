@@ -1,0 +1,32 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.SpaPackages.IndexModel
+@{
+    ViewData["Title"] = "Spa Packages";
+}
+
+<div class="container">
+    <div class="text-center mb-4">
+        <h1>Spa Packages</h1>
+    </div>
+
+    <div class="row">
+        @foreach (var spaPackage in Model.SpaPackages)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if (!string.IsNullOrEmpty(spaPackage.PictureUrl))
+                    {
+                        <img class="card-img-top" src="@spaPackage.PictureUrl" alt="@spaPackage.Name" style="height: 200px; object-fit: cover;">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@spaPackage.Name</h5>
+                        <dl class="row">
+                            <dt class="col-sm-4">Price:</dt>
+                            <dd class="col-sm-8">@spaPackage.Price VND</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

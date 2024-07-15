@@ -3,11 +3,10 @@
 @{
 }
 
-<h2>Create Spa Package</h2>
+<h2>Add Appointment</h2>
 <form method="post">
-<div class="row">
-    <div class="col-md-6">
-        
+    <div class="row">
+        <div class="col-md-6">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Appointment.UserId" class="control-label"></label>
@@ -32,22 +31,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Appointment.Status" class="control-label"></label>
-                <input asp-for="Appointment.Status" class="form-control" />
-                <span asp-validation-for="Appointment.DateTime" class="text-danger"></span>
+                <select asp-for="Appointment.Status" class="form-control">
+                    <option value="PENDING">PENDING</option>
+                    <option value="ASSIGNED">ASSIGNED</option>
+                    <option value="COMPLETED">COMPLETED</option>
+                    <option value="CANCELLED">CANCELLED</option>
+                    <option value="ABSENT">ABSENT</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Appointment.Notes" class="control-label"></label>
                 <input asp-for="Appointment.Notes" class="form-control" />
-                <span asp-validation-for="Appointment.DateTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Appointment.Price" class="control-label"></label>
-                <input asp-for="Appointment.Price" class="form-control" />
-                <span asp-validation-for="Appointment.Price" class="text-danger"></span>
+                <span asp-validation-for="Appointment.Notes" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-    </div>
+        </div>
 </form>
 

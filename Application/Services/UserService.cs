@@ -1,53 +1,72 @@
 ﻿using Domain.Entities;
-using RepositoryLayer.Interfaces;
+using RepositoryLayer;
 using RepositoryLayer.Models;
 using RepositoryLayer.Repositories;
 using ServiceLayer.Interfaces;
 
 namespace ServiceLayer.Services
 {
-	public class UserService : IUserService
-	{
-		private readonly IUserRepository _userRepository;
+    public class UserService : IUserService
+    {
+        private readonly IUnitOfWork _unitOfWork;
 
-		public UserService(IUserRepository userRepository)
-		{
-			_userRepository = userRepository;
-		}
-
-		public Task<User> GetUserByEmailAsync(string email)
-		{
-			return _userRepository.GetUserByEmailAsync(email);
-		}
-
-		public Task<LoginResponse> LoginAsync(string email, string password)
-		{
-			return _userRepository.LoginAsync(email, password);
-		}
-
-		public Task<User> RegisterAsync(User user)
-		{
-			return _userRepository.RegisterAsync(user);
-		}
-
-        public async Task<List<User>> GetCustomer()
+        public UserService(IUnitOfWork unitOfWork)
         {
-            var list = await _userRepository.GetAllAsync(a => a.IsDeleted == false && a.RoleId == 4);
-
-            if (list == null)
-                throw new Exception("Empty Customer");
-            else
-                return list;
+            _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<User>> GetPetSitter()
+        public Task<User> GetUserByEmailAsync(string email)
         {
-            var list = await _userRepository.GetAllAsync(a => a.IsDeleted == false && a.RoleId == 3);
-
-            if (list == null)
-                throw new Exception("Empty Petsitter");
-            else
-                return list;
+            return _unitOfWork.UserRepository.GetUserByEmailAsync(email);
         }
+
+        public Task<LoginResponse> LoginAsync(string email, string password)
+        {
+            return _unitOfWork.UserRepository.LoginAsync(email, password);
+        }
+
+        public Task<User> RegisterAsync(User user)
+        {
+            return _unitOfWork.UserRepository.RegisterAsync(user);
+        }
+
+        public Task<User> GetCurrentUserAsync()
+        {
+            return _unitOfWork.UserRepository.CurrentUserAsync();
+        }
+        public async Task<List<User>> GetUsersByRoleIdAsync(int roleId)
+        {
+            return await _unitOfWork.UserRepository.GetUsersByRoleIdAsync(roleId);
+        }
+
+        public async Task<bool> AddAsync(User entity)
+        {
+            await _unitOfWork.UserRepository.AddAsync(entity);
+            return await _unitOfWork.SaveChangeAsync() > 0;
+        }
+
+        public async Task<bool> UpdateAsync(User entity)
+        {
+            _unitOfWork.UserRepository.Update(entity);
+            return await _unitOfWork.SaveChangeAsync() > 0;
+
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            await _unitOfWork.UserRepository.SoftRemove(id);
+            return await _unitOfWork.SaveChangeAsync() > 0;
+        }
+
+        public Task<User> GetByIdAsync(int id)
+        {
+            return _unitOfWork.UserRepository.GetByIdAsync(id);
+        }
+
+        public async Task<Dictionary<string, int>> GetUserCountsByRoleAsync()
+        {
+            return await _unitOfWork.UserRepository.GetUserCountsByRoleAsync();
+        }
+
     }
 }

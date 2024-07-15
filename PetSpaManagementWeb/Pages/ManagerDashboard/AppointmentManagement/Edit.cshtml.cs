@@ -16,21 +16,21 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.AppointmentManagement
         private readonly IAppointmentService _appointmentService;
         private readonly IUserService _userService;
         private readonly ISpaPackageService _spaPackageService;
-        //private readonly IPetService _petService;
-
-        [BindProperty]
-        public Appointment Appointment { get; set; }
+        private readonly IPetService _petService;
 
         public EditModel(IAppointmentService appointmentService,
                          IUserService userService,
-                         ISpaPackageService spaPackageService
-                         /*IPetService petService*/)
+                         ISpaPackageService spaPackageService,
+                         IPetService petService)
         {
             _appointmentService = appointmentService;
             _userService = userService;
             _spaPackageService = spaPackageService;
-            //_petService = petService;
+            _petService = petService;
         }
+
+        [BindProperty]
+        public Appointment Appointment { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -46,20 +46,21 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.AppointmentManagement
             }
 
             Appointment = appointment;
-            ViewData["UserId"] = new SelectList(await _userService.GetCustomer(), "UserId", "Name");
-            ViewData["SpaPackageId"] = new SelectList(await _spaPackageService.GetSpaPackages(), "SpaPackageId", "Name");
-            //ViewData["PetId"] = new SelectList(await _petService.GetPets(), "PetId", "Name");
-            ViewData["PetSitter"] = new SelectList(await _userService.GetPetSitter(), "UserId", "Name");
+            ViewData["UserId"] = new SelectList(await _userService.GetUsersByRoleIdAsync(4), "Id", "Name");
+            ViewData["SpaPackageId"] = new SelectList(await _spaPackageService.GetSpaPackages(), "Id", "Name");
+            ViewData["PetId"] = new SelectList(await _petService.GetAllPets(), "Id", "Name");
+            ViewData["PetSitter"] = new SelectList(await _userService.GetUsersByRoleIdAsync(3), "Id", "Name");
             return Page();
 
         }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+
 
             try
             {

@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h1>Spa Package</h1>
+<h1>Appointment</h1>
 <p>
     <a asp-page="Create">Create New</a>
 </p>
@@ -11,16 +11,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].User.Name)
+                @Html.DisplayNameFor(model => model.Appointment[0].User)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].SpaPackage.Name)
+                @Html.DisplayNameFor(model => model.Appointment[0].SpaPackage)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Pet.Name)
+                @Html.DisplayNameFor(model => model.Appointment[0].Pet)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].PetSitterId)
+                Pet Sitter
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Appointment[0].DateTime)
@@ -34,6 +34,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Appointment[0].Price)
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -49,19 +50,19 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Pet.Name)
                 </td>
-                                <td>
-                    @Html.DisplayFor(modelItem => item.PetSitterId)
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
                 </td>
-                                <td>
+                <td>
                     @Html.DisplayFor(modelItem => item.DateTime)
                 </td>
-                                <td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
-                                <td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Notes)
                 </td>
-                                <td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
 

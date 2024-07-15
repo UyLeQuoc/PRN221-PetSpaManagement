@@ -1,0 +1,41 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.AdminDashboard.PetSitterManagement.IndexModel
+@{
+    ViewData["Title"] = "PetSitter Management";
+}
+
+<h1>PetSitter Management</h1>
+
+<a class="btn btn-primary" asp-page="/AdminDashboard/Create">Create New PetSitter</a>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var petSitter in Model.PetSitters)
+        {
+            <tr>
+                <td>@petSitter.Name</td>
+                <td>@petSitter.Email</td>
+                <td>
+                    <a class="btn btn-secondary" asp-page="/AdminDashboard/PetSitterManagement/Edit" asp-route-id="@petSitter.Id">Edit</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@petSitter.Id" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
