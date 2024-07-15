@@ -9,7 +9,8 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
     public class CreateModel : PageModel
     {
         private readonly ISpaPackageService _spaPackageService;
-        private readonly IServiceRepository _serviceRepository;
+        private readonly IServiceService _serviceService;
+        private readonly IStorageService _storageService;
 
         [BindProperty]
         public SpaPackage SpaPackage { get; set; }
@@ -17,29 +18,48 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
         [BindProperty]
         public List<int> SelectedServiceIds { get; set; }
 
+        [BindProperty]
+        public IFormFile Picture { get; set; }
+
+        public string ErrorMessage { get; set; }
+
         public IEnumerable<Service> Services { get; set; }
 
         public int? EstimatedTime { get; set; }
 
-        public CreateModel(ISpaPackageService spaPackageService, IServiceRepository serviceRepository)
+        public CreateModel(ISpaPackageService spaPackageService, IServiceService serviceService, IStorageService storageService)
         {
             _spaPackageService = spaPackageService;
-            _serviceRepository = serviceRepository;
+            _serviceService = serviceService;
+            _storageService = storageService;
             SelectedServiceIds = new List<int>();
         }
 
         public async Task OnGetAsync()
         {
-            Services = await _serviceRepository.GetService();
+            Services = await _serviceService.GetService();
         }
+
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
 
-            await _spaPackageService.CreateSpaPackage(SpaPackage, SelectedServiceIds);
+            if (Picture == null)
+            {
+                ErrorMessage = "Picture is required.";
+            }
+            else if(SpaPackage.Name == null)
+            {
+                ErrorMessage = "Name is required.";
+            }
+            else if(SpaPackage.Price == null)
+            {
+                ErrorMessage = "Price is required.";
+            }
+            else
+            {
+                SpaPackage.PictureUrl = await _storageService.UploadAsync(Picture);
+                await _spaPackageService.CreateSpaPackage(SpaPackage, SelectedServiceIds);
+            }
 
             return RedirectToPage("Index");
         }

@@ -141,28 +141,32 @@ namespace RepositoryLayer.Repositories
                 // Tìm các ID cần thêm (có trong serviceIds nhưng không có trong existingServiceIds)
                 var serviceIdsToAdd = serviceIds.Except(existingServiceIds).ToList();
 
-                // Xóa các dịch vụ không còn trong danh sách mới
-                foreach (var serviceIdToRemove in serviceIdsToRemove)
+                if (serviceIdsToRemove.Any() && serviceIdsToAdd.Any())
                 {
-                    var packageServiceToRemove = existingPackageServices.First(x => x.ServiceId == serviceIdToRemove);
-                    _genericRepositoryPackageService.SoftRemove(packageServiceToRemove);
-                }
-
-                // Thêm các dịch vụ mới vào danh sách
-                foreach (var serviceIdToAdd in serviceIdsToAdd)
-                {
-                    var packageService = new PackageService
+                    // Xóa các dịch vụ không còn trong danh sách mới
+                    foreach (var serviceIdToRemove in serviceIdsToRemove)
                     {
-                        SpaPackageId = existingSpaPackage.Id,
-                        ServiceId = serviceIdToAdd
-                    };
-                    await _genericRepositoryPackageService.AddAsync(packageService);
-                }
+                        var packageServiceToRemove = existingPackageServices.First(x => x.ServiceId == serviceIdToRemove);
+                        _genericRepositoryPackageService.SoftRemove(packageServiceToRemove);
+                    }
 
-                if (await _genericRepositoryPackageService.SaveChangesAsync() > 0)
-                    return "Update Successfully";
-                else
-                    throw new Exception("Update Failed");
+                    // Thêm các dịch vụ mới vào danh sách
+                    foreach (var serviceIdToAdd in serviceIdsToAdd)
+                    {
+                        var packageService = new PackageService
+                        {
+                            SpaPackageId = existingSpaPackage.Id,
+                            ServiceId = serviceIdToAdd
+                        };
+                        await _genericRepositoryPackageService.AddAsync(packageService);
+                    }
+
+                    if (await _genericRepositoryPackageService.SaveChangesAsync() > 0)
+                        return "Update Successfully";
+                    else
+                        throw new Exception("Update Failed");
+                }
+                return "Update Successfully";
             }
             catch (Exception ex)
             {
