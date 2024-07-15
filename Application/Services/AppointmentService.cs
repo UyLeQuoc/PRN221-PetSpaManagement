@@ -21,8 +21,8 @@ namespace ServiceLayer.Services
 		public async Task<string> CreateAppoiment(Appointment appointment) 
 			=> await _appointmentRepository.CreateAppoiment(appointment);
 
-		public async Task<string> DeleteAppoiment(Appointment appointment) 
-			=> await _appointmentRepository.DeleteAppoiment(appointment);
+		public async Task<string> DeleteAppoiment(int id) 
+			=> await _appointmentRepository.DeleteAppoiment(id);
 
 		public async Task<Appointment> GetAppointmentById(int id) 
 			=> await _appointmentRepository.GetAppointmentById(id);

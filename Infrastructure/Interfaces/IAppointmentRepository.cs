@@ -14,6 +14,6 @@ namespace RepositoryLayer.Interfaces
 		Task<Appointment> GetAppointmentById(int id);
 		Task<string> CreateAppoiment(Appointment appointment);
 		Task<string> UpdateAppoiment(Appointment appointment);
-		Task<string> DeleteAppoiment(Appointment appointment);
+		Task<string> DeleteAppoiment(int id);
 	}
 }

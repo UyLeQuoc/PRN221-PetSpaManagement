@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using RepositoryLayer.Interfaces;
 using RepositoryLayer.Models;
+using RepositoryLayer.Repositories;
 using ServiceLayer.Interfaces;
 
 namespace ServiceLayer.Services
@@ -28,5 +29,25 @@ namespace ServiceLayer.Services
 		{
 			return _userRepository.RegisterAsync(user);
 		}
-	}
+
+        public async Task<List<User>> GetCustomer()
+        {
+            var list = await _userRepository.GetAllAsync(a => a.IsDeleted == false && a.RoleId == 4);
+
+            if (list == null)
+                throw new Exception("Empty Customer");
+            else
+                return list;
+        }
+
+        public async Task<List<User>> GetPetSitter()
+        {
+            var list = await _userRepository.GetAllAsync(a => a.IsDeleted == false && a.RoleId == 3);
+
+            if (list == null)
+                throw new Exception("Empty Petsitter");
+            else
+                return list;
+        }
+    }
 }

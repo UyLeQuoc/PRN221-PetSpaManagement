@@ -79,9 +79,9 @@ namespace RepositoryLayer.Repositories
 				return "Service not found";
 		}
 
-		public async Task<string> DeleteAppoiment(Appointment appointment)
+		public async Task<string> DeleteAppoiment(int Id)
 		{
-			var exist = await _genericRepository.GetByIdAsync(appointment.Id, e => e.IsDeleted == false);
+			var exist = await _genericRepository.GetByIdAsync(Id, e => e.IsDeleted == false);
 			if (exist == null)
 				return "Service not found";
 

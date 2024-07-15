@@ -31,8 +31,6 @@
     <Folder Include="Pages\AdminDashboard\CustomerManagement\" />
     <Folder Include="Pages\AdminDashboard\ManagerManagement\" />
     <Folder Include="Pages\AdminDashboard\PetSitterManagement\" />
-    <Folder Include="Pages\ManagerDashboard\AppointmentManagement\" />
-    <Folder Include="Pages\Appointment\" />
     <Folder Include="Pages\User\" />
   </ItemGroup>
 

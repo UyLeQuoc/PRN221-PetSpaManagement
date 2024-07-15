@@ -19,9 +19,9 @@ namespace RepositoryLayer.Repositories
 
 		public async Task<string> CreateService(Service service)
 		{
-			var checkService = await _genericRepository.AnyAsync(x => x.Name.ToLower().Trim().Equals(service.Name.ToLower().Trim()) && x.IsDeleted == false);
-			if (checkService)
-				throw new Exception("Service already exists");
+			//var checkService = await _genericRepository.AnyAsync(x => x.Name.ToLower().Trim().Equals(service.Name.ToLower().Trim()) && x.IsDeleted == false);
+			//if (checkService)
+			//	throw new Exception("Service already exists");
 
 			await _genericRepository.AddAsync(service);
 			if (await _genericRepository.SaveChangesAsync() > 0)
@@ -32,7 +32,7 @@ namespace RepositoryLayer.Repositories
 
 		public async Task<List<Service>> GetService()
 		{
-			var serviceList = await _genericRepository.GetAllAsync(s => s.IsDeleted == false);
+			var serviceList = await _genericRepository.GetAllAsync(s => s.IsDeleted == false, s => s.Weight);
 			if (serviceList != null)
 				return serviceList;
 			else
@@ -41,7 +41,7 @@ namespace RepositoryLayer.Repositories
 
 		public async Task<Service> GetServiceByID(int id)
 		{
-			var service = await _genericRepository.GetByIdAsync(id);
+			var service = await _genericRepository.GetByIdAsync(id, x => x.IsDeleted == false);
 			if (service != null)
 				return service;
 			else
@@ -50,7 +50,7 @@ namespace RepositoryLayer.Repositories
 
 		public async Task<string> DeleteService(int id)
 		{
-			var service = await _genericRepository.GetByIdAsync(id);
+			var service = await _genericRepository.GetByIdAsync(id, x => x.IsDeleted == false );
 			if (service == null)
 				return "Service not found";
 
@@ -63,13 +63,14 @@ namespace RepositoryLayer.Repositories
 
 		public async Task<string> UpdateService(int id, Service service)
 		{
-			var serVice = await _genericRepository.GetByIdAsync(id);
+			var serVice = await _genericRepository.GetByIdAsync(id, x => x.IsDeleted == false);
 			if (serVice == null)
 				return "Service not found";
 
 			serVice.Name = service.Name;
 			serVice.Description = service.Description;
 			serVice.Duration = service.Duration;
+			serVice.WeightId = service.WeightId;
 
 			_genericRepository.Update(serVice);
 			if (await _genericRepository.SaveChangesAsync() > 0)

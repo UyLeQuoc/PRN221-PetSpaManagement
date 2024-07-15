@@ -12,8 +12,9 @@ namespace Domain.Entities
         public string? Description { get; set; }
         public int? Duration { get; set; }
         public string? PictureUrl { get; set; }
-
+        public int WeightId { get; set; }
         //navigation
         public virtual ICollection<PackageService>? PackageServices { get; set; } = new List<PackageService>();
+        public virtual Weight Weight { get; set; }
     }
 }

@@ -1,0 +1,53 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.ManagerDashboard.AppointmentManagement.CreateModel
+@{
+}
+
+<h2>Create Spa Package</h2>
+<form method="post">
+<div class="row">
+    <div class="col-md-6">
+        
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Appointment.UserId" class="control-label"></label>
+                <select asp-for="Appointment.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.SpaPackageId" class="control-label"></label>
+                <select asp-for="Appointment.SpaPackageId" class="form-control" asp-items="ViewBag.SpaPackageId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.PetId" class="control-label"></label>
+                <select asp-for="Appointment.PetId" class="form-control" asp-items="ViewBag.PetId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.PetSitterId" class="control-label"></label>
+                <select asp-for="Appointment.PetSitterId" class="form-control" asp-items="ViewBag.PetSitter"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.DateTime" class="control-label"></label>
+                <input asp-for="Appointment.DateTime" class="form-control" />
+                <span asp-validation-for="Appointment.DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.Status" class="control-label"></label>
+                <input asp-for="Appointment.Status" class="form-control" />
+                <span asp-validation-for="Appointment.DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.Notes" class="control-label"></label>
+                <input asp-for="Appointment.Notes" class="form-control" />
+                <span asp-validation-for="Appointment.DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.Price" class="control-label"></label>
+                <input asp-for="Appointment.Price" class="form-control" />
+                <span asp-validation-for="Appointment.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+    </div>
+</form>
+

@@ -38,14 +38,20 @@ namespace RepositoryLayer.Repositories
 			return query.ToListAsync();
 		}
 
-		public async Task<TEntity?> GetByIdAsync(int id, params Expression<Func<TEntity, object>>[] includes)
+		public async Task<TEntity?> GetByIdAsync(int id, Expression<Func<TEntity, bool>> predicate = null, params Expression<Func<TEntity, object>>[] includes)
 		{
 			IQueryable<TEntity> query = _dbSet;
+
 			foreach (var include in includes)
 			{
 				query = query.Include(include);
 			}
-			var result = await query.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            var result = await query.FirstOrDefaultAsync(x => x.Id == id);
 			// todo should throw exception when not found
 			return result;
 		}
