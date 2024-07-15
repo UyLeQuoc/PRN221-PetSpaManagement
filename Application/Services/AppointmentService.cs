@@ -24,9 +24,45 @@ namespace ServiceLayer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Appointment> CreateNewAppointment()
+        public async Task<Appointment> CreateNewAppointment(Appointment appointment)
         {
-            return null;
+            try
+            {
+                var existingSpapackage = await _unitOfWork.SpaPackageRepository.GetSpaPackageByID(appointment.SpaPackageId);
+                if (existingSpapackage == null)
+                {
+                    throw new Exception("Non-existed spa package");
+                }
+                var existingPet = await _unitOfWork.PetRepository.GetByIdAsync(appointment.PetId);
+                if (existingSpapackage == null)
+                {
+                    throw new Exception("Non-existed pet");
+                }
+
+                var newAppointment = new Appointment()
+                {
+                    UserId = appointment.UserId,
+                    SpaPackageId = existingSpapackage.SpaPackage.Id,
+                    PetId = existingPet.Id,
+                    PetSitterId = appointment.PetSitterId,
+                    DateTime = appointment.DateTime,
+                    Status = appointment.Status,
+                    Notes = appointment.Notes,
+                    Price = appointment.SpaPackage.Price
+                };
+
+                await _unitOfWork.AppointmentRepository.AddAsync(newAppointment);
+                if (await _unitOfWork.SaveChangeAsync() > 0)
+                {
+                    return newAppointment;
+                }
+
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

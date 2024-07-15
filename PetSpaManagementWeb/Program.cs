@@ -73,11 +73,13 @@ builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //Services
+builder.Services.AddScoped<IStorageService, S3StorageService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IWeightService, WeightService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPetService, PetService>();
 builder.Services.AddScoped<ISpaPackageService, SpaPackageService>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
 var app = builder.Build();
