@@ -70,5 +70,22 @@ namespace RepositoryLayer.Repositories
             return user;
         }
 
+        public async Task<User> CurrentUserAsync()
+        {
+            try
+            {
+                var userId = _claimsService.GetCurrentUserId;
+                var currentUser = await _context.Users.FindAsync(userId);
+                if (currentUser == null)
+                {
+                    throw new Exception("There is no user signed in");
+                }
+                return currentUser;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

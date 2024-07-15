@@ -5,7 +5,8 @@ namespace ServiceLayer.Interfaces
 {
 	public interface IUserService
 	{
-		Task<User> GetUserByEmailAsync(string email);
+        Task<User> GetCurrentUserAsync();
+        Task<User> GetUserByEmailAsync(string email);
 		Task<LoginResponse> LoginAsync(string email, string password);
 		Task<User> RegisterAsync(User user);
 	}
