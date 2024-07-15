@@ -49,19 +49,94 @@ namespace RepositoryLayer
                 await context.SaveChangesAsync();
             }
 
+            if (!context.Weight.Any())
+            {
+                var weights = new List<Weight>
+                {
+                    new Weight {FromWeight = 3, ToWeight = 4 },
+                    new Weight {FromWeight = 5, ToWeight = 8 },
+                    new Weight {FromWeight = 7, ToWeight = 10 },
+                };
+
+                foreach (var weight in weights)
+                {
+                    await context.Weight.AddAsync(weight);
+                }
+                await context.SaveChangesAsync();
+            }
+
+            if (!context.Services.Any())
+            {
+                var services = new List<Service>
+                {
+                    new Service {Name = "Tắm cho thú cưng", Description = "Tắm cho thú bằng nước ấm, với xà phòng trị ve rận và sấy khô, chải lông sau khi tắm ", WeightId = 1, Duration = 10},
+                    new Service {Name = "Tắm cho thú cưng", Description = "Tắm cho thú bằng nước ấm, với xà phòng trị ve rận và sấy khô, chải lông sau khi tắm ", WeightId = 2, Duration = 15},
+                    new Service {Name = "Tắm cho thú cưng", Description = "Tắm cho thú bằng nước ấm, với xà phòng trị ve rận và sấy khô, chải lông sau khi tắm ", WeightId = 3, Duration = 15},
+                    new Service {Name = "Cắt móng cho thú cưng", Description = "Cắt và mài móng ", WeightId = 1, Duration = 10},
+                    new Service {Name = "Cắt móng cho thú cưng", Description = "Cắt và mài móng", WeightId = 2, Duration = 15},
+                    new Service {Name = "Cắt móng cho thú cưng", Description = "Cắt và mài móng ", WeightId = 3, Duration = 15},
+                    new Service {Name = "Tỉa lông cho thú cưng", Description = "Tỉa lông thú gọn gàng, phù hợp với kích thước và giống thú cưng của bạn ", WeightId = 1, Duration = 20},
+                    new Service {Name = "Tỉa lông cho thú cưng", Description = "Tỉa lông thú gọn gàng, phù hợp với kích thước và giống thú cưng của bạn", WeightId = 2, Duration = 20},
+                    new Service {Name = "Tỉa lông cho thú cưng", Description = "Tỉa lông thú gọn gàng, phù hợp với kích thước và giống thú cưng của bạn ", WeightId = 3, Duration = 20},
+
+                };
+
+                foreach (var service in services)
+                {
+                    await context.Services.AddAsync(service);
+                }
+                await context.SaveChangesAsync();
+            }
+
             if (!context.SpaPackages.Any())
             {
                 var spaPackages = new List<SpaPackage>
                 {
-                    new SpaPackage {Name = "Package1", Description="a", Price = 100},
-                    new SpaPackage {Name = "Package2", Description="a", Price = 100},
-                    new SpaPackage {Name = "Package3", Description="a", Price = 100},
-                    new SpaPackage {Name = "Package4", Description="a", Price = 100}
+                    new SpaPackage {Name = "Combo chăm sóc cho thú cưng 1", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 150000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/TRIEN-LAM-THU-CUNG-VIET-NAM.png", EstimatedTime = 40},
+                    new SpaPackage {Name = "Combo chăm sóc cho thú cưng 2", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 200000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/deciding-on-pet-care-pet-insurance.jpg.webp", EstimatedTime = 50},
+                    new SpaPackage {Name = "Combo chăm sóc cho thú cưng 3", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 250000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/spa-thu-cung-1.jpg.webp", EstimatedTime = 50},
                 };
 
-                foreach (var package in spaPackages)
+                foreach (var spaPackage in spaPackages)
                 {
-                    await context.SpaPackages.AddAsync(package);
+                    await context.SpaPackages.AddAsync(spaPackage);
+                }
+                await context.SaveChangesAsync();
+            }
+
+            if (!context.PackageServices.Any())
+            {
+                var packageServices = new List<PackageService>
+                {
+                    new PackageService{SpaPackageId = 1, ServiceId = 1},
+                    new PackageService{SpaPackageId = 1, ServiceId = 4},
+                    new PackageService{SpaPackageId = 1, ServiceId = 7},
+                    new PackageService{SpaPackageId = 2, ServiceId = 2},
+                    new PackageService{SpaPackageId = 2, ServiceId = 5},
+                    new PackageService{SpaPackageId = 2, ServiceId = 8},
+                    new PackageService{SpaPackageId = 3, ServiceId = 3},
+                    new PackageService{SpaPackageId = 3, ServiceId = 6},
+                    new PackageService{SpaPackageId = 3, ServiceId = 9},
+                };
+
+                foreach (var packageService in packageServices)
+                {
+                    await context.PackageServices.AddAsync(packageService);
+                }
+                await context.SaveChangesAsync();
+            }
+
+            if (!context.Appointments.Any())
+            {
+                var appointments = new List<Appointment>
+                {
+                    new Appointment {UserId = 9, SpaPackageId = 1, PetId = 1, PetSitterId = 5, DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, CreatedBy = 1, Price = 20},
+                    new Appointment {UserId = 10, SpaPackageId = 2, PetId = 2, PetSitterId = 6, DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, CreatedBy = 1, Price = 20},
+                };
+
+                foreach (var pet in appointments)
+                {
+                    await context.Appointments.AddAsync(pet);
                 }
                 await context.SaveChangesAsync();
             }
@@ -82,21 +157,6 @@ namespace RepositoryLayer
                 foreach (var pet in pets)
                 {
                     await context.Pets.AddAsync(pet);
-                }
-                await context.SaveChangesAsync();
-            }
-
-            if (!context.Appointments.Any())
-            {
-                var appointments = new List<Appointment>
-                {
-                    new Appointment {UserId = 9, SpaPackageId = 1, PetId = 1, PetSitterId = 5, DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, CreatedBy = 1, Price = 20},
-                    new Appointment {UserId = 10, SpaPackageId = 2, PetId = 2, PetSitterId = 6, DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, CreatedBy = 1, Price = 20},
-                };
-
-                foreach (var pet in appointments)
-                {
-                    await context.Appointments.AddAsync(pet);
                 }
                 await context.SaveChangesAsync();
             }
