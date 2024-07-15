@@ -14,5 +14,6 @@ namespace ServiceLayer.Interfaces
         Task<LoginResponse> LoginAsync(string email, string password);
         Task<User> RegisterAsync(User user);
         Task<List<User>> GetUsersByRoleIdAsync(int roleId);
+        Task<Dictionary<string, int>> GetUserCountsByRoleAsync();
     }
 }

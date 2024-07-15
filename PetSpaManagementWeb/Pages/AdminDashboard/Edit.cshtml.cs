@@ -41,13 +41,18 @@ namespace PetSpaManagementWeb.Pages.AdminDashboard
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            try
             {
+
+                await _userService.UpdateAsync(Customer);
+                TempData["Message"] = "User updated successfully!";
+                return RedirectToPage("./Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
                 return Page();
             }
-
-            await _userService.UpdateAsync(Customer);
-            return RedirectToPage("./Index");
         }
     }
 }

@@ -5,7 +5,10 @@
 }
 
 <h1>Customer Management</h1>
-
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
 <a class="btn btn-primary" asp-page="/AdminDashboard/Create">Create New Customer</a>
 
 <table class="table">

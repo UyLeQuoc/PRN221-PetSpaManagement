@@ -61,5 +61,11 @@ namespace ServiceLayer.Services
         {
             return _unitOfWork.UserRepository.GetByIdAsync(id);
         }
+
+        public async Task<Dictionary<string, int>> GetUserCountsByRoleAsync()
+        {
+            return await _unitOfWork.UserRepository.GetUserCountsByRoleAsync();
+        }
+
     }
 }

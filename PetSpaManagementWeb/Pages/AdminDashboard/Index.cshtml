@@ -1,6 +1,174 @@
 ﻿@page
 @model PetSpaManagementWeb.Pages.AdminDashboard.IndexModel
 @{
+    ViewData["Title"] = "Admin Dashboard";
 }
 
-Admin Dashboard
+<h1>Admin Dashboard</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                Customer Management
+            </div>
+            <div class="card-body">
+                <a class="btn btn-primary" asp-page="/AdminDashboard/CustomerManagement/Index">Manage Customers</a>
+                <a class="btn btn-success" asp-page="/AdminDashboard/Create" asp-route-role="Customer">Create</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                Manager Management
+            </div>
+            <div class="card-body">
+                <a class="btn btn-primary" asp-page="/AdminDashboard/ManagerManagement/Index">Manage Managers</a>
+                <a class="btn btn-success" asp-page="/AdminDashboard/Create" asp-route-role="Manager">Create</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                PetSitter Management
+            </div>
+            <div class="card-body">
+                <a class="btn btn-primary" asp-page="/AdminDashboard/PetSitterManagement/Index">Manage PetSitters</a>
+                <a class="btn btn-success" asp-page="/AdminDashboard/Create" asp-route-role="PetSitter">Create</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                User Statistics
+            </div>
+            <div class="card-body">
+                @if (Model.UserCounts != null && Model.UserCounts.Count > 0)
+                {
+                    <div class="grid row">
+                        <div class="col-6">
+                            <canvas id="barChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="col-3">
+                            <canvas id="pieChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="col-3">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Role</th>
+                                        <th>Count</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var role in Model.UserCounts)
+                                    {
+                                        <tr>
+                                            <td>@role.Key</td>
+                                            <td>@role.Value</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                }
+                else
+                {
+                    <p>No data available.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var barCtx = document.getElementById('barChart').getContext('2d');
+        var pieCtx = document.getElementById('pieChart').getContext('2d');
+
+        var labels = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.UserCounts.Keys));
+        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.UserCounts.Values));
+        var backgroundColors = [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ];
+        var borderColors = [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+        ];
+
+        var barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Users',
+                    data: data,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Users',
+                    data: data,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                var label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}

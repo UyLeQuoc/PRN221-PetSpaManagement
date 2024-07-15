@@ -92,5 +92,13 @@ namespace RepositoryLayer.Repositories
         {
             return await _context.Users.Where(u => u.RoleId == roleId).ToListAsync();
         }
+
+        public async Task<Dictionary<string, int>> GetUserCountsByRoleAsync()
+        {
+            return await _context.Users
+                .GroupBy(u => u.Role.Name)
+                .Select(g => new { RoleName = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(x => x.RoleName, x => x.Count);
+        }
     }
 }

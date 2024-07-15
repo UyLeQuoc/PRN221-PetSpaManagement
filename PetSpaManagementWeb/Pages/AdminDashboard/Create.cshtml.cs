@@ -19,7 +19,7 @@ namespace PetSpaManagementWeb.Pages.AdminDashboard
             _userService = userService;
         }
 
-        public void OnGet()
+        public void OnGet(string role)
         {
             // Static roles
             Roles = new List<Role>
@@ -29,6 +29,15 @@ namespace PetSpaManagementWeb.Pages.AdminDashboard
                 new Role { Id = 3, Name = "PetSitter" },
                 new Role { Id = 4, Name = "Customer" }
             };
+
+            if (!string.IsNullOrEmpty(role))
+            {
+                var selectedRole = Roles.FirstOrDefault(r => r.Name.Equals(role, System.StringComparison.OrdinalIgnoreCase));
+                if (selectedRole != null)
+                {
+                    Customer = new User { RoleId = selectedRole.Id };
+                }
+            }
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -39,6 +48,7 @@ namespace PetSpaManagementWeb.Pages.AdminDashboard
             }
 
             await _userService.AddAsync(Customer);
+            TempData["Message"] = "User created successfully!";
             return RedirectToPage("./Index");
         }
     }
