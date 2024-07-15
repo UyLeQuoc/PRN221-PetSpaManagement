@@ -13,6 +13,7 @@
         @foreach (var spaPackage in Model.SpaPackages)
         {
             <div class="col-md-4 mb-4">
+                <a asp-page="./Detail" asp-route-id="@spaPackage.Id">
                 <div class="card h-100">
                     @if (!string.IsNullOrEmpty(spaPackage.PictureUrl))
                     {
@@ -26,7 +27,18 @@
                         </dl>
                     </div>
                 </div>
+                </a>
             </div>
         }
     </div>
 </div>
+<style>
+    .card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+</style>
