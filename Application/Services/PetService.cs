@@ -121,5 +121,10 @@ namespace ServiceLayer.Services
                 throw;
             }
         }
+        public async Task<List<Pet>> GetAllPetsByUserId(int id)
+        {
+            return await _unitOfWork.PetRepository.GetAllAsync(x => x.IsDeleted == false && x.UserId == id, x => x.User);
+        }
+
     }
 }
