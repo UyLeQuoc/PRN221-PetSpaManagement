@@ -52,12 +52,11 @@ namespace RepositoryLayer.Repositories
             {
                 throw new Exception("Create Failed: " + ex.Message);
             }
-
         }
 
         public async Task<List<SpaPackage>> GetSpaPackages()
         {
-            return await _genericRepositorySpaPackage.GetAllAsync(x => x.IsDeleted == false);
+            return await _genericRepositorySpaPackage.GetAllAsync(x => x.IsDeleted == false, x => x.PackageServices);
         }
 
         public async Task<SpaPackageDetailResponse> GetSpaPackageByID(int id)
@@ -93,8 +92,8 @@ namespace RepositoryLayer.Repositories
                 return "Service not found";
 
             var packageServices = await _genericRepositoryPackageService.GetAllAsync(x => x.SpaPackageId == spaPackage.Id && x.IsDeleted == false);
-                
-            foreach(var packageService in packageServices)
+
+            foreach (var packageService in packageServices)
             {
                 var PackageServiceToRemove = await _genericRepositoryPackageService.GetByIdAsync(packageService.Id);
                 _genericRepositoryPackageService.SoftRemove(PackageServiceToRemove);
@@ -173,6 +172,5 @@ namespace RepositoryLayer.Repositories
                 throw new Exception("Update Failed: " + ex.Message);
             }
         }
-
     }
 }
