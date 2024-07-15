@@ -87,5 +87,10 @@ namespace RepositoryLayer.Repositories
                 throw;
             }
         }
+
+        public async Task<List<User>> GetUsersByRoleIdAsync(int roleId)
+        {
+            return await _context.Users.Where(u => u.RoleId == roleId).ToListAsync();
+        }
     }
 }

@@ -3,11 +3,16 @@ using RepositoryLayer.Models;
 
 namespace ServiceLayer.Interfaces
 {
-	public interface IUserService
-	{
+    public interface IUserService
+    {
+        Task<bool> AddAsync(User entity);
+        Task<bool> UpdateAsync(User entity);
+        Task<bool> DeleteAsync(int id);
+        Task<User> GetByIdAsync(int id);
         Task<User> GetCurrentUserAsync();
         Task<User> GetUserByEmailAsync(string email);
-		Task<LoginResponse> LoginAsync(string email, string password);
-		Task<User> RegisterAsync(User user);
-	}
+        Task<LoginResponse> LoginAsync(string email, string password);
+        Task<User> RegisterAsync(User user);
+        Task<List<User>> GetUsersByRoleIdAsync(int roleId);
+    }
 }
