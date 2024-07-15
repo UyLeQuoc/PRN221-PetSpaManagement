@@ -10,6 +10,16 @@
     <h4>Spa Package</h4>
     <hr />
     <dl class="row">
+        <div>
+            @if (!string.IsNullOrEmpty(Model.SpaPackageDetailResponse.SpaPackage.PictureUrl))
+            {
+                <img src="@Model.SpaPackageDetailResponse.SpaPackage.PictureUrl" alt="Spa Package Image" style="max-width: 30%; border-radius: 10px" />
+            }
+            else
+            {
+                <p>No image available</p>
+            }
+        </div>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.SpaPackageDetailResponse.SpaPackage.Name)
         </dt>
