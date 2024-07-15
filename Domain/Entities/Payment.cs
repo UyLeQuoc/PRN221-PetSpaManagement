@@ -19,5 +19,6 @@ namespace Domain.Entities
         public virtual Appointment Appointment { get; set; }
 
         public virtual User User { get; set; }
+        public virtual ICollection<Transaction>? Transactions { get; set; }
     }
 }

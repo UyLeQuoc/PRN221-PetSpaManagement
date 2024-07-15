@@ -80,7 +80,6 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPetService, PetService>();
 builder.Services.AddScoped<ISpaPackageService, SpaPackageService>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
-builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
 var app = builder.Build();
 

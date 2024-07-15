@@ -28,13 +28,15 @@ namespace ServiceLayer.Services
         {
             try
             {
-                var existingSpapackage = await _unitOfWork.SpaPackageRepository.GetSpaPackageByID(appointment.SpaPackageId);
-                if (existingSpapackage == null)
+                var allSpapackage = await _unitOfWork.SpaPackageRepository.GetSpaPackages();
+                var existingPackage = allSpapackage.FirstOrDefault(x => x.Id == appointment.SpaPackageId);
+
+                if (existingPackage == null)
                 {
                     throw new Exception("Non-existed spa package");
                 }
                 var existingPet = await _unitOfWork.PetRepository.GetByIdAsync(appointment.PetId);
-                if (existingSpapackage == null)
+                if (existingPackage == null)
                 {
                     throw new Exception("Non-existed pet");
                 }
@@ -42,13 +44,12 @@ namespace ServiceLayer.Services
                 var newAppointment = new Appointment()
                 {
                     UserId = appointment.UserId,
-                    SpaPackageId = existingSpapackage.SpaPackage.Id,
+                    SpaPackageId = existingPackage.Id,
                     PetId = existingPet.Id,
-                    PetSitterId = appointment.PetSitterId,
                     DateTime = appointment.DateTime,
-                    Status = appointment.Status,
+                    Status = "PENDING",
                     Notes = appointment.Notes,
-                    Price = appointment.SpaPackage.Price
+                    Price = existingPackage.Price
                 };
 
                 await _unitOfWork.AppointmentRepository.AddAsync(newAppointment);
