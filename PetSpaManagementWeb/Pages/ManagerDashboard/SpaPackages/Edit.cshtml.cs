@@ -65,10 +65,17 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-
             try
             {
-                string pictureUrl = SpaPackageDetailResponse.SpaPackage.PictureUrl;
+                var currentSpaPackage = await _spaPackageService.GetSpaPackageByID(id);
+
+                if (currentSpaPackage == null)
+                {
+                    return NotFound();
+                }
+
+                string pictureUrl = currentSpaPackage.SpaPackage.PictureUrl;
+                int? estimatedTime = currentSpaPackage.SpaPackage.EstimatedTime;
 
                 if (SpaPackageDetailResponse.SpaPackage.Name == null)
                 {
@@ -82,9 +89,9 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
                 {
                     if (Picture != null)
                     {
-                        if(SpaPackageDetailResponse.SpaPackage.PictureUrl != null)
+                        if (currentSpaPackage.SpaPackage.PictureUrl != null)
                         {
-                            await _storageService.DeleteAsync(SpaPackageDetailResponse.SpaPackage.PictureUrl);
+                            await _storageService.DeleteAsync(currentSpaPackage.SpaPackage.PictureUrl);
                         }
 
                         pictureUrl = await _storageService.UploadAsync(Picture);
@@ -94,17 +101,18 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
                     SpaPackage.Description = SpaPackageDetailResponse.SpaPackage.Description;
                     SpaPackage.Price = SpaPackageDetailResponse.SpaPackage.Price;
                     SpaPackage.PictureUrl = pictureUrl;
-                    SpaPackage.EstimatedTime = SpaPackageDetailResponse.SpaPackage.EstimatedTime;
+                    SpaPackage.EstimatedTime = SpaPackageDetailResponse.SpaPackage.EstimatedTime ?? estimatedTime;
 
                     await _spaPackageService.UpdateSpaPackage(id, SpaPackage, SelectedServiceIds);
                 }
             }
             catch (DbUpdateConcurrencyException)
             {
-
+                // Handle concurrency exception
             }
 
             return RedirectToPage("./Index");
         }
+
     }
 }
