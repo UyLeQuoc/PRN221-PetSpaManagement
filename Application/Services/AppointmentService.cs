@@ -115,7 +115,7 @@ namespace ServiceLayer.Services
             if (exist == null)
                 return "Service not found";
 
-            var existingSpapackage = await _unitOfWork.SpaPackageRepository.GetSpaPackageByID(appointment.SpaPackageId);
+            var existingSpapackage = await _unitOfWork.SpaPackageRepository.GetSpaPackageByID(exist.SpaPackageId);
             if (existingSpapackage == null)
             {
                 throw new Exception("Non-existed spa package");
@@ -148,6 +148,45 @@ namespace ServiceLayer.Services
                 return "Create Successfully";
             else
                 return "Service not found";
+        }
+
+        public async Task<List<Appointment>> GetPetSitterAppointments()
+        {
+            var id = _claimsService.GetCurrentUserId;
+            var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false && (a.PetSitterId == id || a.PetSitterId == null),
+                                                                           a => a.User,
+                                                                           a => a.SpaPackage,
+                                                                           a => a.Pet);
+            if (list == null)
+                throw new Exception("Empty Appoiments");
+            else
+                return list;
+        }
+        public async Task<string> PetSitterUpdateAppoiment(Appointment appointment)
+        {
+            var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointment.Id, e => e.IsDeleted == false);
+            if (exist == null)
+                return "Service not found";
+
+            exist.Status = appointment.Status;
+
+            _unitOfWork.AppointmentRepository.Update(exist);
+            if (await _unitOfWork.AppointmentRepository.SaveChangesAsync() > 0)
+                return "Create Successfully";
+            else
+                return "Service not found";
+        }
+
+        public async Task<List<Appointment>> GetAppointmentsByUserId(int id)
+        {
+            var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false && a.UserId == id ,
+                                                                           a => a.User,
+                                                                           a => a.SpaPackage,
+                                                                           a => a.Pet);
+            if (list == null)
+                throw new Exception("Error");
+            else
+                return list;
         }
     }
 }

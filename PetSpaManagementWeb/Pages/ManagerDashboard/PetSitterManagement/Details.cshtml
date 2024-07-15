@@ -1,0 +1,75 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.ManagerDashboard.PetSitterManagement.DetailModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+<div>
+    <h4>Appointment </h4>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].User)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].SpaPackage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].Pet)
+                </th>
+                <th>
+                    Pet Sitter
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].DateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].Notes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].Price)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Appointment)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpaPackage.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pet.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -14,5 +14,6 @@ namespace ServiceLayer.Interfaces
         Task<List<Pet>> GetAllPets();
         Task<Pet> GetPetById(int id);
         Task<Pet> UpdatePetAsync(Pet updatedPet);
+        Task<List<Pet>> GetAllPetsByUserId(int id);
     }
 }
