@@ -4,7 +4,7 @@
 }
 
 <h2>Create Spa Package</h2>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 <div class="row">
     <div class="col-md-6">
         
@@ -33,6 +33,12 @@
                 <label class="control-label">Estimated Time: <span id="estimatedTime" >@(Model.EstimatedTime ?? 0) </span></label>
                 <input type="hidden" id="estimatedTimeInput" name="SpaPackage.EstimatedTime" />
             </div>
+            @if (Model.ErrorMessage != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @Model.ErrorMessage
+                </div>
+            }
             <div class="form-group mt-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
