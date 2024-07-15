@@ -9,7 +9,7 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
     public class CreateModel : PageModel
     {
         private readonly ISpaPackageService _spaPackageService;
-        private readonly IServiceRepository _serviceRepository;
+        private readonly IServiceService _serviceService;
         private readonly IStorageService _storageService;
 
         [BindProperty]
@@ -27,17 +27,17 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
 
         public int? EstimatedTime { get; set; }
 
-        public CreateModel(ISpaPackageService spaPackageService, IServiceRepository serviceRepository, IStorageService storageService)
+        public CreateModel(ISpaPackageService spaPackageService, IServiceService serviceService, IStorageService storageService)
         {
             _spaPackageService = spaPackageService;
-            _serviceRepository = serviceRepository;
+            _serviceService = serviceService;
             _storageService = storageService;
             SelectedServiceIds = new List<int>();
         }
 
         public async Task OnGetAsync()
         {
-            Services = await _serviceRepository.GetService();
+            Services = await _serviceService.GetService();
         }
 
         public async Task<IActionResult> OnPostAsync()

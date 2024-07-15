@@ -10,5 +10,6 @@ namespace ServiceLayer.Interfaces
     public interface IStorageService
     {
         Task<string> UploadAsync(IFormFile file);
+        Task DeleteAsync(string imageUrl);
     }
 }

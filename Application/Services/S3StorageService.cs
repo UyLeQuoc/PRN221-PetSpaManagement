@@ -39,5 +39,25 @@ namespace ServiceLayer.Services
             await _s3Client.PutObjectAsync(putRequest);
             return $"https://{_bucketName}.s3.amazonaws.com/{file.FileName}";
         }
+
+        public async Task DeleteAsync(string imageUrl)
+        {
+            // Parse image key from URL
+            Uri uri;
+            if (!Uri.TryCreate(imageUrl, UriKind.Absolute, out uri))
+            {
+                throw new ArgumentException("Invalid image URL");
+            }
+
+            var imageKey = Path.GetFileName(uri.LocalPath);
+
+            var deleteRequest = new DeleteObjectRequest
+            {
+                BucketName = _bucketName,
+                Key = imageKey
+            };
+
+            await _s3Client.DeleteObjectAsync(deleteRequest);
+        }
     }
 }

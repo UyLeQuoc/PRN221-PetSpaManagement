@@ -9,10 +9,12 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
     public class DeleteModel : PageModel
     {
         private readonly ISpaPackageService _spaPackageService;
+        private readonly IStorageService _storageService;
 
-        public DeleteModel(ISpaPackageService spaPackageService)
+        public DeleteModel(ISpaPackageService spaPackageService, IStorageService storageService)
         {
             _spaPackageService = spaPackageService;
+            _storageService = storageService;
         }
 
         [BindProperty]
@@ -44,6 +46,8 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
             {
                 return NotFound();
             }
+
+            await _storageService.DeleteAsync(SpaPackageDetailResponse.SpaPackage.PictureUrl);
 
             await _spaPackageService.DeleteSpaPackage(id);
 

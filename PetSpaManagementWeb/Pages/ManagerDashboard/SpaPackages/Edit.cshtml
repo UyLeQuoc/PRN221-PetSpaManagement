@@ -4,10 +4,20 @@
     ViewData["Title"] = "Edit";
 }
 <h2>Edit Spa Package</h2>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-6">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                @if (!string.IsNullOrEmpty(Model.SpaPackageDetailResponse.SpaPackage.PictureUrl))
+                {
+                    <img src="@Model.SpaPackageDetailResponse.SpaPackage.PictureUrl" alt="Spa Package Image" style="max-width: 100%; border-radius: 10px" />
+                }
+                else
+                {
+                    <p>No image available</p>
+                }
+            </div>
             <div class="form-group">
                 <label asp-for="SpaPackageDetailResponse.SpaPackage.Name" class="control-label"></label>
                 <input asp-for="SpaPackageDetailResponse.SpaPackage.Name" class="form-control" />
@@ -24,14 +34,20 @@
                 <span asp-validation-for="SpaPackageDetailResponse.SpaPackage.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SpaPackageDetailResponse.SpaPackage.PictureUrl" class="control-label"></label>
+                <label asp-for="SpaPackage.PictureUrl" class="control-label"></label>
                 <input type="file" name="Picture" class="form-control-file" />
-                <span asp-validation-for="SpaPackageDetailResponse.SpaPackage.PictureUrl" class="text-danger"></span>
+                <span asp-validation-for="SpaPackage.PictureUrl" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Estimated Time: <span id="estimatedTime">@(Model.EstimatedTime ?? 0)</span></label>
                 <input type="hidden" id="estimatedTimeInput" name="SpaPackage.EstimatedTime" />
             </div>
+            @if (Model.ErrorMessage != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @Model.ErrorMessage
+                </div>
+            }
             <div class="form-group mt-3">
                 <input type="submit" value="Update" class="btn btn-primary" />
             </div>
