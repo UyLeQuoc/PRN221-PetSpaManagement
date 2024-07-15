@@ -4,6 +4,7 @@
     var admin = new List<string> { "Admin" };
     var manager = new List<string> { "Manager" };
     var petSitter = new List<string> { "PetSitter" };
+    var customer = new List<string> { "Customer" };
     //if routeUrl contains any of pages,the page will use _Layout as Layout page,the other pages will use _Layout1 ad Layout page
     if (admin.Any(routeUrl.Contains))
     {
@@ -16,6 +17,10 @@
     else if (petSitter.Any(routeUrl.Contains))
     {
         Layout = "_PetSitterLayout";
+    }
+    else if (customer.Any(routeUrl.Contains))
+    {
+        Layout = "_CustomerLayout";
     }
     else
     {
