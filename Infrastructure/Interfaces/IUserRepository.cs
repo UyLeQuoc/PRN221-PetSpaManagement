@@ -9,5 +9,6 @@ namespace RepositoryLayer.Interfaces
         Task<User> GetUserByEmailAsync(string email);
         Task<LoginResponse> LoginAsync(string email, string password);
         Task<User> RegisterAsync(User user);
+        Task<List<User>> GetUsersByRoleIdAsync(int roleId);
     }
 }
