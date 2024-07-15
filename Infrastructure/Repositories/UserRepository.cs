@@ -70,5 +70,35 @@ namespace RepositoryLayer.Repositories
             return user;
         }
 
+        public async Task<User> CurrentUserAsync()
+        {
+            try
+            {
+                var userId = _claimsService.GetCurrentUserId;
+                var currentUser = await _context.Users.FindAsync(userId);
+                if (currentUser == null)
+                {
+                    throw new Exception("There is no user signed in");
+                }
+                return currentUser;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<User>> GetUsersByRoleIdAsync(int roleId)
+        {
+            return await _context.Users.Where(u => u.RoleId == roleId).ToListAsync();
+        }
+
+        public async Task<Dictionary<string, int>> GetUserCountsByRoleAsync()
+        {
+            return await _context.Users
+                .GroupBy(u => u.Role.Name)
+                .Select(g => new { RoleName = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(x => x.RoleName, x => x.Count);
+        }
     }
 }

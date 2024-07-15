@@ -1,0 +1,41 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.AdminDashboard.ManagerManagement.IndexModel
+@{
+    ViewData["Title"] = "Manager Management";
+}
+
+<h1>Manager Management</h1>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+<a class="btn btn-primary" asp-page="/AdminDashboard/Create">Create New Manager</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var manager in Model.Managers)
+        {
+            <tr>
+                <td>@manager.Name</td>
+                <td>@manager.Email</td>
+                <td>
+                    <a class="btn btn-secondary" asp-page="/AdminDashboard/ManagerManagement/Edit" asp-route-id="@manager.Id">Edit</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@manager.Id" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

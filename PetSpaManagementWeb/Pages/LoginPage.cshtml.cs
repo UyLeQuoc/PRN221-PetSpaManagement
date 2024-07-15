@@ -48,12 +48,16 @@ namespace PetSpaManagementWeb.Pages
                 {
                     case 1:
                         return RedirectToPage("/AdminDashboard/Index");
+
                     case 2:
                         return RedirectToPage("/ManagerDashboard/Index");
+
                     case 3:
                         return RedirectToPage("/PetSitterDashboard/Index");
+
                     case 4:
-                        return RedirectToPage("/CustomerDashboard/Index");
+                        return RedirectToPage("/Pets/Index");
+
                     default:
                         return RedirectToPage("/Index");
                 }
