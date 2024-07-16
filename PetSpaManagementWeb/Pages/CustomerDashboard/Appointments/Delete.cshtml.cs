@@ -47,14 +47,28 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
         {
             try
             {
-                //await _appointmentService.DeleteAppointmentAsync(id); // Sửa lại method
-                TempData["SuccessMessage"] = "Appointment đã được xóa thành công.";
+                var result = await _appointmentService.CancelAppoimentById(id); // Sửa lại method
+                if (result)
+                {
+                    TempData["SuccessMessage"] = "Appointment đã được hủy thành công.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Xóa apppointment thất bại, hãy thử lại.";
+                }
                 return RedirectToPage("./Index");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while deleting an appointment.");
-                TempData["ErrorMessage"] = ex.ToString(); // (Chỉ trong môi trường development)
+                if (ex.Message.Contains("Không thể hủy lịch hẹn"))
+                {
+                    TempData["ErrorMessage"] = ex.Message;
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Đã có lỗi xảy ra trong quá trình xóa lịch hẹn.";
+                }
                 return RedirectToPage("./Index");
             }
         }

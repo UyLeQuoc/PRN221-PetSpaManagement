@@ -32,14 +32,14 @@ namespace RepositoryLayer
                     new User {Name = "manager", Email="manager@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 2 },
                     new User {Name = "petsitter", Email="petsitter@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
                     new User {Name = "customer", Email="customer@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
-                    new User {Name = "PetSitter1", Email="petsitter@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
-                    new User {Name = "PetSitter2", Email="petsitter@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
-                    new User {Name = "PetSitter3", Email="petsitter@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
-                    new User {Name = "PetSitter4", Email="petsitter@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
-                    new User {Name = "customer1", Email="customer@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
-                    new User {Name = "customer2", Email="customer@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
-                    new User {Name = "customer3", Email="customer@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
-                    new User {Name = "customer4", Email="customer@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
+                    new User {Name = "PetSitter1", Email="petsitter1@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
+                    new User {Name = "PetSitter2", Email="petsitter2@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
+                    new User {Name = "PetSitter3", Email="petsitter3@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
+                    new User {Name = "PetSitter4", Email="petsitter4@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
+                    new User {Name = "customer1", Email="customer1@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
+                    new User {Name = "customer2", Email="customer2@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
+                    new User {Name = "customer3", Email="customer3@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
+                    new User {Name = "customer4", Email="customer4@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
                 };
 
                 foreach (var user in users)
@@ -126,21 +126,6 @@ namespace RepositoryLayer
                 await context.SaveChangesAsync();
             }
 
-            if (!context.Appointments.Any())
-            {
-                var appointments = new List<Appointment>
-                {
-                    new Appointment {UserId = 9, SpaPackageId = 1, PetId = 1, PetSitterId = 5, DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, CreatedBy = 1, Price = 20},
-                    new Appointment {UserId = 10, SpaPackageId = 2, PetId = 2, PetSitterId = 6, DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, CreatedBy = 1, Price = 20},
-                };
-
-                foreach (var pet in appointments)
-                {
-                    await context.Appointments.AddAsync(pet);
-                }
-                await context.SaveChangesAsync();
-            }
-
             if (!context.Pets.Any())
             {
                 var pets = new List<Pet>
@@ -160,6 +145,30 @@ namespace RepositoryLayer
                 }
                 await context.SaveChangesAsync();
             }
+
+            if (!context.Appointments.Any())
+            {
+                var appointments = new List<Appointment>
+                {
+                    new Appointment {UserId = 9, SpaPackageId = 1, PetId = 1, DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                    new Appointment {UserId = 10, SpaPackageId = 2, PetId = 2,  DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+
+                    new Appointment {UserId = 11, SpaPackageId = 3, PetId = 3, PetSitterId = 7, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                    new Appointment {UserId = 12, SpaPackageId = 1, PetId = 4, PetSitterId = 8, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                    new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                    new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                    new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "COMPLETED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                    new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "CANCELLED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                    new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "ABSENT", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                };
+
+                foreach (var pet in appointments)
+                {
+                    await context.Appointments.AddAsync(pet);
+                }
+                await context.SaveChangesAsync();
+            }
+
         }
     }
 }

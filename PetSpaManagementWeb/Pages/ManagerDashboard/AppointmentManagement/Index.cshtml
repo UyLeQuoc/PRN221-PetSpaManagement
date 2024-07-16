@@ -51,13 +51,28 @@
                     @Html.DisplayFor(modelItem => item.Pet.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
+                    @{
+                        if (Model.PetSitters.FirstOrDefault(x => x.Id == item.PetSitterId) == null)
+                        {
+                            <p>Not Assigned</p>
+                        }
+                        else
+                        {
+                            @Model.PetSitters.FirstOrDefault(x => x.Id == item.PetSitterId).Name
+                        }
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateTime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Status)
+                    <span class="badge" style="background-color:@(item.Status == "PENDING" ? "#ffc107" :
+                                                                item.Status == "ASSIGNED" ? "#007bff" :
+                                                                item.Status == "COMPLETED" ? "#28a745" :
+                                                                item.Status == "CANCELLED" ? "#dc3545" :
+                                                                "gray")">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </span>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)
@@ -68,9 +83,11 @@
 
 
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    @* <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> | *@
+                    @* <a asp-page="./Details" asp-route-id="@item.Id">Details</a> | *@
+
+                    <a asp-page="./Assigns" asp-route-id="@item.Id">Assigns</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Cancel</a>
                 </td>
             </tr>
         }

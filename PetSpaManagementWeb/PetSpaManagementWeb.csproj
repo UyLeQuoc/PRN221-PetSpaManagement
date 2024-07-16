@@ -28,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\ManagerDashboard\AppointmentManagement\" />
     <Folder Include="Pages\User\" />
   </ItemGroup>
 

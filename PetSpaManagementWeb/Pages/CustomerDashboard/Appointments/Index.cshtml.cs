@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServiceLayer.Interfaces;
+using ServiceLayer.Services;
 
 namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
 {
@@ -9,11 +10,13 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
     {
         private readonly IAppointmentService _appointmentService;
         private readonly ILogger<IndexModel> _logger; // Inject ILogger nếu cần
+        private readonly IUserService _userService;
 
-        public IndexModel(IAppointmentService appointmentService, ILogger<IndexModel> logger)
+        public IndexModel(IAppointmentService appointmentService, ILogger<IndexModel> logger, IUserService userService)
         {
             _appointmentService = appointmentService;
             _logger = logger;
+            _userService = userService;
         }
 
         public IList<Appointment> Appointments { get; set; } = default!;
@@ -22,7 +25,17 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
         {
             try
             {
-                Appointments = await _appointmentService.GetAllAppointmentAsync();
+                var email = HttpContext.Session.GetString("Email");
+
+                if (string.IsNullOrEmpty(email))
+                {
+                    TempData["ErrorMessage"] = "Please login to use this function"; // (Chỉ trong môi trường development)
+                    RedirectToPage("/LoginPage"); // Chuyển hướng về Index của Appointment
+                }
+                var user = await _userService.GetUserByEmailAsync(email);
+
+                var data = await _appointmentService.GetAllAppointmentAsync();
+                Appointments = data.Where(x => x.UserId == user.Id).ToList();
             }
             catch (Exception ex)
             {
