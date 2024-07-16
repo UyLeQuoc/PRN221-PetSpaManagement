@@ -1,0 +1,28 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.ManagerDashboard.PetSitterManagement.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Appointment</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var petSitter in Model.PetSitters)
+        {
+            <tr>
+                <td>@petSitter.Name</td>
+                <td>@petSitter.Email</td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@petSitter.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

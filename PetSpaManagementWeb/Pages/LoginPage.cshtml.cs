@@ -56,7 +56,7 @@ namespace PetSpaManagementWeb.Pages
                         return RedirectToPage("/PetSitterDashboard/Index");
 
                     case 4:
-                        return RedirectToPage("/Pets/Index");
+                        return RedirectToPage("CustomerDashboard/Pets/Index");
 
                     default:
                         return RedirectToPage("/Index");

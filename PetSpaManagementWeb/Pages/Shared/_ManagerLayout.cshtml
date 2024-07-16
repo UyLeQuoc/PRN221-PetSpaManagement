@@ -92,6 +92,21 @@
                                 <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/ManagerDashboard/PetSitterManagement" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Pet Sitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ManagerDashboard/UserManagement" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">User</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ManagerDashboard/AppointmentManagement" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Appointment</span>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="/ManagerDashboard/Services" class="nav-link align-middle px-0">
                                 <i class="fs-4 bi-person-workspace"></i> <span class="ms-1 d-none d-sm-inline">Services</span>
@@ -112,7 +127,20 @@
                 </div>
             </div>
             <div class="col py-3 bg-light">
-                @RenderBody()
+                @{
+                    int? roleId = Context.Session.GetInt32("RoleId");
+                }
+                @if (roleId != null && roleId == 2)
+                {
+                    @RenderBody()
+                    ;
+                }
+                else
+                {
+                    var result = "You are not manager and so dont have any permission";
+                    @result
+                    ;
+                }
             </div>
         </div>
     </div>

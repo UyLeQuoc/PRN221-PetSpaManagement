@@ -1,0 +1,53 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.ManagerDashboard.AppointmentManagement.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<h2>Edit Appointment</h2>
+<form method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Appointment.Id" />
+            <div class="form-group">
+                <label asp-for="Appointment.UserId" class="control-label"></label>
+                <select asp-for="Appointment.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.SpaPackageId" class="control-label"></label>
+                <select asp-for="Appointment.SpaPackageId" class="form-control" asp-items="ViewBag.SpaPackageId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.PetId" class="control-label"></label>
+                <select asp-for="Appointment.PetId" class="form-control" asp-items="ViewBag.PetId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.PetSitterId" class="control-label"></label>
+                <select asp-for="Appointment.PetSitterId" class="form-control" asp-items="ViewBag.PetSitter"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.DateTime" class="control-label"></label>
+                <input asp-for="Appointment.DateTime" class="form-control" />
+                <span asp-validation-for="Appointment.DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.Status" class="control-label"></label>
+                <select asp-for="Appointment.Status" class="form-control">
+                    <option value="PENDING">PENDING</option>
+                    <option value="ASSIGNED">ASSIGNED</option>
+                    <option value="COMPLETED">COMPLETED</option>
+                    <option value="CANCELLED">CANCELLED</option>
+                    <option value="ABSENT">ABSENT</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Appointment.Notes" class="control-label"></label>
+                <input asp-for="Appointment.Notes" class="form-control" />
+                <span asp-validation-for="Appointment.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>

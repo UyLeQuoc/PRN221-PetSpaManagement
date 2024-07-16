@@ -1,9 +1,10 @@
 ﻿@{
     var routeUrl = ViewContext.RouteData.Values["Page"].ToString();
     //you can put pages' name into pages
-    var admin = new List<string> { "Admin" };
-    var manager = new List<string> { "Manager" };
-    var petSitter = new List<string> { "PetSitter" };
+    var admin = new List<string> { "AdminDashboard" };
+    var manager = new List<string> { "ManagerDashboard" };
+    var petSitter = new List<string> { "PetSitterDashboard" };
+    var customer = new List<string> { "CustomerDashboard" };
     //if routeUrl contains any of pages,the page will use _Layout as Layout page,the other pages will use _Layout1 ad Layout page
     if (admin.Any(routeUrl.Contains))
     {
@@ -16,6 +17,10 @@
     else if (petSitter.Any(routeUrl.Contains))
     {
         Layout = "_PetSitterLayout";
+    }
+    else if (customer.Any(routeUrl.Contains))
+    {
+        Layout = "_CustomerLayout";
     }
     else
     {

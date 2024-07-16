@@ -1,0 +1,131 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.ManagerDashboard.UserManagement.DetailModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+<div>
+    <h4>Appointment </h4>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointment[0].User)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointment[0].SpaPackage)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointment[0].Pet)
+                    </th>
+                    <th>
+                        Pet Sitter
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointment[0].DateTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointment[0].Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointment[0].Notes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointment[0].Price)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Appointment)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SpaPackage.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pet.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Notes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <hr />
+    <h4>Pets </h4>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pets[0].Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pets[0].Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pets[0].Age)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pets[0].Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pets[0].Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pets[0].UserId)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Pets)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserId)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
