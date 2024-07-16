@@ -30,7 +30,7 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
         [BindProperty]
         public Appointment Appointment { get; set; } = default!;
 
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGet(string? SpaPackageId)
         {
             try
             {
@@ -45,9 +45,18 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                 var user = await _userService.GetUserByEmailAsync(email);
                 ViewData["UserId"] = new SelectList(new[] { user }, "Id", "Email");
                 ViewData["PetId"] = new SelectList(await _petService.GetAllPets(), "Id", "Name");
+                var spaPackages = await _spaPackageService.GetSpaPackages();
 
-                var allSpaPackages = await _spaPackageService.GetSpaPackages();
-                ViewData["SpaPackageId"] = new SelectList(allSpaPackages, "Id", "Name");
+                if (!string.IsNullOrEmpty(SpaPackageId))
+                {
+                    var spaPackage = spaPackages.FirstOrDefault(x => x.Name == SpaPackageId);
+                    ViewData["SpaPackageId"] = new SelectList(new[] { spaPackage }, "Id", "Name");
+                }
+                else
+                {
+                    ViewData["SpaPackageId"] = new SelectList(spaPackages, "Id", "Name");
+                }
+
                 return Page();
             }
             catch (Exception ex)

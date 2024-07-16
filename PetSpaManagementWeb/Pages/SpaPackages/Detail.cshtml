@@ -60,7 +60,6 @@
                 }
             </ul>
         </dd>
-
     </dl>
 </div>
 @if (Model.ErrorMessage != null)
@@ -69,8 +68,12 @@
         @Model.ErrorMessage
     </div>
 }
-<form method="post" enctype="multipart/form-data">
+
 <div class="form-group mt-3">
-    <input type="submit" value="Create Appointment" class="btn btn-primary" />
-</div>
+
+<form method="get" asp-page="/CustomerDashboard/Appointments/Create" asp-route-SpaPackageId="@Model.SpaPackageDetailResponse.SpaPackage.Name">
+        <input type="hidden" name="SpaPackageId" value="@Model.SpaPackageDetailResponse.SpaPackage.Name" />
+
+        <button type="submit" class="btn btn-primary">Make an appointment</button>
 </form>
+</div>
