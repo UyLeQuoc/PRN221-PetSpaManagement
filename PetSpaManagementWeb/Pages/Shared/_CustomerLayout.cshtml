@@ -109,7 +109,20 @@
                 </div>
             </div>
             <div class="col py-3 bg-light  p-4">
-                @RenderBody()
+                @{
+                    int? roleId = Context.Session.GetInt32("RoleId");
+                }
+                @if (roleId != null && roleId == 4)
+                {
+                    @RenderBody()
+                    ;
+                }
+                else
+                {
+                    var result = "You are not customer and so dont have any permission";
+                    @result
+                    ;
+                }
             </div>
         </div>
     </div>

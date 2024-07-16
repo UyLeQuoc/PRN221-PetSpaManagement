@@ -127,7 +127,20 @@
                 </div>
             </div>
             <div class="col py-3 bg-light">
-                @RenderBody()
+                @{
+                    int? roleId = Context.Session.GetInt32("RoleId");
+                }
+                @if (roleId != null && roleId == 2)
+                {
+                    @RenderBody()
+                    ;
+                }
+                else
+                {
+                    var result = "You are not manager and so dont have any permission";
+                    @result
+                    ;
+                }
             </div>
         </div>
     </div>

@@ -81,7 +81,20 @@
         <div class="col-2">
         </div>
         <main role="main" class="col-8">
-            @RenderBody()
+            @{
+                int? roleId = Context.Session.GetInt32("RoleId");
+            }
+            @if (roleId != null && roleId == 3)
+            {
+                @RenderBody()
+                ;
+            }
+            else
+            {
+                var result = "You are not pet sitter and so dont have any permission";
+                @result
+                ;
+            }
         </main>
     </div>
 
