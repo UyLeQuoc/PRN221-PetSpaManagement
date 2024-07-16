@@ -4,237 +4,43 @@
 }
 
 <h1>Pet Sitter Appointments</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].SpaPackage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Pet)
-            </th>
-            <th>
-                Pet Sitter
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].DateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Notes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Price)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Appointment)
-        {
+@if (Model.Appointment != null && Model.Appointment.Any())
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SpaPackage.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pet.Name)
-                </td>
-                <td>
-                    @Model.PetSitters.FirstOrDefault(x => x.Id == item.PetSitterId).Name
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    <button class="btn btn-primary update-status-btn" data-id="@item.Id" data-status="ASSIGNED" data-petsitter-id="@item.PetSitterId">Apply</button>
-                </td>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].User)</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].SpaPackage)</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].Pet)</th>
+                <th>Pet Sitter</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].DateTime)</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].Status)</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].Notes)</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].Price)</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
-
-<h1>Pending Appointment</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].SpaPackage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Pet)
-            </th>
-            <th>
-                Pet Sitter
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].DateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Notes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Price)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Appointment)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SpaPackage.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pet.Name)
-                </td>
-                <td>
-                    @Model.PetSitters.FirstOrDefault(x => x.Id == item.PetSitterId).Name
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    <button class="btn btn-success update-status-btn" data-id="@item.Id" data-status="COMPLETED">Complete</button>
-                    <button class="btn btn-danger update-status-btn" data-id="@item.Id" data-status="CANCELLED">Cancel</button>
-                    <button class="btn btn-danger update-status-btn" data-id="@item.Id" data-status="ABSENT">Absent</button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table
-
-
-<h1>Appointment History</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].SpaPackage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Pet)
-            </th>
-            <th>
-                Pet Sitter
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].DateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Notes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Price)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Appointment)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SpaPackage.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pet.Name)
-                </td>
-                <td>
-                    @Model.PetSitters.FirstOrDefault(x => x.Id == item.PetSitterId).Name
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $(".update-status-btn").click(function () {
-            var id = $(this).data("id");
-            var status = $(this).data("status");
-            var petSitterId = $(this).data("petsitter-id");
-
-            $.ajax({
-                url: '@Url.Action("UpdateStatus", "Appointment")',
-                type: 'POST',
-                data: {
-                    id: id,
-                    status: status,
-                    petSitterId: petSitterId
-                },
-                success: function (response) {
-                    alert('Status updated successfully!');
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    alert('An error occurred while updating the status.');
-                }
-            });
-        });
-    });
-</script>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Appointment)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.User.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SpaPackage.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Pet.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.User.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Notes)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>
+                        <a asp-page="/PetSitterDashboard/Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No appointments found.</p>
+}

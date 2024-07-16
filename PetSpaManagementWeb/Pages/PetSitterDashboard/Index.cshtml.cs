@@ -8,35 +8,38 @@ namespace PetSpaManagementWeb.Pages.PetSitterDashboard
     public class IndexModel : PageModel
     {
         private readonly IAppointmentService _appointmentService;
-        private readonly IUserService _userService;
 
-        public IndexModel(IAppointmentService appointmentService, IUserService userService ) 
+        public IndexModel(IAppointmentService appointmentService)
         {
             _appointmentService = appointmentService;
-            _userService = userService;
         }
 
-        public IList<Appointment> Appointment { get; set; } = default!;
-        public IList<User> PetSitters { get; set; } = default!;
+        public IList<Appointment> Appointment { get; set; } = new List<Appointment>();
 
         public async Task OnGetAsync()
         {
-            var petSitter = await _userService.GetUsersByRoleIdAsync(3);
-            if (petSitter != null)
+            var petSitterId = HttpContext.Session.GetInt32("UserId") ?? -1;
+
+            var re = await _appointmentService.GetAppointmentsByPetSitterId(petSitterId);
+            if (re != null)
             {
-                PetSitters = petSitter;
-            }
-            var email = HttpContext.Session.GetString("Email");
-            if (string.IsNullOrEmpty(email))
-            {
-                throw new Exception("The user id is null");
-            }
-            var user = await _userService.GetUserByEmailAsync(email);
-            if (await _appointmentService.GetPetSitterAppointments(user.Id) != null)
-            {
-                Appointment = await _appointmentService.GetPetSitterAppointments(user.Id);
+                Appointment = re;
             }
         }
 
+        public async Task<IActionResult> OnPostUpdateStatusAsync(int appointmentId, string status)
+        {
+            var result = await _appointmentService.UpdateAppointmentStatusAsync(appointmentId, status);
+            if (result == "Status updated successfully")
+            {
+                var petSitterId = HttpContext.Session.GetInt32("UserId") ?? -1;
+                Appointment = await _appointmentService.GetAppointmentsByPetSitterId(petSitterId);
+            }
+            else
+            {
+                // Handle error
+            }
+            return Page();
+        }
     }
 }

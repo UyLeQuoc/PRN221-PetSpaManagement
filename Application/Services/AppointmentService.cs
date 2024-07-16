@@ -1,14 +1,8 @@
 ﻿using AutoMapper;
-using RepositoryLayer.Commons;
-using RepositoryLayer;
-using ServiceLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+using RepositoryLayer;
+using RepositoryLayer.Commons;
+using ServiceLayer.Interfaces;
 
 namespace ServiceLayer.Services
 {
@@ -131,6 +125,36 @@ namespace ServiceLayer.Services
                 return "Service not found";
         }
 
+        public async Task<bool> CancelAppoimentById(int Id)
+        {
+            try
+            {
+                var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(Id);
+                if (exist == null)
+                    throw new Exception("Non-existed appointment");
+
+                // Kiểm tra xem còn lại bao nhiêu giờ trước khi đến giờ hẹn
+                var hoursRemaining = (exist.DateTime - DateTime.UtcNow.AddHours(7)).TotalHours;
+
+                if (hoursRemaining < 12)
+                {
+                    throw new Exception("Không thể hủy lịch hẹn trong vòng 12 tiếng trước giờ hẹn.");
+                }
+                _unitOfWork.AppointmentRepository.SoftRemove(exist);
+                exist.Status = "CANCELLED";
+                _unitOfWork.AppointmentRepository.Update(exist);
+
+                if (await _unitOfWork.AppointmentRepository.SaveChangesAsync() > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public async Task<List<Appointment>> GetPetSitterAppointments(int id)
         { 
             var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false && (a.PetSitterId == id || a.PetSitterId == null),
@@ -170,9 +194,44 @@ namespace ServiceLayer.Services
             else
                 return list;
         }
+
         public async Task<List<Appointment>> GetAllAppointmentAsync()
         {
             return await _unitOfWork.AppointmentRepository.GetAllAsync(null, x => x.User, x => x.SpaPackage, x => x.Pet);
+        }
+
+        public async Task<string> UpdateAppointmentStatusAsync(int appointmentId, string status)
+        {
+            var appointment = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointmentId);
+
+            if (appointment == null)
+            {
+                throw new Exception("Appointment not found");
+            }
+
+            appointment.Status = status;
+
+            _unitOfWork.AppointmentRepository.Update(appointment);
+
+            if (await _unitOfWork.AppointmentRepository.SaveChangesAsync() > 0)
+            {
+                return "Status updated successfully";
+            }
+            else
+            {
+                throw new Exception("Error updating status");
+            }
+        }
+
+        public async Task<List<Appointment>> GetAppointmentsByPetSitterId(int petSitterId)
+        {
+            var appointments = await _unitOfWork.AppointmentRepository.GetAllAsync(
+                a => a.PetSitterId == petSitterId,
+                a => a.User,
+                a => a.SpaPackage,
+                a => a.Pet);
+
+            return appointments;
         }
     }
 }
