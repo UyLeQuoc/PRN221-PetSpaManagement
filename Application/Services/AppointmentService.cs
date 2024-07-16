@@ -125,6 +125,36 @@ namespace ServiceLayer.Services
                 return "Service not found";
         }
 
+        public async Task<bool> CancelAppoimentById(int Id)
+        {
+            try
+            {
+                var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(Id);
+                if (exist == null)
+                    throw new Exception("Non-existed appointment");
+
+                // Kiểm tra xem còn lại bao nhiêu giờ trước khi đến giờ hẹn
+                var hoursRemaining = (exist.DateTime - DateTime.UtcNow.AddHours(7)).TotalHours;
+
+                if (hoursRemaining < 12)
+                {
+                    throw new Exception("Không thể hủy lịch hẹn trong vòng 12 tiếng trước giờ hẹn.");
+                }
+                _unitOfWork.AppointmentRepository.SoftRemove(exist);
+                exist.Status = "CANCELLED";
+                _unitOfWork.AppointmentRepository.Update(exist);
+
+                if (await _unitOfWork.AppointmentRepository.SaveChangesAsync() > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public async Task<List<Appointment>> GetPetSitterAppointments()
         {
             var id = _claimsService.GetCurrentUserId;
@@ -137,6 +167,7 @@ namespace ServiceLayer.Services
             else
                 return list;
         }
+
         public async Task<string> PetSitterUpdateAppoiment(Appointment appointment)
         {
             var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointment.Id, e => e.IsDeleted == false);
@@ -163,6 +194,7 @@ namespace ServiceLayer.Services
             else
                 return list;
         }
+
         public async Task<List<Appointment>> GetAllAppointmentAsync()
         {
             return await _unitOfWork.AppointmentRepository.GetAllAsync(null, x => x.User, x => x.SpaPackage, x => x.Pet);
