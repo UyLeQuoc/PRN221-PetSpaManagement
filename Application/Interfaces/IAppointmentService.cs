@@ -10,5 +10,7 @@ namespace ServiceLayer.Interfaces
     public interface IAppointmentService
     {
         Task<Appointment> CreateNewAppointment(Appointment appointment);
+        Task<List<Appointment>> GetAllAppointmentAsync();
+        Task<Appointment> GetAppointmentById(int id);
     }
 }

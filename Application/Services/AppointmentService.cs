@@ -65,5 +65,15 @@ namespace ServiceLayer.Services
                 throw;
             }
         }
+
+        public async Task<List<Appointment>> GetAllAppointmentAsync()
+        {
+            return await _unitOfWork.AppointmentRepository.GetAllAsync(null, x => x.User, x => x.SpaPackage, x => x.Pet);
+        }
+
+        public async Task<Appointment> GetAppointmentById(int id)
+        {
+            return await _unitOfWork.AppointmentRepository.GetByIdAsync(id, null, x => x.User, x => x.SpaPackage, x => x.Pet);
+        }
     }
 }
