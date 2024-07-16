@@ -58,19 +58,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                        <li class="nav-item"><a href="services.html" class="nav-link">Your order</a></li>
-                        <li class="nav-item"><a href="pricing.html" class="nav-link">Dashboard</a></li>
                         @if (Context.Session.GetString("Email") != null)
                         {
-                            <li class="nav-item"><a href="#" class="nav-link">@Context.Session.GetString("Email")</a></li>
+                            <li class="nav-item"><a href="/ManagerDashboard" class="nav-link">@Context.Session.GetString("Email")</a></li>
                             <li class="nav-item"><a href="/LogoutPage" class="nav-link">Logout</a></li>
                         }
                         else
                         {
                             <li class="nav-item"><a href="/LoginPage" class="nav-link">Login</a></li>
-                            <li class="nav-item"><a href="/RegisterPage" class="nav-link">Register</a></li>
                         }
                     </ul>
                 </div>
@@ -104,7 +99,7 @@
                         </li>
                         <li>
                             <a href="/ManagerDashboard/AppointmentManagement" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Appointment</span>
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Appointment</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -114,12 +109,12 @@
                         </li>
                         <li>
                             <a href="/ManagerDashboard/SpaPackages" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Spa Packages</span>
+                                <i class="fs-4 bi-collection"></i> <span class="ms-1 d-none d-sm-inline">Spa Packages</span>
                             </a>
                         </li>
                         <li>
                             <a href="/ManagerDashboard/Weights" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Weight</span>
+                                <i class="fs-4 bi-exposure"></i> <span class="ms-1 d-none d-sm-inline">Weight</span>
                             </a>
                         </li>
                     </ul>
