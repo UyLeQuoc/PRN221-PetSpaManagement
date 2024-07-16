@@ -39,6 +39,7 @@ namespace PetSpaManagementWeb.Pages
                     return Page();
                 }
 
+                HttpContext.Session.SetInt32("UserId", user.User.Id);
                 HttpContext.Session.SetString("Token", user.Token);
                 HttpContext.Session.SetString("Email", user.User.Email);
                 HttpContext.Session.SetString("Name", user.User.Name);

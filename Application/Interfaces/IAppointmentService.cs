@@ -1,9 +1,4 @@
 ﻿using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceLayer.Interfaces
 {
@@ -18,5 +13,7 @@ namespace ServiceLayer.Interfaces
         Task<string> PetSitterUpdateAppoiment(Appointment appointment);
         Task<List<Appointment>> GetAppointmentsByUserId(int id);
         Task<List<Appointment>> GetAllAppointmentAsync();
+        Task<string> UpdateAppointmentStatusAsync(int appointmentId, string status);
+        Task<List<Appointment>> GetAppointmentsByPetSitterId(int petSitterId);
     }
 }

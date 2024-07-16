@@ -4,68 +4,43 @@
 }
 
 <h1>Pet Sitter Appointments</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].SpaPackage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Pet)
-            </th>
-            <th>
-                Pet Sitter
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].DateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Notes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointment[0].Price)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Appointment)
-        {
+@if (Model.Appointment != null && Model.Appointment.Any())
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SpaPackage.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pet.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
-                </td>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].User)</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].SpaPackage)</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].Pet)</th>
+                <th>Pet Sitter</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].DateTime)</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].Status)</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].Notes)</th>
+                <th>@Html.DisplayNameFor(model => model.Appointment[0].Price)</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Appointment)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.User.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SpaPackage.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Pet.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.User.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Notes)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>
+                        <a asp-page="/PetSitterDashboard/Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No appointments found.</p>
+}
