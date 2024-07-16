@@ -51,7 +51,16 @@
                     @Html.DisplayFor(modelItem => item.Pet.Name)
                 </td>
                 <td>
-                    @Model.PetSitters.FirstOrDefault(x => x.Id == item.PetSitterId).Name
+                    @{
+                        if (Model.PetSitters.FirstOrDefault(x => x.Id == item.PetSitterId).Name == null)
+                        {
+                            <p>Not Assigned</p>
+                        }
+                        else
+                        {
+                            @Model.PetSitters.FirstOrDefault(x => x.Id == item.PetSitterId).Name
+                        }
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateTime)

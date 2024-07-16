@@ -37,5 +37,6 @@ namespace PetSpaManagementWeb.Pages.PetSitterDashboard
                 Appointment = await _appointmentService.GetPetSitterAppointments(user.Id);
             }
         }
+
     }
 }
