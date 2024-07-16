@@ -32,14 +32,14 @@ namespace RepositoryLayer
                     new User {Name = "manager", Email="manager@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 2 },
                     new User {Name = "petsitter", Email="petsitter@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
                     new User {Name = "customer", Email="customer@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
-                    new User {Name = "PetSitter1", Email="petsitter@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
-                    new User {Name = "PetSitter2", Email="petsitter@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
-                    new User {Name = "PetSitter3", Email="petsitter@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
-                    new User {Name = "PetSitter4", Email="petsitter@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
-                    new User {Name = "customer1", Email="customer@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
-                    new User {Name = "customer2", Email="customer@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
-                    new User {Name = "customer3", Email="customer@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
-                    new User {Name = "customer4", Email="customer@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
+                    new User {Name = "PetSitter1", Email="petsitter1@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
+                    new User {Name = "PetSitter2", Email="petsitter2@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
+                    new User {Name = "PetSitter3", Email="petsitter3@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
+                    new User {Name = "PetSitter4", Email="petsitter4@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 3 },
+                    new User {Name = "customer1", Email="customer1@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
+                    new User {Name = "customer2", Email="customer2@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
+                    new User {Name = "customer3", Email="customer3@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
+                    new User {Name = "customer4", Email="customer4@gmail.com", Password = PasswordTools.HashPassword("123456"), RoleId = 4 },
                 };
 
                 foreach (var user in users)
