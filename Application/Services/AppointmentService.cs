@@ -1,14 +1,8 @@
 ﻿using AutoMapper;
-using RepositoryLayer.Commons;
-using RepositoryLayer;
-using ServiceLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+using RepositoryLayer;
+using RepositoryLayer.Commons;
+using ServiceLayer.Interfaces;
 
 namespace ServiceLayer.Services
 {
@@ -204,6 +198,40 @@ namespace ServiceLayer.Services
         public async Task<List<Appointment>> GetAllAppointmentAsync()
         {
             return await _unitOfWork.AppointmentRepository.GetAllAsync(null, x => x.User, x => x.SpaPackage, x => x.Pet);
+        }
+
+        public async Task<string> UpdateAppointmentStatusAsync(int appointmentId, string status)
+        {
+            var appointment = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointmentId);
+
+            if (appointment == null)
+            {
+                throw new Exception("Appointment not found");
+            }
+
+            appointment.Status = status;
+
+            _unitOfWork.AppointmentRepository.Update(appointment);
+
+            if (await _unitOfWork.AppointmentRepository.SaveChangesAsync() > 0)
+            {
+                return "Status updated successfully";
+            }
+            else
+            {
+                throw new Exception("Error updating status");
+            }
+        }
+
+        public async Task<List<Appointment>> GetAppointmentsByPetSitterId(int petSitterId)
+        {
+            var appointments = await _unitOfWork.AppointmentRepository.GetAllAsync(
+                a => a.PetSitterId == petSitterId,
+                a => a.User,
+                a => a.SpaPackage,
+                a => a.Pet);
+
+            return appointments;
         }
     }
 }

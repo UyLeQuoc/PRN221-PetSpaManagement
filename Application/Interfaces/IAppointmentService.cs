@@ -1,9 +1,4 @@
 ﻿using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceLayer.Interfaces
 {
@@ -26,7 +21,8 @@ namespace ServiceLayer.Interfaces
         Task<List<Appointment>> GetAppointmentsByUserId(int id);
 
         Task<List<Appointment>> GetAllAppointmentAsync();
-
         Task<bool> CancelAppoimentById(int Id);
+        Task<string> UpdateAppointmentStatusAsync(int appointmentId, string status);
+        Task<List<Appointment>> GetAppointmentsByPetSitterId(int petSitterId);
     }
 }
