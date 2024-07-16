@@ -30,7 +30,7 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
         [BindProperty]
         public Appointment Appointment { get; set; } = default!;
 
-        public async Task<IActionResult> OnGet(int? SpaPackageId)
+        public async Task<IActionResult> OnGet(string? SpaPackageId)
         {
             try
             {
@@ -47,9 +47,9 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                 ViewData["PetId"] = new SelectList(await _petService.GetAllPets(), "Id", "Name");
                 var spaPackages = await _spaPackageService.GetSpaPackages();
 
-                if (SpaPackageId.HasValue)
+                if (!string.IsNullOrEmpty(SpaPackageId))
                 {
-                    var spaPackage = spaPackages.FirstOrDefault(x => x.Id == SpaPackageId);
+                    var spaPackage = spaPackages.FirstOrDefault(x => x.Name == SpaPackageId);
                     ViewData["SpaPackageId"] = new SelectList(new[] { spaPackage }, "Id", "Name");
                 }
                 else

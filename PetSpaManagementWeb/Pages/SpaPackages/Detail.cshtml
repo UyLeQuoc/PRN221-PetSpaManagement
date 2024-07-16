@@ -69,9 +69,13 @@
         @Model.ErrorMessage
     </div>
 }
-<form method="get" asp-page="/CustomerDashboard/Appointments/Create" asp-route-SpaPackageId="@Model.SpaPackageDetailResponse.SpaPackage.Id">
-    <div class="form-group mt-3">
+
+<div class="form-group mt-3">
+
+<form method="get" asp-page="/CustomerDashboard/Appointments/Create" asp-route-SpaPackageId="@Model.SpaPackageDetailResponse.SpaPackage.Name">
+        <input type="hidden" name="SpaPackageId" value="@Model.SpaPackageDetailResponse.SpaPackage.Name" />
+
         <button type="submit" class="btn btn-primary">Make an appointment</button>
-    </div>
 </form>
 
+</div>
