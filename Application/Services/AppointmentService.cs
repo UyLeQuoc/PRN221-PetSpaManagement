@@ -155,9 +155,8 @@ namespace ServiceLayer.Services
             }
         }
 
-        public async Task<List<Appointment>> GetPetSitterAppointments()
-        {
-            var id = _claimsService.GetCurrentUserId;
+        public async Task<List<Appointment>> GetPetSitterAppointments(int id)
+        { 
             var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false && (a.PetSitterId == id || a.PetSitterId == null),
                                                                            a => a.User,
                                                                            a => a.SpaPackage,
@@ -168,12 +167,13 @@ namespace ServiceLayer.Services
                 return list;
         }
 
-        public async Task<string> PetSitterUpdateAppoiment(Appointment appointment)
+        public async Task<string> UpdateAppoimentStatus(Appointment appointment)
         {
             var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointment.Id, e => e.IsDeleted == false);
             if (exist == null)
                 return "Service not found";
 
+            exist.PetSitterId = appointment.PetSitterId;
             exist.Status = appointment.Status;
 
             _unitOfWork.AppointmentRepository.Update(exist);
