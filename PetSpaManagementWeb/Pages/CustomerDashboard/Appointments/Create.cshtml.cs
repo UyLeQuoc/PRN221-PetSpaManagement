@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RepositoryLayer.Models;
 using ServiceLayer.Interfaces;
 
 namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
@@ -27,6 +28,8 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
             _logger = logger;
         }
 
+        public IList<SpaPackage> SpaPackages { get; set; } = default!;
+
         [BindProperty]
         public Appointment Appointment { get; set; } = default!;
 
@@ -47,6 +50,7 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                 ViewData["UserId"] = new SelectList(new[] { user }, "Id", "Email");
                 ViewData["PetId"] = new SelectList(await _petService.GetAllPets(), "Id", "Name");
                 var spaPackages = await _spaPackageService.GetSpaPackages();
+                SpaPackages = spaPackages;
 
                 if (!string.IsNullOrEmpty(SpaPackageId))
                 {
