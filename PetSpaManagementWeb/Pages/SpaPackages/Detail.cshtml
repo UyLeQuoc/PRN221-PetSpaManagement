@@ -2,123 +2,78 @@
 @model PetSpaManagementWeb.Pages.SpaPackages.DetailModel
 @{
 }
-
-<div class="container">
-    <h2 class="mb-2">Spa Package Information</h2>
-    <div class="row">
-        <!-- Image Column -->
-        <div class="col-lg-6 mb-4">
-            <div>
-                @if (!string.IsNullOrEmpty(Model.SpaPackageDetailResponse.SpaPackage.PictureUrl))
-                {
-                    <img src="@Model.SpaPackageDetailResponse.SpaPackage.PictureUrl" alt="Spa Package Image" style="max-width: 100%; border-radius: 10px;" />
-                }
-                else
-                {
-                    <p>No image available</p>
-                }
-            </div>
-        </div>
-
-        <!-- Information Column -->
-        <div class="col-lg-6 mb-4">
-            <dl class="row">
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.SpaPackageDetailResponse.SpaPackage.Name)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.SpaPackageDetailResponse.SpaPackage.Name)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.SpaPackageDetailResponse.SpaPackage.Description)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.SpaPackageDetailResponse.SpaPackage.Description)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.SpaPackageDetailResponse.SpaPackage.Price)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.SpaPackageDetailResponse.SpaPackage.Price)
-                </dd>
-                <dt class="col-sm-4">
-                    @Html.DisplayNameFor(model => model.SpaPackageDetailResponse.SpaPackage.EstimatedTime)
-                </dt>
-                <dd class="col-sm-8">
-                    @Html.DisplayFor(model => model.SpaPackageDetailResponse.SpaPackage.EstimatedTime)
-                </dd>
-            </dl>
-
-            @if (Model.ErrorMessage != null)
+<h1>Details</h1>
+<div>
+    <h4>Spa Package</h4>
+    <hr />
+    <dl class="row">
+        <div>
+            @if (!string.IsNullOrEmpty(Model.SpaPackageDetailResponse.SpaPackage.PictureUrl))
             {
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    @Model.ErrorMessage
-                </div>
+                <img src="@Model.SpaPackageDetailResponse.SpaPackage.PictureUrl" alt="Spa Package Image" style="max-width: 30%; border-radius: 10px" />
             }
-
-            <form method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <input type="submit" value="Create Appointment" class="btn btn-primary" />
-                </div>
-            </form>
+            else
+            {
+                <p>No image available</p>
+            }
         </div>
-    </div>
-
-    <!-- Services Section -->
-    <div class="row mt-4">
-        <div class="col-lg-12">
-            <section class="ftco-section bg-light ftco-faqs">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="heading-section mb-5 mt-5 mt-lg-0">
-                                <h2>Services</h2>
-                            </div>
-                            <div id="accordion" class="myaccordion w-100" aria-multiselectable="true">
-                                @foreach (var service in Model.SpaPackageDetailResponse.Services)
-                                {
-                                    <div class="card mb-3">
-                                        <div class="card-header p-0" id="heading-@service.Id">
-                                            <h2 class="mb-0">
-                                                <button class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link" data-toggle="collapse" data-target="#collapse-@service.Id" aria-expanded="true" aria-controls="collapse-@service.Id">
-                                                    <p class="mb-0">@service.Name</p>
-                                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                                </button>
-                                            </h2>
-                                        </div>
-                                        <div id="collapse-@service.Id" class="collapse" aria-labelledby="heading-@service.Id" data-parent="#accordion">
-                                            <div class="card-body py-3 px-0">
-                                                <ul>
-                                                    <li>
-                                                        @{
-                                                            var fromWeight = service.Weight.FromWeight;
-                                                            var toWeight = service.Weight.ToWeight;
-                                                            string displayWeight = $"{fromWeight} - {toWeight}kg";
-                                                        }
-                                                        Weight: @displayWeight
-                                                    </li>
-                                                    <li>Duration: @service.Duration</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SpaPackageDetailResponse.SpaPackage.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SpaPackageDetailResponse.SpaPackage.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SpaPackageDetailResponse.SpaPackage.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SpaPackageDetailResponse.SpaPackage.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SpaPackageDetailResponse.SpaPackage.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SpaPackageDetailResponse.SpaPackage.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SpaPackageDetailResponse.SpaPackage.EstimatedTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SpaPackageDetailResponse.SpaPackage.EstimatedTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SpaPackageDetailResponse.Services)
+        </dt>
+        <dd class="col-sm-10">
+            <ul>
+                @foreach (var service in Model.SpaPackageDetailResponse.Services)
+                {
+                    <li>
+                        @service.Name
+                        @{
+                            var fromWeight = service.Weight.FromWeight;
+                            var toWeight = service.Weight.ToWeight;
+                            string displayWeight = $"{fromWeight} - {toWeight}kg";
+                        }
+                        @Html.DisplayFor(modelItem => displayWeight)
+                    </li>
+                }
+            </ul>
+        </dd>
+    </dl>
 </div>
-
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('.btn-link').click(function () {
-                // Toggle chevron icon
-                $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
-            });
-        });
-    </script>
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @Model.ErrorMessage
+    </div>
 }
+
+<div class="form-group mt-3">
+
+<form method="get" asp-page="/CustomerDashboard/Appointments/Create" asp-route-SpaPackageId="@Model.SpaPackageDetailResponse.SpaPackage.Name">
+        <input type="hidden" name="SpaPackageId" value="@Model.SpaPackageDetailResponse.SpaPackage.Name" />
+
+        <button type="submit" class="btn btn-primary">Make an appointment</button>
+</form>
+</div>
