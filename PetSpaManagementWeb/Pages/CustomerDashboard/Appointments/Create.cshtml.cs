@@ -38,7 +38,8 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
 
                 if (string.IsNullOrEmpty(email))
                 {
-                    throw new Exception("The user id is null");
+                    TempData["ErrorMessage"] = "Please login to use this function"; // (Chỉ trong môi trường development)
+                    return RedirectToPage("/LoginPage"); // Chuyển hướng về Index của Appointment
                 }
 
                 // Lấy danh sách user, pet, spa package (tương tự như trong EditModel)
