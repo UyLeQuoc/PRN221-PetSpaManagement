@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ServiceLayer.Interfaces;
 
-namespace PetSpaManagementWeb.Pages.Appointments
+namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
 {
     public class CreateModel : PageModel
     {
@@ -70,10 +70,10 @@ namespace PetSpaManagementWeb.Pages.Appointments
                 if (result == null)
                 {
                     TempData["ErrorMessage"] = "Đã có lỗi xảy ra trong quá trình tạo appointment.";
-                    return RedirectToPage("/Pets/Index");
+                    return RedirectToPage("./Index");
                 }
                 TempData["SuccessMessage"] = "Appointment đã được tạo thành công.";
-                return RedirectToPage("/Pets/Index");
+                return RedirectToPage("./Index");
             }
             catch (Exception ex)
             {
