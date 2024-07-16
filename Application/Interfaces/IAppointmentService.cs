@@ -14,8 +14,9 @@ namespace ServiceLayer.Interfaces
         Task<Appointment> CreateNewAppointment(Appointment appointment);
         Task<string> UpdateAppoiment(Appointment appointment);
         Task<string> DeleteAppoiment(int Id);
-        Task<List<Appointment>> GetPetSitterAppointments();
+        Task<List<Appointment>> GetPetSitterAppointments(int id);
         Task<string> PetSitterUpdateAppoiment(Appointment appointment);
         Task<List<Appointment>> GetAppointmentsByUserId(int id);
+        Task<List<Appointment>> GetAllAppointmentAsync();
     }
 }

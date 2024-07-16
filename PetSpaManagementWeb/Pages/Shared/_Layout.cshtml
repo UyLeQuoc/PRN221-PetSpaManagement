@@ -60,11 +60,9 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="SpaPackages/Index" class="nav-link">Spa Packages</a></li>
-                        <li class="nav-item"><a href="services.html" class="nav-link">Your order</a></li>
-                        <li class="nav-item"><a href="pricing.html" class="nav-link">Dashboard</a></li>
                         @if (Context.Session.GetString("Email") != null)
                         {
-                            <li class="nav-item"><a href="#" class="nav-link">@Context.Session.GetString("Email")</a></li>
+                            <li class="nav-item"><a href="/CustomerDashboard" class="nav-link">@Context.Session.GetString("Email")</a></li>
                             <li class="nav-item"><a href="/LogoutPage" class="nav-link">Logout</a></li>
                         }
                         else

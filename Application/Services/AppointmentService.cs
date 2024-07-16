@@ -48,35 +48,19 @@ namespace ServiceLayer.Services
                 return appointment;
         }
 
-        //public async Task<string> CreateAppoiment(Appointment appointment)
-        //{
-        //    var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointment.Id, e => e.IsDeleted == false);
-
-        //    if (exist != null)
-        //        return "Service exists";
-        //    await _unitOfWork.AppointmentRepository.AddAsync(appointment);
-        //    if (await _unitOfWork.AppointmentRepository.SaveChangesAsync() > 0)
-        //        return "Create Successfully";
-        //    else
-        //        return "Create Failed";
-        //}
-
         public async Task<Appointment> CreateNewAppointment(Appointment appointment)
         {
             try
             {
-                var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointment.Id, e => e.IsDeleted == false);
-                if (exist != null)
-                {
-                    throw new Exception("existed appointment");
-                }
-                var existingSpapackage = await _unitOfWork.SpaPackageRepository.GetSpaPackageByID(appointment.SpaPackageId);
-                if (existingSpapackage == null)
+                var allSpapackage = await _unitOfWork.SpaPackageRepository.GetSpaPackages();
+                var existingPackage = allSpapackage.FirstOrDefault(x => x.Id == appointment.SpaPackageId);
+
+                if (existingPackage == null)
                 {
                     throw new Exception("Non-existed spa package");
                 }
                 var existingPet = await _unitOfWork.PetRepository.GetByIdAsync(appointment.PetId);
-                if (existingSpapackage == null)
+                if (existingPackage == null)
                 {
                     throw new Exception("Non-existed pet");
                 }
@@ -84,15 +68,12 @@ namespace ServiceLayer.Services
                 var newAppointment = new Appointment()
                 {
                     UserId = appointment.UserId,
-                    SpaPackageId = existingSpapackage.SpaPackage.Id,
+                    SpaPackageId = existingPackage.Id,
                     PetId = existingPet.Id,
-                    PetSitterId = appointment.PetSitterId,
                     DateTime = appointment.DateTime,
-                    Status = appointment.Status,
+                    Status = "PENDING",
                     Notes = appointment.Notes,
-                    Price = existingSpapackage.SpaPackage.Price,
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = 1
+                    Price = existingPackage.Price
                 };
 
                 await _unitOfWork.AppointmentRepository.AddAsync(newAppointment);
@@ -150,9 +131,8 @@ namespace ServiceLayer.Services
                 return "Service not found";
         }
 
-        public async Task<List<Appointment>> GetPetSitterAppointments()
-        {
-            var id = _claimsService.GetCurrentUserId;
+        public async Task<List<Appointment>> GetPetSitterAppointments(int id)
+        { 
             var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false && (a.PetSitterId == id || a.PetSitterId == null),
                                                                            a => a.User,
                                                                            a => a.SpaPackage,
@@ -179,7 +159,7 @@ namespace ServiceLayer.Services
 
         public async Task<List<Appointment>> GetAppointmentsByUserId(int id)
         {
-            var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false && a.UserId == id ,
+            var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false && a.UserId == id,
                                                                            a => a.User,
                                                                            a => a.SpaPackage,
                                                                            a => a.Pet);
@@ -187,6 +167,10 @@ namespace ServiceLayer.Services
                 throw new Exception("Error");
             else
                 return list;
+        }
+        public async Task<List<Appointment>> GetAllAppointmentAsync()
+        {
+            return await _unitOfWork.AppointmentRepository.GetAllAsync(null, x => x.User, x => x.SpaPackage, x => x.Pet);
         }
     }
 }

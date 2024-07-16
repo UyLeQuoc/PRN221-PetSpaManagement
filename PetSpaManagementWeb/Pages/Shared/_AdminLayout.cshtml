@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -107,8 +108,20 @@
                     </div>
                 </div>
             <div class="col py-3 bg-light  p-4">
+                @{
+                    int? roleId = Context.Session.GetInt32("RoleId");
+                }
+                @if(roleId != null && roleId == 1)
+                {
                     @RenderBody()
-                </div>
+                    ;
+                }
+                else
+                {
+                    var result = "You are not admin and so dont have any permission";
+                    @result;
+                }
+            </div>
             </div>
         </div>
 

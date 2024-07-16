@@ -52,7 +52,7 @@
                             @Html.DisplayFor(modelItem => item.Pet.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.User.Name)
+                            @Model.PetSitters.FirstOrDefault(x => x.Id == item.PetSitterId).Name
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.DateTime)
