@@ -27,6 +27,7 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.AppointmentManagement
             {
                 PetSitters = petSitter;
             }
+
             if (await _appointmentService.GetAppointments() != null)
             {
                 Appointment = await _appointmentService.GetAppointments();

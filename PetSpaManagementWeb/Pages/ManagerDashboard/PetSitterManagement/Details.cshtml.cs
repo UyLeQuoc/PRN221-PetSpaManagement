@@ -21,18 +21,16 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.PetSitterManagement
         public IList<User> PetSitters { get; set; } = default!;
 
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int id)
         {
             var petSitter = await _userService.GetUsersByRoleIdAsync(3);
             if (petSitter != null)
             {
                 PetSitters = petSitter;
             }
-            var email = HttpContext.Session.GetString("Email");
-            var user = _userService.GetUserByEmailAsync(email);
-            if (await _appointmentService.GetPetSitterAppointments(user.Id) != null)
+            if (await _appointmentService.GetPetSitterAppointments(id) != null)
             {
-                Appointment = await _appointmentService.GetPetSitterAppointments(user.Id);
+                Appointment = await _appointmentService.GetPetSitterAppointments(id);
             }
         }
     }

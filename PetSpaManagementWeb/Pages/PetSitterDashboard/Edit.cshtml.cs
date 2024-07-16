@@ -64,7 +64,7 @@ namespace PetSpaManagementWeb.Pages.PetSitterDashboard
 
             try
             {
-                await _appointmentService.PetSitterUpdateAppoiment(Appointment);
+                await _appointmentService.UpdateAppoimentStatus(Appointment);
             }
             catch (DbUpdateConcurrencyException)
             {

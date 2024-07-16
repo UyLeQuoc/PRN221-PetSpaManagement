@@ -142,12 +142,14 @@ namespace ServiceLayer.Services
             else
                 return list;
         }
-        public async Task<string> PetSitterUpdateAppoiment(Appointment appointment)
+
+        public async Task<string> UpdateAppoimentStatus(Appointment appointment)
         {
             var exist = await _unitOfWork.AppointmentRepository.GetByIdAsync(appointment.Id, e => e.IsDeleted == false);
             if (exist == null)
                 return "Service not found";
 
+            exist.PetSitterId = appointment.PetSitterId;
             exist.Status = appointment.Status;
 
             _unitOfWork.AppointmentRepository.Update(exist);
