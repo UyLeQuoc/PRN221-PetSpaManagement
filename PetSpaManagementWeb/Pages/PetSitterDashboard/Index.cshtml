@@ -12,7 +12,6 @@
                 <th>@Html.DisplayNameFor(model => model.Appointment[0].User)</th>
                 <th>@Html.DisplayNameFor(model => model.Appointment[0].SpaPackage)</th>
                 <th>@Html.DisplayNameFor(model => model.Appointment[0].Pet)</th>
-                <th>Pet Sitter</th>
                 <th>@Html.DisplayNameFor(model => model.Appointment[0].DateTime)</th>
                 <th>@Html.DisplayNameFor(model => model.Appointment[0].Status)</th>
                 <th>@Html.DisplayNameFor(model => model.Appointment[0].Notes)</th>
@@ -27,9 +26,16 @@
                     <td>@Html.DisplayFor(modelItem => item.User.Name)</td>
                     <td>@Html.DisplayFor(modelItem => item.SpaPackage.Name)</td>
                     <td>@Html.DisplayFor(modelItem => item.Pet.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => item.User.Name)</td>
                     <td>@Html.DisplayFor(modelItem => item.DateTime)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>
+                        <span class="badge" style="background-color:@(item.Status == "PENDING" ? "#ffc107" :
+                                                                item.Status == "ASSIGNED" ? "#007bff" :
+                                                                item.Status == "COMPLETED" ? "#28a745" :
+                                                                item.Status == "CANCELLED" ? "#dc3545" :
+                                                                "gray")">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </span>
+                    </td>
                     <td>@Html.DisplayFor(modelItem => item.Notes)</td>
                     <td>@Html.DisplayFor(modelItem => item.Price)</td>
                     <td>
