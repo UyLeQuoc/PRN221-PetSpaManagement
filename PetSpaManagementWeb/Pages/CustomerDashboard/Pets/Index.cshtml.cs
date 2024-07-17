@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RepositoryLayer.Commons;
 using ServiceLayer.Interfaces;
 using ServiceLayer.Services;
 
@@ -21,9 +22,18 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Pets
             _userService = userService;
         }
 
+        //search
+        [BindProperty(SupportsGet = true)]
+        public string? searchString { get; set; } // chưa làm
+
+        //pagin
+        public Pagination<Pet> pagination { get; set; }
+
+        public PaginationParameter parameter { get; set; }
+
         public IList<Pet> Pets { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int pageIndex = 1)
         {
             try
             {
@@ -35,8 +45,13 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Pets
                     RedirectToPage("/LoginPage"); // Chuyển hướng về Index của Appointment
                 }
                 var user = await _userService.GetUserByEmailAsync(email);
-                var data = await _petService.GetAllPets();
-                Pets = data.Where(x => x.UserId == user.Id).ToList();
+
+                parameter = new PaginationParameter()
+                {
+                    PageIndex = pageIndex,
+                };
+                pagination = await _petService.GetAllPetsFilter(searchString, parameter);
+                Pets = pagination.Where(x => x.UserId == user.Id).ToList();
             }
             catch (Exception ex)
             {
