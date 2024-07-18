@@ -15,9 +15,9 @@ namespace ServiceLayer.Services
         private readonly IAmazonS3 _s3Client;
         private readonly string _bucketName = "image-petspamanagement";
 
-        public S3StorageService()
+        public S3StorageService(IAmazonS3 s3Client)
         {
-            _s3Client = new AmazonS3Client();
+            _s3Client = s3Client;
         }
 
         public async Task<string> UploadAsync(IFormFile file)
