@@ -10,6 +10,7 @@ namespace RepositoryLayer.Interfaces
         Task<LoginResponse> LoginAsync(string email, string password);
         Task<User> RegisterAsync(User user);
         Task<List<User>> GetUsersByRoleIdAsync(int roleId);
+        Task<UserResponse> GetUsersByRoleIdAsync(int roleId, string searchTerm, int pageIndex, int pageSize);
         Task<Dictionary<string, int>> GetUserCountsByRoleAsync();
     }
 }

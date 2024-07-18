@@ -113,6 +113,10 @@ namespace ServiceLayer.Services
             {
                 throw new Exception("Non-existed spa package");
             }
+            if (appointment.Status == "PENDING" || appointment.Status == "ASSIGNED" || appointment.Status == "COMPLETED" || appointment.Status == "CANCELLED" || appointment.Status == "ABSENT")
+            {
+                throw new Exception("Invalid status");
+            }
 
             exist.SpaPackageId = appointment.SpaPackageId;
             exist.PetId = appointment.PetId;
@@ -249,6 +253,16 @@ namespace ServiceLayer.Services
                 a => a.Pet);
 
             return appointments;
+        }
+
+        public async Task<List<Appointment>> GetAppointmentsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.DateTime >= startDate && a.DateTime <= endDate);
+        }
+
+        public async Task<List<Payment>> GetPaymentsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return await _unitOfWork.PaymentRepository.GetAllAsync(p => p.PaymentDate >= startDate && p.PaymentDate <= endDate);
         }
     }
 }

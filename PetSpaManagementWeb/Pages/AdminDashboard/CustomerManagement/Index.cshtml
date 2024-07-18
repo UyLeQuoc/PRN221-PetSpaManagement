@@ -9,13 +9,18 @@
 {
     <div class="alert alert-success">@TempData["Message"]</div>
 }
-<a class="btn btn-primary" asp-page="/AdminDashboard/Create">Create New Customer</a>
+<a class="btn btn-primary" asp-page="/AdminDashboard/Create" asp-route-role="Customer">Create New Customer</a>
+<form method="get" class="my-4">
+    <input type="text" name="searchTerm" />
+    <button class="btn btn-secondary" type="submit">Search</button>
+</form>
 
 <table class="table">
     <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>Is Deleted</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -25,8 +30,9 @@
             <tr>
                 <td>@customer.Name</td>
                 <td>@customer.Email</td>
+                <td>@customer.IsDeleted</td>
                 <td>
-                    <a class="btn btn-secondary" asp-page="/AdminDashboard/CustomerManagement/Edit" asp-route-id="@customer.Id">Edit</a>
+                    <a class="btn btn-secondary" asp-page="/AdminDashboard/Edit" asp-route-id="@customer.Id">Edit</a>
                     <form method="post" asp-page-handler="Delete" asp-route-id="@customer.Id" style="display:inline;">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
@@ -35,3 +41,12 @@
         }
     </tbody>
 </table>
+
+<ul class="pagination">
+    @for (var i = 1; i <= Model.TotalPages; i++)
+    {
+        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+            <a class="page-link" asp-route-pageIndex="@i">@i</a>
+        </li>
+    }
+</ul>

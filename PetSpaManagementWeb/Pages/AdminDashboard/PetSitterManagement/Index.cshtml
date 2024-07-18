@@ -6,16 +6,22 @@
 
 <h1>PetSitter Management</h1>
 
-<a class="btn btn-primary" asp-page="/AdminDashboard/Create">Create New PetSitter</a>
+<a class="btn btn-primary" asp-page="/AdminDashboard/Create" asp-route-role="PetSitter">Create New PetSitter</a>
 @if (TempData["Message"] != null)
 {
     <div class="alert alert-success">@TempData["Message"]</div>
 }
+<form method="get" class="my-4">
+    <input type="text" name="searchTerm" value="@Model.searchTerm" />
+    <button class="btn btn-secondary" type="submit">Search</button>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>Is Deleted</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -25,8 +31,9 @@
             <tr>
                 <td>@petSitter.Name</td>
                 <td>@petSitter.Email</td>
+                <td>@petSitter.IsDeleted</td>
                 <td>
-                    <a class="btn btn-secondary" asp-page="/AdminDashboard/PetSitterManagement/Edit" asp-route-id="@petSitter.Id">Edit</a>
+                    <a class="btn btn-secondary" asp-page="/AdminDashboard/Edit" asp-route-id="@petSitter.Id">Edit</a>
                     <form method="post" asp-page-handler="Delete" asp-route-id="@petSitter.Id" style="display:inline;">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
@@ -35,6 +42,15 @@
         }
     </tbody>
 </table>
+
+<ul class="pagination">
+    @for (var i = 1; i <= Model.TotalPages; i++)
+    {
+        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+            <a class="page-link" asp-route-pageIndex="@i">@i</a>
+        </li>
+    }
+</ul>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
