@@ -266,5 +266,10 @@ namespace ServiceLayer.Services
         {
             return await _unitOfWork.PaymentRepository.GetAllAsync(p => p.PaymentDate >= startDate && p.PaymentDate <= endDate);
         }
+
+        public async Task<Pagination<Appointment>> GetAppointmentsFiltered(string search, PaginationParameter pagination)
+        {
+            return await GetAppointmentsFiltered(search, pagination);
+        }
     }
 }
