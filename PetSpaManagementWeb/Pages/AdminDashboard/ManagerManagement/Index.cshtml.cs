@@ -10,8 +10,10 @@ namespace PetSpaManagementWeb.Pages.AdminDashboard.ManagerManagement
         //search
         [BindProperty(SupportsGet = true)]
         public string searchTerm { get; set; }
+
         //paging
         public int PageIndex { get; set; } = 1;
+
         public int TotalPages { get; set; }
         public int PageSize { get; set; } = 3;
 

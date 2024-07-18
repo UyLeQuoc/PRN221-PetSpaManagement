@@ -72,7 +72,7 @@ namespace RepositoryLayer.Repositories
             {
                 query = query.Where(p => p.Name.Contains(search) || p.Id.ToString().Contains(search));
             }
-            var list = await query.OrderBy(x => x.CreatedAt).ToListAsync();
+            var list = await query.Where(x=> x.IsDeleted ==false).OrderBy(x => x.CreatedAt).ToListAsync();
             int count = list.Count();
             list = list.Skip((pagination.PageIndex - 1) * pagination.PageSize).Take(pagination.PageSize).ToList();
             var result = new Pagination<Pet>(list)

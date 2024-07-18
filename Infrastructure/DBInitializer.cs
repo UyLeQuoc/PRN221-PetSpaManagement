@@ -33,7 +33,7 @@ namespace RepositoryLayer
                     new SpaPackage {Name = "Combo chăm sóc cho thú cưng 3", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 250000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/spa-thu-cung-1.jpg.webp", EstimatedTime = 50},
                     new SpaPackage {Name = "Combo chăm sóc cho thú cưng 1", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 150000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/TRIEN-LAM-THU-CUNG-VIET-NAM.png", EstimatedTime = 30},
                     new SpaPackage {Name = "Combo chăm sóc cho thú cưng 2", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 200000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/deciding-on-pet-care-pet-insurance.jpg.webp", EstimatedTime = 20 },
-                    new SpaPackage {Name = "Combo chăm sóc cho thú cưng 3", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 250000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/spa-thu-cung-1.jpg.webp", EstimatedTime = 10,
+                    new SpaPackage {Name = "Combo chăm sóc cho thú cưng 3", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 250000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/spa-thu-cung-1.jpg.webp", EstimatedTime = 10 }
                 };
 
                 foreach (var spaPackage in spaPackages)
@@ -119,9 +119,6 @@ namespace RepositoryLayer
                 }
             }
 
-
-
-
             if (!context.Weight.Any())
             {
                 var weights = new List<Weight>
@@ -151,7 +148,6 @@ namespace RepositoryLayer
                     new Service {Name = "Tỉa lông cho thú cưng", Description = "Tỉa lông thú gọn gàng, phù hợp với kích thước và giống thú cưng của bạn ", WeightId = 1, Duration = 20},
                     new Service {Name = "Tỉa lông cho thú cưng", Description = "Tỉa lông thú gọn gàng, phù hợp với kích thước và giống thú cưng của bạn", WeightId = 2, Duration = 20},
                     new Service {Name = "Tỉa lông cho thú cưng", Description = "Tỉa lông thú gọn gàng, phù hợp với kích thước và giống thú cưng của bạn ", WeightId = 3, Duration = 20},
-
                 };
 
                 foreach (var service in services)
@@ -160,8 +156,6 @@ namespace RepositoryLayer
                 }
                 await context.SaveChangesAsync();
             }
-
-
 
             if (!context.PackageServices.Any())
             {
@@ -176,7 +170,6 @@ namespace RepositoryLayer
                     new PackageService{SpaPackageId = 3, ServiceId = 3},
                     new PackageService{SpaPackageId = 3, ServiceId = 6},
                     new PackageService{SpaPackageId = 3, ServiceId = 9},
-
                 };
 
                 foreach (var packageService in packageServices)
@@ -206,8 +199,6 @@ namespace RepositoryLayer
                     new Pet {Name = "British Shorthair", Description="a", Type = "Cat"},
                     new Pet {Name = "Ragdoll", Description="a", Type = "Cat"},
                     new Pet {Name = "Rottweiler", Description="a", Type = "Dog" , UserId = 1}
-
-
                 };
 
                 foreach (var pet in pets)
@@ -239,8 +230,6 @@ namespace RepositoryLayer
                 }
                 await context.SaveChangesAsync();
             }
-
         }
     }
 }
-

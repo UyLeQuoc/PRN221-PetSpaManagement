@@ -1,0 +1,102 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.CustomerDashboard.Payments.IndexModel
+@{
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+
+
+<form method="get" class="row g-3 d-flex justify-content-center mb-3">
+    <div class="col-md-2 d-flex flex-column">
+            <input type="text" class="form-control me-2" name="searchString" value="@Model.searchString" placeholder="Search by name or ID">
+        <button type="submit" class="btn btn-outline-info">Search</button>
+    </div>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Payments[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payments[0].TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payments[0].PaymentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payments[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payments[0].User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payments[0].Appointment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payments[0].Appointment.SpaPackage)
+            </th>
+
+            <th>Modify</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Payments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appointment.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appointment.SpaPackage.Name)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<ul class="pagination">
+    @for (var i = 1; i <= Model.pagination.TotalPages; i++)
+    {
+        <li class="page-item @(i == Model.pagination.PageIndex ? "active" : "")">
+            <a class="page-link" asp-route-pageIndex="@i">@i</a>
+        </li>
+    }
+</ul>
+

@@ -33,6 +33,7 @@ namespace ServiceLayer.Services
         {
             return _unitOfWork.UserRepository.CurrentUserAsync();
         }
+
         public async Task<List<User>> GetUsersByRoleIdAsync(int roleId)
         {
             return await _unitOfWork.UserRepository.GetUsersByRoleIdAsync(roleId);
@@ -48,7 +49,6 @@ namespace ServiceLayer.Services
         {
             _unitOfWork.UserRepository.Update(entity);
             return await _unitOfWork.SaveChangeAsync() > 0;
-
         }
 
         public async Task<bool> DeleteAsync(int id)
