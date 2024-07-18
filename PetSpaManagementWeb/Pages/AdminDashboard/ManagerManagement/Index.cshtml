@@ -5,17 +5,25 @@
 }
 
 <h1>Manager Management</h1>
+
 @if (TempData["Message"] != null)
 {
     <div class="alert alert-success">@TempData["Message"]</div>
 }
-<a class="btn btn-primary" asp-page="/AdminDashboard/Create">Create New Manager</a>
+
+<a class="btn btn-primary" asp-page="/AdminDashboard/Create" asp-route-role="Manager">Create New Manager</a>
+
+<form method="get" class="my-4">
+    <input type="text" name="searchTerm" value="@Model.searchTerm" />
+    <button class="btn btn-secondary" type="submit">Search</button>
+</form>
 
 <table class="table">
     <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>Is Deleted</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -25,6 +33,7 @@
             <tr>
                 <td>@manager.Name</td>
                 <td>@manager.Email</td>
+                <td>@manager.IsDeleted</td>
                 <td>
                     <a class="btn btn-secondary" asp-page="/AdminDashboard/ManagerManagement/Edit" asp-route-id="@manager.Id">Edit</a>
                     <form method="post" asp-page-handler="Delete" asp-route-id="@manager.Id" style="display:inline;">
@@ -35,6 +44,15 @@
         }
     </tbody>
 </table>
+
+<ul class="pagination">
+    @for (var i = 1; i <= Model.TotalPages; i++)
+    {
+        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+            <a class="page-link" asp-route-pageIndex="@i">@i</a>
+        </li>
+    }
+</ul>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
