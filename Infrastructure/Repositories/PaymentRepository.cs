@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using RepositoryLayer.Commons;
 using RepositoryLayer.Interfaces;
 using System;
@@ -20,6 +21,11 @@ namespace RepositoryLayer.Repositories
             _context = context;
             _timeService = timeService;
             _claimsService = claimsService;
+        }
+
+        public async Task<List<Payment>> GetAllPaymentsAsync()
+        {
+            return await _context.Payments.Include(x => x.Appointment).ThenInclude(x => x.SpaPackage).Include(x => x.User).ToListAsync();
         }
     }
 }

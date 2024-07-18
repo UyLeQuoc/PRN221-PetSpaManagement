@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using RepositoryLayer.Commons;
 
 namespace ServiceLayer.Interfaces
 {
@@ -27,7 +28,11 @@ namespace ServiceLayer.Interfaces
         Task<string> UpdateAppointmentStatusAsync(int appointmentId, string status);
 
         Task<List<Appointment>> GetAppointmentsByPetSitterId(int petSitterId);
+
         Task<List<Payment>> GetPaymentsByDateRange(DateTime startDate, DateTime endDate);
+
         Task<List<Appointment>> GetAppointmentsByDateRange(DateTime startDate, DateTime endDate);
+
+        Task<Pagination<Appointment>> GetAppointmentsFiltered(string search, PaginationParameter pagination);
     }
 }

@@ -55,5 +55,15 @@ namespace ServiceLayer.Services
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<List<Payment>> GetPaymentsAsync()
+        {
+            var paymentsUser = await _unitOfWork.PaymentRepository.GetAllPaymentsAsync();
+            if (_claimsService.GetCurrentSessionUserId == 0)
+            {
+                throw new Exception("Non-signup user");
+            }
+            return paymentsUser.Where(x => x.UserId == _claimsService.GetCurrentSessionUserId).ToList();
+        }
     }
 }

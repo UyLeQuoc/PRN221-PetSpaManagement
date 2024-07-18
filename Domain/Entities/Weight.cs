@@ -8,7 +8,7 @@ namespace Domain.Entities
 {
     public class Weight : BaseEntity
     {
-        public int FromWeight {  get; set; }
+        public int FromWeight { get; set; }
         public int ToWeight { get; set; }
     }
 }

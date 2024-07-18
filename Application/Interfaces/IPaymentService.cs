@@ -10,5 +10,6 @@ namespace ServiceLayer.Interfaces
     public interface IPaymentService
     {
         Task<Payment> CreatePaymentAsync(Appointment appointment);
+        Task<List<Payment>> GetPaymentsAsync();
     }
 }
