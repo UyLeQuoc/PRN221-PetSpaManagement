@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\",
+  "WorkspaceRootPath": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\",
   "Documents": [
     {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\petspamanagementweb\\pages\\customerdashboard\\appointments\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\customerdashboard\\appointments\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\petspamanagementweb\\pages\\customerdashboard\\appointments\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\customerdashboard\\appointments\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
       "AbsoluteMoniker": "D:0:0:{3493A07B-CD95-4EED-8964-6DA66D93D4D8}|Infrastructure\\RepositoryLayer.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\infrastructure\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3493A07B-CD95-4EED-8964-6DA66D93D4D8}|Infrastructure\\RepositoryLayer.csproj|solutionrelative:infrastructure\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\petspamanagementweb\\pages\\loginpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\loginpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\petspamanagementweb\\pages\\petsitterdashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\petsitterdashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\petspamanagementweb\\pages\\customerdashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -25,23 +25,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{72ED1A8E-3F51-4999-BD23-E332CEE41A4A}|Application\\ServiceLayer.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\application\\services\\appointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{72ED1A8E-3F51-4999-BD23-E332CEE41A4A}|Application\\ServiceLayer.csproj|solutionrelative:application\\services\\appointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> main
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\petspamanagementweb\\pages\\customerdashboard\\pets\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\customerdashboard\\pets\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\petspamanagementweb\\pages\\petsitterdashboard\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\petsitterdashboard\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\petspamanagementweb\\pages\\spapackages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\spapackages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-=======
       "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\petspamanagementweb\\pages\\petsitterdashboard\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\petsitterdashboard\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\petspamanagementweb\\pages\\petsitterdashboard\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\petsitterdashboard\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{72ED1A8E-3F51-4999-BD23-E332CEE41A4A}|Application\\ServiceLayer.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\application\\interfaces\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\petspamanagementweb\\pages\\loginpage.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\loginpage.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\petspamanagementweb\\pages\\petsitterdashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\petsitterdashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\petspamanagementweb\\pages\\admindashboard\\petsittermanagement\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -180,7 +167,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|d:\\code\\myproject\\15. prn221-petspamanagement\\prn221-petspamanagement\\petspamanagementweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> main
     }
   ],
   "DocumentGroupContainers": [
@@ -189,15 +175,6 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-<<<<<<< HEAD
-          "DockedWidth": 141,
-          "SelectedChildIndex": 6,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-=======
           "DockedWidth": 200,
           "SelectedChildIndex": -1,
           "Children": [
@@ -209,31 +186,39 @@
         },
         {
           "DockedWidth": 263,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
->>>>>>> main
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
-<<<<<<< HEAD
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginPage.cshtml",
+              "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\LoginPage.cshtml",
+              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\LoginPage.cshtml",
+              "ToolTip": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\LoginPage.cshtml",
+              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\LoginPage.cshtml",
+              "ViewState": "AQIAABcAAAAAAAAAAAAQwCMAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-16T09:24:12.791Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Pets\\Index.cshtml.cs",
-              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Pets\\Index.cshtml.cs",
-              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Pets\\Index.cshtml.cs",
-              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Pets\\Index.cshtml.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAkwBoAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T09:03:10.442Z",
-=======
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml",
+              "ToolTip": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml",
+              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-16T09:15:01.284Z"
             },
             {
               "$type": "Document",
@@ -243,27 +228,14 @@
               "RelativeDocumentMoniker": "Infrastructure\\DBInitializer.cs",
               "ToolTip": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\Infrastructure\\DBInitializer.cs",
               "RelativeToolTip": "Infrastructure\\DBInitializer.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAgwCMAAABCAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAwwA8AAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T08:47:10.858Z",
+              "WhenOpened": "2024-07-16T09:01:42.926Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Detail.cshtml",
-              "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\SpaPackages\\Detail.cshtml",
-              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\SpaPackages\\Detail.cshtml",
-              "ToolTip": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\SpaPackages\\Detail.cshtml",
-              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\SpaPackages\\Detail.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-16T08:41:58.633Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Edit.cshtml.cs",
               "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Edit.cshtml.cs",
               "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Edit.cshtml.cs",
@@ -271,12 +243,11 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Edit.cshtml.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAmwCwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T07:56:27.634Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T07:56:27.634Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Edit.cshtml",
               "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Edit.cshtml",
@@ -284,64 +255,23 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Edit.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-16T07:56:09.928Z",
->>>>>>> main
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T07:56:09.928Z"
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\SpaPackages\\Index.cshtml",
-              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\SpaPackages\\Index.cshtml",
-              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\SpaPackages\\Index.cshtml",
-              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\SpaPackages\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-16T09:01:50.534Z",
-=======
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml.cs",
-              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml.cs",
-              "ToolTip": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml.cs",
-              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAkwCAAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T07:51:58.841Z",
->>>>>>> main
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 1,
-              "Title": "Create.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml.cs",
-              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml.cs",
-              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml.cs",
-              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAowCQAAAAIAAAA",
-=======
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "IAppointmentService.cs",
               "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\Application\\Interfaces\\IAppointmentService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\IAppointmentService.cs",
               "ToolTip": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\Application\\Interfaces\\IAppointmentService.cs",
               "RelativeToolTip": "Application\\Interfaces\\IAppointmentService.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAA4wBgAAAAxAAAA",
->>>>>>> main
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T09:00:59.205Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T07:38:47.664Z"
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 0,
-=======
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "AppointmentService.cs",
               "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\Application\\Services\\AppointmentService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\AppointmentService.cs",
@@ -349,12 +279,11 @@
               "RelativeToolTip": "Application\\Services\\AppointmentService.cs",
               "ViewState": "AQIAAL8AAAAAAAAAAADwv8wAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T07:38:34.434Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T07:38:34.434Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Index.cshtml",
               "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Index.cshtml",
@@ -362,12 +291,11 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Index.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-15T13:40:50.936Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T13:40:50.936Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "LoginPage.cshtml.cs",
               "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\LoginPage.cshtml.cs",
               "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\LoginPage.cshtml.cs",
@@ -375,8 +303,19 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\LoginPage.cshtml.cs",
               "ViewState": "AQIAABwAAAAAAAAAAAAcwCcAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T08:19:34.547Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T08:19:34.547Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\SpaPackages\\Detail.cshtml",
+              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\SpaPackages\\Detail.cshtml",
+              "ToolTip": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\SpaPackages\\Detail.cshtml",
+              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\SpaPackages\\Detail.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-16T08:41:58.633Z"
             },
             {
               "$type": "Document",
@@ -388,21 +327,7 @@
               "RelativeToolTip": "Infrastructure\\Interfaces\\IAppointmentRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T07:38:08.81Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml",
-              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml",
-              "ToolTip": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml",
-              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml",
-              "ViewState": "AQIAABEAAAAAAAAAAADwvy4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-16T07:31:24.727Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T07:38:08.81Z"
             },
             {
               "$type": "Document",
@@ -414,8 +339,7 @@
               "RelativeToolTip": "..\\..\\PRN221-PetSpaManagement\\Application\\Services\\AppointmentService.cs",
               "ViewState": "AQIAAGQAAAAAAAAAAAAQwHUAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T04:35:16.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T04:35:16.637Z"
             },
             {
               "$type": "Document",
@@ -427,8 +351,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\AdminDashboard\\PetSitterManagement\\Index.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-15T11:09:40.95Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T11:09:40.95Z"
             },
             {
               "$type": "Document",
@@ -440,8 +363,7 @@
               "RelativeToolTip": "..\\..\\PRN221-PetSpaManagement\\Application\\Interfaces\\IAppointmentService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T04:34:45.543Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T04:34:45.543Z"
             },
             {
               "$type": "Document",
@@ -453,8 +375,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\Shared\\_PetSitterLayout.cshtml",
               "ViewState": "AQIAAEQAAAAAAAAAAAAAAF0AAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-16T04:18:22.157Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T04:18:22.157Z"
             },
             {
               "$type": "Document",
@@ -466,8 +387,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\Shared\\_ManagerLayout.cshtml",
               "ViewState": "AQIAAG4AAAAAAAAAAADwv4QAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-16T04:16:52.457Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T04:16:52.457Z"
             },
             {
               "$type": "Document",
@@ -479,8 +399,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\AdminDashboard\\CustomerManagement\\Index.cshtml",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-15T11:09:22.997Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T11:09:22.997Z"
             },
             {
               "$type": "Document",
@@ -492,8 +411,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\AdminDashboard\\CustomerManagement\\Index.cshtml.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAB8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T11:09:01.273Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T11:09:01.273Z"
             },
             {
               "$type": "Document",
@@ -505,8 +423,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\Shared\\_Layout.cshtml",
               "ViewState": "AQIAAC4AAAAAAAAAAAAmwEYAAABrAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-15T11:20:03.403Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T11:20:03.403Z"
             },
             {
               "$type": "Document",
@@ -518,8 +435,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\_ViewStart.cshtml",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAUAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-15T13:44:46.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T13:44:46.734Z"
             },
             {
               "$type": "Document",
@@ -531,8 +447,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\Shared\\_CustomerLayout.cshtml",
               "ViewState": "AQIAAFcAAAAAAAAAAAAmwHkAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-15T13:41:14.673Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T13:41:14.673Z"
             },
             {
               "$type": "Document",
@@ -544,8 +459,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\AdminDashboard\\ManagerManagement\\Index.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-15T11:09:35.996Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T11:09:35.996Z"
             },
             {
               "$type": "Document",
@@ -557,24 +471,19 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\Shared\\_AdminLayout.cshtml",
               "ViewState": "AQIAAGUAAAAAAAAAAAAAAHoAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-15T10:29:19.138Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T10:29:19.138Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 23,
->>>>>>> main
               "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml",
-              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml",
-              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml",
-              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAAAEwAAAAAAAAA",
+              "DocumentMoniker": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\AdminDashboard\\Create.cshtml",
+              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\AdminDashboard\\Create.cshtml",
+              "ToolTip": "D:\\Code\\MyProject\\15. PRN221-PetSpaManagement\\PRN221-PetSpaManagement\\PetSpaManagementWeb\\Pages\\AdminDashboard\\Create.cshtml",
+              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\AdminDashboard\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-16T09:00:56.475Z",
-              "EditorCaption": ""
-<<<<<<< HEAD
-=======
+              "WhenOpened": "2024-07-15T11:08:12.196Z"
             },
             {
               "$type": "Document",
@@ -586,8 +495,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\PetSpaManagementWeb.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-15T13:37:30.256Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T13:37:30.256Z"
             },
             {
               "$type": "Document",
@@ -599,8 +507,7 @@
               "RelativeToolTip": "Application\\Interfaces\\IUserService.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAA8wBEAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T10:24:56.294Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T10:24:56.294Z"
             },
             {
               "$type": "Document",
@@ -612,8 +519,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\AdminDashboard\\Index.cshtml",
               "ViewState": "AQIAADEAAAAAAAAAAADwvzYAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-15T09:04:51.853Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T09:04:51.853Z"
             },
             {
               "$type": "Document",
@@ -625,8 +531,7 @@
               "RelativeToolTip": "Domain\\Entities\\Appointment.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T14:24:14.981Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T14:24:14.981Z"
             },
             {
               "$type": "Document",
@@ -638,8 +543,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Index.cshtml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T13:42:02.057Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T13:42:02.057Z"
             },
             {
               "$type": "Document",
@@ -651,8 +555,7 @@
               "RelativeToolTip": "Application\\Services\\UserService.cs",
               "ViewState": "AQIAADIAAAAAAAAAAAAAwEIAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T09:16:45.28Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T09:16:45.28Z"
             },
             {
               "$type": "Document",
@@ -664,8 +567,7 @@
               "RelativeToolTip": "Application\\ServiceLayer.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-15T07:50:50.432Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T07:50:50.432Z"
             },
             {
               "$type": "Document",
@@ -677,8 +579,7 @@
               "RelativeToolTip": "Application\\Services\\S3StorageService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T12:22:42.79Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T12:22:42.79Z"
             },
             {
               "$type": "Document",
@@ -690,8 +591,7 @@
               "RelativeToolTip": "Application\\Services\\PetService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T12:23:21.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T12:23:21.597Z"
             },
             {
               "$type": "Document",
@@ -703,8 +603,7 @@
               "RelativeToolTip": "Application\\Services\\ServiceService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T12:23:23.115Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T12:23:23.115Z"
             },
             {
               "$type": "Document",
@@ -716,8 +615,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\AdminDashboard\\Create.cshtml.cs",
               "ViewState": "AQIAABoAAAAAAAAAAADwvzEAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T11:08:17.147Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T11:08:17.147Z"
             },
             {
               "$type": "Document",
@@ -729,8 +627,7 @@
               "RelativeToolTip": "Domain\\Domain.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-15T11:47:41.958Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T11:47:41.958Z"
             },
             {
               "$type": "Document",
@@ -742,8 +639,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\AdminDashboard\\Edit.cshtml.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAYwBQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T11:08:33.244Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T11:08:33.244Z"
             },
             {
               "$type": "Document",
@@ -755,8 +651,7 @@
               "RelativeToolTip": "Infrastructure\\Repositories\\UserRepository.cs",
               "ViewState": "AQIAAE4AAAAAAAAAAAAowGIAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T09:09:03.984Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T09:09:03.984Z"
             },
             {
               "$type": "Document",
@@ -768,8 +663,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\AdminDashboard\\Edit.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-15T11:12:25.017Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T11:12:25.017Z"
             },
             {
               "$type": "Document",
@@ -781,8 +675,7 @@
               "RelativeToolTip": "Infrastructure\\PetSpaManagementDbContext.cs",
               "ViewState": "AQIAACQAAAAAAAAAAAAgwBkAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T08:20:55.551Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T08:20:55.551Z"
             },
             {
               "$type": "Document",
@@ -794,8 +687,7 @@
               "RelativeToolTip": "Infrastructure\\UnitOfWork.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAIBJwBIAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T10:17:50.362Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T10:17:50.362Z"
             },
             {
               "$type": "Document",
@@ -807,29 +699,16 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T08:03:22.41Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
->>>>>>> main
+              "WhenOpened": "2024-07-15T08:03:22.41Z"
             }
           ]
         },
         {
-          "DockedWidth": 276,
+          "DockedWidth": 170,
           "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
-<<<<<<< HEAD
-              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-=======
               "Name": "ST:9:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
             },
             {
@@ -843,7 +722,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
->>>>>>> main
             }
           ]
         }
