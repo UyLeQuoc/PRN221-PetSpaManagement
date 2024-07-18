@@ -33,7 +33,7 @@ namespace RepositoryLayer
                     new SpaPackage {Name = "Combo chăm sóc cho thú cưng 3", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 250000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/spa-thu-cung-1.jpg.webp", EstimatedTime = 50},
                     new SpaPackage {Name = "Combo chăm sóc cho thú cưng 1", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 150000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/TRIEN-LAM-THU-CUNG-VIET-NAM.png", EstimatedTime = 30},
                     new SpaPackage {Name = "Combo chăm sóc cho thú cưng 2", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 200000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/deciding-on-pet-care-pet-insurance.jpg.webp", EstimatedTime = 20 },
-                    new SpaPackage {Name = "Combo chăm sóc cho thú cưng 3", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 250000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/spa-thu-cung-1.jpg.webp", EstimatedTime = 10,
+                    new SpaPackage {Name = "Combo chăm sóc cho thú cưng 3", Description = "Bao gồm tắm, cắt móng và tỉa lông", Price = 250000, PictureUrl="https://image-petspamanagement.s3.ap-southeast-2.amazonaws.com/spa-thu-cung-1.jpg.webp", EstimatedTime = 10 },
                 };
 
                 foreach (var spaPackage in spaPackages)

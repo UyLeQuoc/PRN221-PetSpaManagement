@@ -69,6 +69,14 @@
           "SelectedChildIndex": 7,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 9,
               "Title": "Details.cshtml.cs",
@@ -108,14 +116,6 @@
               "IsPinned": true
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "AppointmentStatus.cs",
@@ -147,7 +147,7 @@
               "RelativeDocumentMoniker": "Infrastructure\\DBInitializer.cs",
               "ToolTip": "C:\\Users\\ADMIN\\Desktop\\PRN221\\FinalProject\\PRN221-PetSpaManagement\\Infrastructure\\DBInitializer.cs",
               "RelativeToolTip": "Infrastructure\\DBInitializer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAANAAAA",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAgwCMAAAAIAQAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-18T11:01:09.605Z",
               "EditorCaption": ""
@@ -198,7 +198,8 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\ManagerDashboard\\AppointmentManagement\\Assigns.cshtml.cs",
               "ViewState": "AQIAAB0AAAAAAAAAAAAQwDkAAABNAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T08:49:12.197Z"
+              "WhenOpened": "2024-07-16T08:49:12.197Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -222,7 +223,8 @@
               "RelativeToolTip": "Application\\Services\\AppointmentService.cs",
               "ViewState": "AQIAAE0AAAAAAAAAAAApwGEAAADAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T08:37:00.254Z"
+              "WhenOpened": "2024-07-16T08:37:00.254Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
