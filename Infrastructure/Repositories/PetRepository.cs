@@ -48,5 +48,42 @@ namespace RepositoryLayer.Repositories
             await _context.SaveChangesAsync();
             return existingPet;
         }
+
+        public async Task<bool> DeletePetAsyncByIdChecking(Pet deletePet, int userId)
+        {
+            var checkAppointment = await _context.Appointments.AnyAsync(x => x.PetId == deletePet.Id && x.Status != "CANCELLED");
+            if (checkAppointment)
+            {
+                throw new Exception("Please cancel or complete the appointment before deleting your pet");
+            }
+
+            deletePet.IsDeleted = true;
+            deletePet.DeletedBy = userId;
+            _context.Update(deletePet);
+
+            return true;
+        }
+
+        public async Task<Pagination<Pet>> GetAllPetsFilterAsync(string search, PaginationParameter pagination)
+        {
+            var query = _context.Pets.Include(x => x.User).AsQueryable().AsNoTracking();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(p => p.Name.Contains(search) || p.Id.ToString().Contains(search));
+            }
+            var list = await query.OrderBy(x => x.CreatedAt).ToListAsync();
+            int count = list.Count();
+            list = list.Skip((pagination.PageIndex - 1) * pagination.PageSize).Take(pagination.PageSize).ToList();
+            var result = new Pagination<Pet>(list)
+            {
+                CurrentPage = pagination.PageIndex,
+                PageSize = pagination.PageSize,
+                TotalCount = count,
+                PageIndex = pagination.PageIndex,
+            };
+
+            return result;
+        }
     }
 }
