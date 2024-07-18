@@ -28,9 +28,9 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.PetSitterManagement
             {
                 PetSitters = petSitter;
             }
-            if (await _appointmentService.GetPetSitterAppointments(id) != null)
+            if (await _appointmentService.GetAppointmentsByPetSitterId(id) != null)
             {
-                Appointment = await _appointmentService.GetPetSitterAppointments(id);
+                Appointment = await _appointmentService.GetAppointmentsByPetSitterId(id);
             }
         }
     }
