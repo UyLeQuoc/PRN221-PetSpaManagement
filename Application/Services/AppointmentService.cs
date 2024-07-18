@@ -95,6 +95,10 @@ namespace ServiceLayer.Services
             {
                 throw new Exception("Non-existed spa package");
             }
+            if (appointment.Status == "PENDING" || appointment.Status == "ASSIGNED" || appointment.Status == "COMPLETED" || appointment.Status == "CANCELLED" || appointment.Status == "ABSENT")
+            {
+                throw new Exception("Invalid status");
+            }
 
             exist.UserId = appointment.UserId;
             exist.SpaPackageId = appointment.SpaPackageId;

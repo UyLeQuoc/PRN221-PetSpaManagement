@@ -48,14 +48,17 @@ namespace PetSpaManagementWeb.Pages.Pets
         {
             try
             {
-                var result = await _petService.DeletePetAsync(id);
+                int petId = Pet.Id;
+                int userId = Pet.UserId.Value; // Lấy userId từ model
+                var result = await _petService.DeletePetAsyncByIdChecking(id, userId); // Truyền userId từ user
+
                 if (result)
                 {
                     TempData["SuccessMessage"] = "Pet đã được xóa thành công.";
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Đã có lỗi xảy ra trong quá trình xóa pet.";
+                    TempData["ErrorMessage"] = "Không thể xóa thú cưng vì còn lịch hẹn chưa hoàn thành hoặc hủy.";
                 }
                 return RedirectToPage("./Index");
             }

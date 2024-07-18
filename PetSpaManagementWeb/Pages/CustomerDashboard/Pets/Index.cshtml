@@ -27,6 +27,15 @@
         </form>
     </div>
 </p>
+
+<form method="get" class="row g-3 d-flex justify-content-center mb-3">
+    <div class="col-md-2 d-flex flex-column">
+            <input type="text" class="form-control me-2" name="searchString" value="@Model.searchString" placeholder="Search by name or ID">
+        <button type="submit" class="btn btn-outline-info">Search</button>
+    </div>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -85,4 +94,11 @@
 </table>
 
 
-
+<ul class="pagination">
+    @for (var i = 1; i <= Model.pagination.TotalPages; i++)
+    {
+        <li class="page-item @(i == Model.pagination.PageIndex ? "active" : "")">
+            <a class="page-link" asp-route-pageIndex="@i">@i</a>
+        </li>
+    }
+</ul>

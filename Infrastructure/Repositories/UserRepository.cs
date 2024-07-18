@@ -44,6 +44,11 @@ namespace RepositoryLayer.Repositories
             {
                 throw new UnauthorizedAccessException("Incorrect password");
             }
+            //if user is not active
+            if (user.IsDeleted == true)
+            {
+                throw new UnauthorizedAccessException("You are banned!");
+            }
 
             return new LoginResponse
             {
@@ -91,6 +96,26 @@ namespace RepositoryLayer.Repositories
         public async Task<List<User>> GetUsersByRoleIdAsync(int roleId)
         {
             return await _context.Users.Where(u => u.RoleId == roleId).ToListAsync();
+        }
+
+        public async Task<UserResponse> GetUsersByRoleIdAsync(int roleId, string searchTerm, int pageIndex, int pageSize)
+        {
+            var query = _context.Users.Where(u => u.RoleId == roleId).AsQueryable();
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query = query.Where(u => u.Name.Contains(searchTerm) || u.Email.Contains(searchTerm));
+            }
+            int count = await query.CountAsync();
+            int totalPages = (int)Math.Ceiling(count / (double)pageSize);
+
+            query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            return new UserResponse
+            {
+                Users = await query.ToListAsync(),
+                TotalPages = totalPages,
+                PageIndex = pageIndex
+            };
         }
 
         public async Task<Dictionary<string, int>> GetUserCountsByRoleAsync()

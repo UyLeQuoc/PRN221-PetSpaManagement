@@ -1,7 +1,6 @@
 ﻿using Domain.Entities;
 using RepositoryLayer;
 using RepositoryLayer.Models;
-using RepositoryLayer.Repositories;
 using ServiceLayer.Interfaces;
 
 namespace ServiceLayer.Services
@@ -68,5 +67,9 @@ namespace ServiceLayer.Services
             return await _unitOfWork.UserRepository.GetUserCountsByRoleAsync();
         }
 
+        public async Task<UserResponse> GetUsersByRoleIdAsync(int roleId, string searchTerm, int pageIndex, int pageSize)
+        {
+            return await _unitOfWork.UserRepository.GetUsersByRoleIdAsync(roleId, searchTerm, pageIndex, pageSize);
+        }
     }
 }

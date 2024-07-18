@@ -31,6 +31,12 @@ namespace ServiceLayer.Services
             return await _unitOfWork.PetRepository.GetAllAsync(x => x.IsDeleted == false, x => x.User);
         }
 
+        public async Task<Pagination<Pet>> GetAllPetsFilter(string search, PaginationParameter pagination)
+        {
+            var result = await _unitOfWork.PetRepository.GetAllPetsFilterAsync(search, pagination);
+            return result;
+        }
+
         public async Task<Pet> GetPetById(int id)
         {
             return await _unitOfWork.PetRepository.GetByIdAsync(id, null, x => x.User);
@@ -121,10 +127,33 @@ namespace ServiceLayer.Services
                 throw;
             }
         }
+
+        public async Task<bool> DeletePetAsyncByIdChecking(int id, int userId)
+        {
+            try
+            {
+                var existingPet = await _unitOfWork.PetRepository.GetByIdAsync(id);
+                if (existingPet == null)
+                {
+                    throw new ArgumentException("Pet not found.");
+                }
+
+                await _unitOfWork.PetRepository.DeletePetAsyncByIdChecking(existingPet, userId);
+                if (await _unitOfWork.SaveChangeAsync() > 0)
+                {
+                    return true;
+                }
+                throw new Exception("Something is failed in deleting process");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<List<Pet>> GetAllPetsByUserId(int id)
         {
             return await _unitOfWork.PetRepository.GetAllAsync(x => x.IsDeleted == false && x.UserId == id, x => x.User);
         }
-
     }
 }

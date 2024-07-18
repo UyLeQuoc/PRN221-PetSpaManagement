@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="FluentApis\" />
-    <Folder Include="Services\" />
+    <Compile Remove="FluentApis\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="FluentApis\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="FluentApis\**" />
+    <None Remove="Services\**" />
   </ItemGroup>
 
   <ItemGroup>
