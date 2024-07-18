@@ -25,7 +25,7 @@ namespace RepositoryLayer.Repositories
 
         public async Task<List<Payment>> GetAllPaymentsAsync()
         {
-            return await _context.Payments.Include(x => x.Appointment).ThenInclude(x => x.SpaPackage).Include(x => x.User).ToListAsync();
+            return await _context.Payments.OrderBy(x => x.CreatedAt).Include(x => x.Appointment).ThenInclude(x => x.SpaPackage).Include(x => x.User).ToListAsync();
         }
     }
 }

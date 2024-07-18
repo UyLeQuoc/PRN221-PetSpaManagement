@@ -9,6 +9,7 @@ namespace RepositoryLayer
         IUserRepository UserRepository { get; }
         IPaymentRepository PaymentRepository { get; }
         ISpaPackageRepository SpaPackageRepository { get; }
+        ITransactionRepository TransactionRepository { get; }
 
         Task<int> SaveChangeAsync();
     }

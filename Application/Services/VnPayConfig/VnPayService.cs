@@ -11,6 +11,8 @@ using ServiceLayer.ViewModels.PaymentDTOs;
 using System.Net;
 using System.Collections.Specialized;
 using ServiceLayer.Interfaces;
+using Microsoft.AspNetCore.Http;
+using System.Globalization;
 
 namespace ServiceLayer.Services.VnPayConfig
 {
@@ -50,11 +52,11 @@ namespace ServiceLayer.Services.VnPayConfig
             vnp_CurrCode = "VND";
             vnp_IpAddr = _claimsService.IpAddress; // LẤY RA IP ADDRESS TRONG CLAIMS
             vnp_Locale = "en";
-            vnp_OrderInfo = "Pay " + orderInfo.Amount + " for appointmewn number: " + orderInfo.AppointmentId;
+            vnp_OrderInfo = "Pay " + orderInfo.Amount + " for appointment number: " + orderInfo.AppointmentId + ", payment: " + orderInfo.PaymentId;
             vnp_OrderType = "email:" + _claimsService.GetCurrentUserIdEmail;
             this.vnp_ReturnUrl = vnp_ReturnUrl;
             this.vnp_TmnCode = vnp_TmnCode;
-            vnp_TxnRef = orderInfo.AppointmentId.ToString();
+            vnp_TxnRef = orderInfo.PaymentId.ToString();
             vnp_ExpireDate = _currentTime.GetCurrentTime().AddMinutes(15).ToString("yyyyMMddHHmmss");
             vnp_BankCode = "VNBANK"; // sai
 
@@ -62,6 +64,60 @@ namespace ServiceLayer.Services.VnPayConfig
             BindRequestData();
 
             return GetLink(vnp_PaymentUrl, vnp_HashSecret);
+        }
+
+        public PaymentResponseModel GetFullResponseData(IQueryCollection collection)
+        {
+            var hashSecret = _configuration["Vnpay:HashSecret"];
+
+            var vnPay = new VnPayLibrary();
+
+            foreach (var (key, value) in collection)
+            {
+                if (!string.IsNullOrEmpty(key) && key.StartsWith("vnp_"))
+                {
+                    vnPay.AddResponseData(key, value);
+                }
+            }
+
+            var orderId = Convert.ToInt64(vnPay.GetResponseData("vnp_TxnRef")); //mã tham chiếu được gửi về VNPay lúc tạo url
+            var amount = Convert.ToDecimal(vnPay.GetResponseData("vnp_Amount"));
+            var orderInfo = vnPay.GetResponseData("vnp_OrderInfo"); // nơi để appointment ID
+
+            var vnPayTranId = Convert.ToInt64(vnPay.GetResponseData("vnp_TransactionNo"));
+            var banKTranNo = vnPay.GetResponseData("vnp_BankTranNo");
+
+            string vnPayDateString = vnPay.GetResponseData("vnp_PayDate");
+            DateTime vnPayDate = DateTime.ParseExact(vnPayDateString, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+
+            var vnpResponseCode = vnPay.GetResponseData("vnp_ResponseCode");
+            var transactionStatus = vnPay.GetResponseData("vnp_TransactionStatus");
+
+            var vnpSecureHash =
+               collection.FirstOrDefault(k => k.Key == "vnp_SecureHash").Value; //hash của dữ liệu trả về
+            var checkSignature =
+                vnPay.ValidateSignature(vnpSecureHash, hashSecret); //check Signature
+
+            if (!checkSignature)
+                return new PaymentResponseModel()
+                {
+                    Success = false
+                };
+
+            return new PaymentResponseModel()
+            {
+                Success = transactionStatus == "00" ? true : false,
+                PaymentMethod = "VnPay",
+                OrderDescription = orderInfo,
+                PaymentId = orderId.ToString(),
+                TransactionNo = vnPayTranId.ToString(),
+                TransactionToken = vnpSecureHash,
+                Token = vnpSecureHash,
+                VnPayResponseCode = vnpResponseCode,
+                BanKTranNo = banKTranNo,
+                AmountOfMoney = decimal.Divide(amount, 100),
+                PayDate = vnPayDate,
+            };
         }
 
         private string GetLink(string baseUrl, string secretKey)

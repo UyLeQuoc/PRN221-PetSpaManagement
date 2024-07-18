@@ -1,0 +1,27 @@
+﻿@page
+@model PetSpaManagementWeb.Pages.CustomerDashboard.Payments.ResultModel
+@{
+}
+
+
+    <div class="d-flex flex-column justify-content-center">
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success fade show mx-auto" role="alert" style="max-width: auto;">
+            <i class="bi bi-check-circle-fill"></i>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+        <div>
+            <form method="get" asp-page="./Index">
+                <button type="submit" class="btn btn-primary mt-2">Back to history</button>
+            </form>
+        </div>
+    </div>

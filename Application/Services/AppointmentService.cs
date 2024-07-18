@@ -39,7 +39,7 @@ namespace ServiceLayer.Services
 
         public async Task<Appointment> GetAppointmentById(int id)
         {
-            var appointment = await _unitOfWork.AppointmentRepository.GetByIdAsync(id);
+            var appointment = await _unitOfWork.AppointmentRepository.GetByIdAsync(id, null, x => x.User, x => x.SpaPackage, x => x.Pet, x => x.Payments);
 
             if (appointment == null)
                 throw new Exception("No Appointment found");
@@ -75,7 +75,7 @@ namespace ServiceLayer.Services
                     Price = existingPackage.Price
                 };
 
-                appointment =await _unitOfWork.AppointmentRepository.AddAsync(newAppointment);
+                appointment = await _unitOfWork.AppointmentRepository.AddAsync(newAppointment);
                 if (await _unitOfWork.SaveChangeAsync() > 0)
                 {
                     var payment = await _paymentService.CreatePaymentAsync(appointment);
@@ -86,6 +86,7 @@ namespace ServiceLayer.Services
                         {
                             Amount = payment.TotalAmount,
                             AppointmentId = appointment.Id,
+                            PaymentId = payment.Id
                         };
 
                         var url = _vpnPayService.CreateLink(orderInfo); // trả về url thanh toán vnpay
@@ -218,7 +219,8 @@ namespace ServiceLayer.Services
 
         public async Task<List<Appointment>> GetAllAppointmentAsync()
         {
-            return await _unitOfWork.AppointmentRepository.GetAllAsync(null, x => x.User, x => x.SpaPackage, x => x.Pet);
+            var data = await _unitOfWork.AppointmentRepository.GetAllAsync(x => x.UserId == _claimsService.GetCurrentSessionUserId, x => x.User, x => x.SpaPackage, x => x.Pet, x => x.Payments);
+            return data.OrderBy(x => x.CreatedAt).ToList();
         }
 
         public async Task<string> UpdateAppointmentStatusAsync(int appointmentId, string status)
