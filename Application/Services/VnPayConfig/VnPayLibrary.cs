@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Configuration.UserSecrets;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using RepositoryLayer.Utils;
+using ServiceLayer.ViewModels.PaymentDTOs;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

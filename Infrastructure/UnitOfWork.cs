@@ -14,6 +14,7 @@ namespace RepositoryLayer
         //private readonly IPackageServiceRepository _packageRepository;
         private readonly ISpaPackageRepository _spaPackageRepository;
 
+        private readonly ITransactionRepository _transactionRepository;
         //private readonly IWeightRepository _weightRepository;
 
         public UnitOfWork(PetSpaManagementDbContext context
@@ -24,6 +25,8 @@ namespace RepositoryLayer
        //, IUserRepository userRepository, IServiceRepository serviceRepository, IPackageServiceRepository packageRepository
        , ISpaPackageRepository spaPackageRepository
        //, IWeightRepository weightRepository
+       , ITransactionRepository transactionRepository
+
        )
         {
             _context = context;
@@ -35,6 +38,7 @@ namespace RepositoryLayer
             //_packageRepository = packageRepository;
             _spaPackageRepository = spaPackageRepository;
             //_weightRepository = weightRepository;
+            _transactionRepository = transactionRepository;
         }
 
         public IPetRepository PetRepository => _petRepository;
@@ -46,6 +50,8 @@ namespace RepositoryLayer
         public IPaymentRepository PaymentRepository => _paymentRepository;
 
         public ISpaPackageRepository SpaPackageRepository => _spaPackageRepository;
+
+        public ITransactionRepository TransactionRepository => _transactionRepository;
 
         public Task<int> SaveChangeAsync()
         {

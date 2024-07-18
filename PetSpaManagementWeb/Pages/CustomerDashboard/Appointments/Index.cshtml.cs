@@ -35,7 +35,7 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                 var user = await _userService.GetUserByEmailAsync(email);
 
                 var data = await _appointmentService.GetAllAppointmentAsync();
-                Appointments = data.Where(x => x.UserId == user.Id).ToList();
+                Appointments = data.OrderByDescending(x=>x.CreatedAt).ToList();
             }
             catch (Exception ex)
             {

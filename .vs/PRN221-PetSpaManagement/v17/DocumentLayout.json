@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3493A07B-CD95-4EED-8964-6DA66D93D4D8}|Infrastructure\\RepositoryLayer.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\infrastructure\\migrations\\20240718144248_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3493A07B-CD95-4EED-8964-6DA66D93D4D8}|Infrastructure\\RepositoryLayer.csproj|solutionrelative:infrastructure\\migrations\\20240718144248_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\petspamanagementweb\\pages\\customerdashboard\\appointments\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\customerdashboard\\appointments\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00106FA2-146F-4F0A-9AB6-4994F45418C0}|Domain\\Domain.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\domain\\entities\\weight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00106FA2-146F-4F0A-9AB6-4994F45418C0}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\weight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\petspamanagementweb\\pages\\customerdashboard\\appointments\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\customerdashboard\\appointments\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3493A07B-CD95-4EED-8964-6DA66D93D4D8}|Infrastructure\\RepositoryLayer.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\infrastructure\\petspamanagementdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3493A07B-CD95-4EED-8964-6DA66D93D4D8}|Infrastructure\\RepositoryLayer.csproj|solutionrelative:infrastructure\\petspamanagementdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{72ED1A8E-3F51-4999-BD23-E332CEE41A4A}|Application\\ServiceLayer.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\application\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72ED1A8E-3F51-4999-BD23-E332CEE41A4A}|Application\\ServiceLayer.csproj|solutionrelative:application\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00106FA2-146F-4F0A-9AB6-4994F45418C0}|Domain\\Domain.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\domain\\entities\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00106FA2-146F-4F0A-9AB6-4994F45418C0}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3493A07B-CD95-4EED-8964-6DA66D93D4D8}|Infrastructure\\RepositoryLayer.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\infrastructure\\repositories\\petrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3493A07B-CD95-4EED-8964-6DA66D93D4D8}|Infrastructure\\RepositoryLayer.csproj|solutionrelative:infrastructure\\repositories\\petrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\petspamanagementweb\\pages\\customerdashboard\\pets\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\customerdashboard\\pets\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|c:\\users\\minht\\desktop\\university study\\cn7\\petmanagement\\petspamanagementweb\\pages\\customerdashboard\\appointments\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8CD7CD97-7685-4B1B-89EF-0B87818B70D9}|PetSpaManagementWeb\\PetSpaManagementWeb.csproj|solutionrelative:petspamanagementweb\\pages\\customerdashboard\\appointments\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,8 +25,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "DockedWidth": 346,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,91 +42,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20240718144248_init.cs",
-              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Infrastructure\\Migrations\\20240718144248_init.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20240718144248_init.cs",
-              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Infrastructure\\Migrations\\20240718144248_init.cs",
-              "RelativeToolTip": "Infrastructure\\Migrations\\20240718144248_init.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T14:42:49.449Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Weight.cs",
-              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Domain\\Entities\\Weight.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Weight.cs",
-              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Domain\\Entities\\Weight.cs",
-              "RelativeToolTip": "Domain\\Entities\\Weight.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAoAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T14:34:05.769Z",
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Details.cshtml",
+              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Details.cshtml",
+              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Details.cshtml",
+              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Details.cshtml",
+              "ViewState": "AQIAACwAAAAAAAAAAAArwDkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-18T20:38:58.09Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PetSpaManagementDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Infrastructure\\PetSpaManagementDbContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\PetSpaManagementDbContext.cs",
-              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Infrastructure\\PetSpaManagementDbContext.cs",
-              "RelativeToolTip": "Infrastructure\\PetSpaManagementDbContext.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAA8wBgAAAAjAAAA",
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Application\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\PaymentService.cs",
+              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Application\\Services\\PaymentService.cs",
+              "RelativeToolTip": "Application\\Services\\PaymentService.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAIA5wEUAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T14:32:25.743Z",
+              "WhenOpened": "2024-07-18T20:31:42.606Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Transaction.cs",
-              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Domain\\Entities\\Transaction.cs",
-              "RelativeDocumentMoniker": "Domain\\Entities\\Transaction.cs",
-              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Domain\\Entities\\Transaction.cs",
-              "RelativeToolTip": "Domain\\Entities\\Transaction.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAzwBMAAAAeAAAA",
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml.cs",
+              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml.cs",
+              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Create.cshtml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T14:31:59.557Z",
+              "WhenOpened": "2024-07-18T20:26:38.383Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PetRepository.cs",
-              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Infrastructure\\Repositories\\PetRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\PetRepository.cs",
-              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\Infrastructure\\Repositories\\PetRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\PetRepository.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAIAywEoAAABAAAAA",
+              "DocumentIndex": 0,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Details.cshtml.cs",
+              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Details.cshtml.cs",
+              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Appointments\\Details.cshtml.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAArwFQAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T14:31:13.098Z",
+              "WhenOpened": "2024-07-18T20:26:35.983Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Pets\\Index.cshtml.cs",
-              "RelativeDocumentMoniker": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Pets\\Index.cshtml.cs",
-              "ToolTip": "C:\\Users\\minht\\Desktop\\UNIVERSITY STUDY\\cn7\\PetManagement\\PetSpaManagementWeb\\Pages\\CustomerDashboard\\Pets\\Index.cshtml.cs",
-              "RelativeToolTip": "PetSpaManagementWeb\\Pages\\CustomerDashboard\\Pets\\Index.cshtml.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAUwDYAAAA6AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T14:29:53.661Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 355,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }

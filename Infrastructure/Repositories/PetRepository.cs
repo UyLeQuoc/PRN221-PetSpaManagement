@@ -66,13 +66,13 @@ namespace RepositoryLayer.Repositories
 
         public async Task<Pagination<Pet>> GetAllPetsFilterAsync(string search, PaginationParameter pagination)
         {
-            var query = _context.Pets.Include(x => x.User).AsQueryable().AsNoTracking();
+            var query = _context.Pets.Where(x => x.UserId == _claimsService.GetCurrentSessionUserId).Include(x => x.User).AsQueryable().AsNoTracking();
 
             if (!string.IsNullOrEmpty(search))
             {
                 query = query.Where(p => p.Name.Contains(search) || p.Id.ToString().Contains(search));
             }
-            var list = await query.Where(x=> x.IsDeleted ==false).OrderBy(x => x.CreatedAt).ToListAsync();
+            var list = await query.Where(x => x.IsDeleted == false).OrderBy(x => x.CreatedAt).ToListAsync();
             int count = list.Count();
             list = list.Skip((pagination.PageIndex - 1) * pagination.PageSize).Take(pagination.PageSize).ToList();
             var result = new Pagination<Pet>(list)
