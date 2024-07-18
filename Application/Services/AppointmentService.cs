@@ -3,6 +3,7 @@ using Domain.Entities;
 using RepositoryLayer;
 using RepositoryLayer.Commons;
 using ServiceLayer.Interfaces;
+using ServiceLayer.ViewModels.PaymentDTOs;
 
 namespace ServiceLayer.Services
 {
@@ -11,15 +12,19 @@ namespace ServiceLayer.Services
         private readonly IMapper _mapper;
         private readonly IClaimsService _claimsService;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IPaymentService _paymentService;
+        private readonly IVnPayService _vpnPayService;
 
-        public AppointmentService(IMapper mapper, IClaimsService claimsService, IUnitOfWork unitOfWork)
+        public AppointmentService(IMapper mapper, IClaimsService claimsService, IUnitOfWork unitOfWork, IPaymentService paymentService, IVnPayService vpnPayService)
         {
             _mapper = mapper;
             _claimsService = claimsService;
             _unitOfWork = unitOfWork;
+            _paymentService = paymentService;
+            _vpnPayService = vpnPayService;
         }
 
-        public async Task<List<Appointment>> GetAppointments()
+        public async Task<List<Appointment>> GetAppointments() // chưa có pagination
         {
             var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false,
                                                             a => a.User,
@@ -42,7 +47,7 @@ namespace ServiceLayer.Services
                 return appointment;
         }
 
-        public async Task<Appointment> CreateNewAppointment(Appointment appointment)
+        public async Task<string> CreateNewAppointment(Appointment appointment)
         {
             try
             {
@@ -70,10 +75,23 @@ namespace ServiceLayer.Services
                     Price = existingPackage.Price
                 };
 
-                await _unitOfWork.AppointmentRepository.AddAsync(newAppointment);
+                appointment =await _unitOfWork.AppointmentRepository.AddAsync(newAppointment);
                 if (await _unitOfWork.SaveChangeAsync() > 0)
                 {
-                    return newAppointment;
+                    var payment = await _paymentService.CreatePaymentAsync(appointment);
+
+                    if (payment != null)
+                    {
+                        var orderInfo = new VnpayOrderInfo
+                        {
+                            Amount = payment.TotalAmount,
+                            AppointmentId = appointment.Id,
+                        };
+
+                        var url = _vpnPayService.CreateLink(orderInfo); // trả về url thanh toán vnpay
+
+                        return url;
+                    }
                 }
 
                 return null;
@@ -96,7 +114,6 @@ namespace ServiceLayer.Services
                 throw new Exception("Non-existed spa package");
             }
 
-            exist.UserId = appointment.UserId;
             exist.SpaPackageId = appointment.SpaPackageId;
             exist.PetId = appointment.PetId;
             exist.PetSitterId = appointment.PetSitterId;
@@ -156,7 +173,7 @@ namespace ServiceLayer.Services
         }
 
         public async Task<List<Appointment>> GetPetSitterAppointments(int id)
-        { 
+        {
             var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false && (a.PetSitterId == id || a.PetSitterId == null),
                                                                            a => a.User,
                                                                            a => a.SpaPackage,

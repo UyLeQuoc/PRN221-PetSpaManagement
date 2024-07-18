@@ -16,8 +16,9 @@
         @TempData["ErrorMessage"]
     </div>
 }
+
 <p>
-    <div class="d-flex">
+    <div class="d-flex align-items-stretch">
         <form method="get" asp-page="./Create" class="me-2">
             <button type="submit" class="btn btn-primary">Create new profile for your pet</button>
         </form>
@@ -25,6 +26,13 @@
         <form method="get" asp-page="/CustomerDashboard/Appointments/Create">
             <button type="submit" class="btn btn-primary">Make an appointment</button>
         </form>
+
+        <div class="me-2" style="margin-left:10px">
+            <button type="button" class="btn btn-primary" onclick="window.open('@Model.linkFacebook', '_blank')">
+                <i class="bi bi-facebook text-yellow fs-7"></i>
+            </button>
+        </div>
+
     </div>
 </p>
 

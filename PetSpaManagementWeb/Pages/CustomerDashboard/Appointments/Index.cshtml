@@ -5,13 +5,13 @@
     ViewData["Title"] = "Appointments";
 }
 
-@if (TempData["SuccessMessage"] != null)
+@if (TempData["PaymentUrl"] != null)
 {
-    <div class="alert alert-success">
+    <div class="alert alert-info">
         @TempData["SuccessMessage"]
+        <a href="#" onclick="redirectToPayment('@TempData["PaymentUrl"]')">Click để thanh toán ngay</a>
     </div>
 }
-
 @if (TempData["ErrorMessage"] != null)
 {
     <div class="alert alert-danger">
@@ -90,3 +90,9 @@
         }
     </tbody>
 </table>
+
+<script>
+    function redirectToPayment(url) {
+        window.location.href = url;
+    }
+</script>

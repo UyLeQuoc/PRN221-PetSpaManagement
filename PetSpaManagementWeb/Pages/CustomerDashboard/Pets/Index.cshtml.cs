@@ -33,6 +33,8 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Pets
 
         public IList<Pet> Pets { get; set; }
 
+        public string linkFacebook = "https://www.facebook.com/tienkendu1105/";
+
         public async Task OnGetAsync(int pageIndex = 1)
         {
             try
