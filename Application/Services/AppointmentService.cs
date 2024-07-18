@@ -160,7 +160,7 @@ namespace ServiceLayer.Services
         }
 
         public async Task<List<Appointment>> GetPetSitterAppointments(int id)
-        { 
+        {
             var list = await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.IsDeleted == false && (a.PetSitterId == id || a.PetSitterId == null),
                                                                            a => a.User,
                                                                            a => a.SpaPackage,
@@ -236,6 +236,16 @@ namespace ServiceLayer.Services
                 a => a.Pet);
 
             return appointments;
+        }
+
+        public async Task<List<Appointment>> GetAppointmentsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return await _unitOfWork.AppointmentRepository.GetAllAsync(a => a.DateTime >= startDate && a.DateTime <= endDate);
+        }
+
+        public async Task<List<Payment>> GetPaymentsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return await _unitOfWork.PaymentRepository.GetAllAsync(p => p.PaymentDate >= startDate && p.PaymentDate <= endDate);
         }
     }
 }

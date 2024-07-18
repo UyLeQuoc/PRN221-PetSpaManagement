@@ -35,7 +35,7 @@
                 <td>@manager.Email</td>
                 <td>@manager.IsDeleted</td>
                 <td>
-                    <a class="btn btn-secondary" asp-page="/AdminDashboard/ManagerManagement/Edit" asp-route-id="@manager.Id">Edit</a>
+                    <a class="btn btn-secondary" asp-page="/AdminDashboard/Edit" asp-route-id="@manager.Id">Edit</a>
                     <form method="post" asp-page-handler="Delete" asp-route-id="@manager.Id" style="display:inline;">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>

@@ -79,8 +79,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T08:30:29.858Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -93,8 +92,7 @@
               "ViewState": "AQIAABsAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-07-16T08:35:39.592Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -107,8 +105,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T08:35:35.593Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -128,8 +125,7 @@
               "RelativeToolTip": "Domain\\Enum\\AppointmentStatus.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T11:30:01.669Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-18T11:30:01.669Z"
             },
             {
               "$type": "Document",
@@ -141,8 +137,7 @@
               "RelativeToolTip": "Domain\\Entities\\Pet.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T11:18:37.969Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-18T11:18:37.969Z"
             },
             {
               "$type": "Document",
@@ -167,8 +162,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Details.cshtml.cs",
               "ViewState": "AQIAAAgAAAAAAAAAAAAxwAgAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T10:57:35.41Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-18T10:57:35.41Z"
             },
             {
               "$type": "Document",
@@ -180,8 +174,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Details.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-18T10:57:19.819Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-18T10:57:19.819Z"
             },
             {
               "$type": "Document",
@@ -193,8 +186,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\PetSitterDashboard\\Index.cshtml",
               "ViewState": "AQIAABIAAAAAAAAAAAAAACoAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-18T10:49:50.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-18T10:49:50.121Z"
             },
             {
               "$type": "Document",
@@ -206,8 +198,7 @@
               "RelativeToolTip": "PetSpaManagementWeb\\Pages\\ManagerDashboard\\AppointmentManagement\\Assigns.cshtml.cs",
               "ViewState": "AQIAAB0AAAAAAAAAAAAQwDkAAABNAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T08:49:12.197Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T08:49:12.197Z"
             },
             {
               "$type": "Document",
@@ -231,8 +222,7 @@
               "RelativeToolTip": "Application\\Services\\AppointmentService.cs",
               "ViewState": "AQIAAE0AAAAAAAAAAAApwGEAAADAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T08:37:00.254Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T08:37:00.254Z"
             },
             {
               "$type": "Document",
