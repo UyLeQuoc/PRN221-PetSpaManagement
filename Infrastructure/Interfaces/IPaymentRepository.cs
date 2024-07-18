@@ -9,5 +9,6 @@ namespace RepositoryLayer.Interfaces
 {
     public interface IPaymentRepository : IGenericRepository<Payment>
     {
+        Task<List<Payment>> GetAllPaymentsAsync();
     }
 }
