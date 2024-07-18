@@ -33,6 +33,9 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
         [BindProperty]
         public Appointment Appointment { get; set; } = default!;
 
+        [BindProperty]
+        public string PaymentMethod { get; set; } = default!;
+
         public async Task<IActionResult> OnGet(string? SpaPackageId)
         {
             try
@@ -62,6 +65,14 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                     ViewData["SpaPackageId"] = new SelectList(spaPackages, "Id", "Name");
                 }
 
+                var itemList = new List<SelectListItem>()
+                {
+                    new SelectListItem { Value = "VNPay", Text = "VNPay" },
+                    new SelectListItem { Value = "Cash", Text = "Cash" },
+                                };
+
+                ViewData["Method"] = new SelectList(itemList, "Value", "Text");
+
                 return Page();
             }
             catch (Exception ex)
@@ -80,13 +91,15 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                 //{
                 //    return RedirectToPage();
                 //}
-                var result = await _appointmentService.CreateNewAppointment(Appointment);
-                if (result == null)
+                var paymentUrl = await _appointmentService.CreateNewAppointment(Appointment);
+                if (paymentUrl == null)
                 {
                     TempData["ErrorMessage"] = "Đã có lỗi xảy ra trong quá trình tạo appointment.";
                     return RedirectToPage("./Index");
                 }
-                TempData["SuccessMessage"] = "Appointment đã được tạo thành công.";
+                TempData["SuccessMessage"] = "Appointment đã được tạo thành công. Vui lòng thanh toán: ";
+                TempData["PaymentUrl"] = paymentUrl;
+
                 return RedirectToPage("./Index");
             }
             catch (Exception ex)
