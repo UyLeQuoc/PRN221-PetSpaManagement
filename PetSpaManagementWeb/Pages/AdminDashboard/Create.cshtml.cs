@@ -44,6 +44,14 @@ namespace PetSpaManagementWeb.Pages.AdminDashboard
         {
             if (!ModelState.IsValid)
             {
+                // Re-populate the Roles list in case of an error
+                Roles = new List<Role>
+                {
+                    new Role { Id = 1, Name = "Admin" },
+                    new Role { Id = 2, Name = "Manager" },
+                    new Role { Id = 3, Name = "PetSitter" },
+                    new Role { Id = 4, Name = "Customer" }
+                };
                 return Page();
             }
 

@@ -1,6 +1,106 @@
-﻿@page
+﻿@page "{startDate?}/{endDate?}"
 @model PetSpaManagementWeb.Pages.ManagerDashboard.IndexModel
 @{
+    ViewData["Title"] = "Manager Dashboard";
 }
 
-Manager Dashboard
+<h1>Manager Dashboard</h1>
+
+<form method="get" class="my-4">
+    <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input type="date" id="startDate" name="startDate" class="form-control" value="@Model.StartDate.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" name="endDate" class="form-control" value="@Model.EndDate.ToString("yyyy-MM-dd")" />
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header">
+                Unassigned Appointments
+            </div>
+            <div class="card-body">
+                <h3>@Model.UnassignedAppointmentsCount</h3>
+                <a class="btn btn-primary" asp-page="/ManagerDashboard/AppointmentManagement">View Details</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header">
+                Total Revenue
+            </div>
+            <div class="card-body">
+                <h3>@Model.TotalRevenue.ToString("C")</h3>
+                <a class="btn btn-primary" asp-page="/ManagerDashboard/PaymentManagement">View Details</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header">
+                Today's Appointments
+            </div>
+            <div class="card-body">
+                <h3>@Model.TodayAppointmentsCount</h3>
+                <a class="btn btn-primary" asp-page="/ManagerDashboard/AppointmentManagement">View Details</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-header">
+                Today's Revenue
+            </div>
+            <div class="card-body">
+                <h3>@Model.TodayRevenue.ToString("C")</h3>
+                <a class="btn btn-primary" asp-page="/ManagerDashboard/PaymentManagement">View Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                Revenue Graph
+            </div>
+            <div class="card-body">
+                <canvas id="revenueChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('revenueChart').getContext('2d');
+        var revenueChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Dates)),
+                datasets: [{
+                    label: 'Revenue',
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Revenues)),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}

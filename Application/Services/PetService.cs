@@ -1,15 +1,8 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using RepositoryLayer;
 using RepositoryLayer.Commons;
-using RepositoryLayer.Interfaces;
 using ServiceLayer.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceLayer.Services
 {

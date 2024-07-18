@@ -33,7 +33,7 @@
                 <td>@petSitter.Email</td>
                 <td>@petSitter.IsDeleted</td>
                 <td>
-                    <a class="btn btn-secondary" asp-page="/AdminDashboard/PetSitterManagement/Edit" asp-route-id="@petSitter.Id">Edit</a>
+                    <a class="btn btn-secondary" asp-page="/AdminDashboard/Edit" asp-route-id="@petSitter.Id">Edit</a>
                     <form method="post" asp-page-handler="Delete" asp-route-id="@petSitter.Id" style="display:inline;">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
