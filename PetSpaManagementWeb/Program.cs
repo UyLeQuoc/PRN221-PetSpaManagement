@@ -11,6 +11,7 @@ using RepositoryLayer.Repositories;
 using ServiceLayer.Interfaces;
 using ServiceLayer.Mappers;
 using ServiceLayer.Services;
+using ServiceLayer.Services.VnPayConfig;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -70,6 +71,7 @@ builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 //payment
 builder.Services.AddScoped<IGenericRepository<Payment>, GenericRepository<Payment>>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IVnPayService, VnPayService>();
 
 //UOW
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -82,6 +84,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPetService, PetService>();
 builder.Services.AddScoped<ISpaPackageService, SpaPackageService>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 var app = builder.Build();
 
