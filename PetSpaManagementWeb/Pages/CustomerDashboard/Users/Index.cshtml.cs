@@ -27,6 +27,8 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Users
         public User User { get; set; }
 
         public IList<Appointment> Appointments { get; set; } = default!;
+        public int paidQuantity { get; set; } = 0;
+        public int unPaidQuantity { get; set; } = 0;
 
         public async Task OnGet()
         {
@@ -48,6 +50,8 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Users
             .ThenBy(x => x.Status == "ASSIGNED")   // Ưu tiên ASSIGNED
             .ThenBy(x => x.DateTime)              // Sau đó sắp xếp theo CreatedAt
             .ToList();
+                paidQuantity = Appointments.Count;
+                unPaidQuantity = Appointments.Where(x => x.Status == "UNPAID").Count();
             }
             catch (Exception ex)
             {
@@ -57,7 +61,7 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Users
             }
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string email)
         {
             try
             {
@@ -68,7 +72,7 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Users
                 {
                     TempData["ErrorMessage"] = "Update error";
                 }
-                TempData["Message"] = "User updated successfully!";
+                TempData["SuccessMessage"] = "User updated successfully!";
                 return RedirectToPage();
             }
             catch (Exception ex)
