@@ -80,7 +80,7 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                         TempData["ErrorMessage"] = "Đã có lỗi xảy ra trong quá trình tạo url.";
                         return RedirectToPage("./Index");
                     }
-                    TempData["SuccessMessage"] = "Appointment đã được tạo thành công. Vui lòng thanh toán: ";
+                    TempData["SuccessMessage"] = "Giao dịch hoàn thành";
                     TempData["PaymentUrl"] = paymentUrl;
                     return Redirect(paymentUrl);
                 }
