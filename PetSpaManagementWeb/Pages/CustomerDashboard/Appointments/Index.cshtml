@@ -32,6 +32,15 @@
         @TempData["ErrorMessage"]
     </div>
 }
+<form method="get" class="row g-3 d-flex mb-3">
+    <div class="col-md-6 d-flex">
+            <label for="statusFilter">Filter by Status:</label>
+            <select id="statusFilter" name="statusFilter" class="form-control mt-3" asp-items="@Model.StatusFilterItems"></select>
+            <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+    
+</form>
+
 
 <h1>Appointments</h1>
 
