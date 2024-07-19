@@ -80,10 +80,14 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
                 if (SpaPackageDetailResponse.SpaPackage.Name == null)
                 {
                     ErrorMessage = "Name is required.";
+                    Services = await _serviceService.GetService();
+                    return Page();
                 }
-                else if (SpaPackageDetailResponse.SpaPackage.Price == null)
+                else if (!SpaPackageDetailResponse.SpaPackage.Price.HasValue  || SpaPackageDetailResponse.SpaPackage.Price <=0 )
                 {
-                    ErrorMessage = "Price is required.";
+                    ErrorMessage = "Price is not empty and more than 0.";
+                    Services = await _serviceService.GetService();
+                    return Page();
                 }
                 else
                 {
@@ -108,7 +112,7 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
             }
             catch (DbUpdateConcurrencyException)
             {
-                // Handle concurrency exception
+                
             }
 
             return RedirectToPage("./Index");

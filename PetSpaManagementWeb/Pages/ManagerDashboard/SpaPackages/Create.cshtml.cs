@@ -42,26 +42,40 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            try 
+            {
+                if (SpaPackage.Name == null)
+                {
+                    ErrorMessage = "Name is required.";
+                    Services = await _serviceService.GetService();
+                    return Page();
+                }
+                else if (!SpaPackage.Price.HasValue || SpaPackage.Price <= 0)
+                {
+                    ErrorMessage = "Price is not empty and more than 0.";
+                    Services = await _serviceService.GetService();
+                    return Page();
+                }
+                else if (Picture == null)
+                {
+                    ErrorMessage = "Picture is required.";
+                    Services = await _serviceService.GetService();
+                    return Page();
+                }
+                else
+                {
+                    SpaPackage.PictureUrl = await _storageService.UploadAsync(Picture);
+                    await _spaPackageService.CreateSpaPackage(SpaPackage, SelectedServiceIds);
+                }
 
-            if (Picture == null)
-            {
-                ErrorMessage = "Picture is required.";
+                return RedirectToPage("Index");
             }
-            else if(SpaPackage.Name == null)
+            catch (Exception ex)
             {
-                ErrorMessage = "Name is required.";
-            }
-            else if(SpaPackage.Price == null)
-            {
-                ErrorMessage = "Price is required.";
-            }
-            else
-            {
-                SpaPackage.PictureUrl = await _storageService.UploadAsync(Picture);
-                await _spaPackageService.CreateSpaPackage(SpaPackage, SelectedServiceIds);
+                ErrorMessage = ex.Message;
+                return Page();
             }
 
-            return RedirectToPage("Index");
         }
     }
 }

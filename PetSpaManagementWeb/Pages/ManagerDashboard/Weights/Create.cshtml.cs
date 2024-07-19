@@ -35,6 +35,18 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.Weights
                 if (Weight.FromWeight > Weight.ToWeight)
                 {
                     ErrorMessage= "From Weight must be less than To Weight";
+                    return Page();
+
+                }
+                else if( Weight.FromWeight <= 0)
+                {
+                    ErrorMessage = "From Weight must be more than 0";
+                    return Page();
+                }
+                else if (Weight.ToWeight <= 0)
+                {
+                    ErrorMessage = "To Weight must be more than 0";
+                    return Page();
                 }
                 else
                 {
