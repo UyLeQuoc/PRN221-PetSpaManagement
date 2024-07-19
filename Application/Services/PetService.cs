@@ -21,7 +21,7 @@ namespace ServiceLayer.Services
 
         public async Task<List<Pet>> GetAllPets()
         {
-            return await _unitOfWork.PetRepository.GetAllAsync(x => x.IsDeleted == false, x => x.User);
+            return await _unitOfWork.PetRepository.GetAllAsync(x => x.IsDeleted == false && x.UserId == _claimsService.GetCurrentSessionUserId, x => x.User);
         }
 
         public async Task<Pagination<Pet>> GetAllPetsFilter(string search, PaginationParameter pagination)

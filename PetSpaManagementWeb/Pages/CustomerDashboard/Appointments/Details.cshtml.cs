@@ -14,16 +14,21 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
         private readonly ILogger<DetailsModel> _logger;
         private readonly IPaymentService _paymentService;
         private readonly IVnPayService _vnPayService;
+        private readonly IAppointmentService appointmentService;
 
-        public DetailsModel(IAppointmentService appointmentService, ILogger<DetailsModel> logger, IPaymentService paymentService, IVnPayService vnPayService)
+        public DetailsModel(IAppointmentService appointmentService, ILogger<DetailsModel> logger
+            , IPaymentService paymentService, IVnPayService vnPayService, IAppointmentService appointment)
         {
             _appointmentService = appointmentService;
             _logger = logger;
             _paymentService = paymentService;
             _vnPayService = vnPayService;
+            _appointmentService = appointmentService;
         }
 
+        [BindProperty]
         public Appointment Appointment { get; set; } = default!;
+
         private string status { get; set; } = string.Empty;
 
         public async Task OnGet(int? id)
@@ -52,6 +57,12 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
         {
             try
             {
+                var appointment = await _appointmentService.GetAppointmentById(id);
+                if (appointment == null)
+                {
+                    TempData["ErrorMessage"] = "Lỗi hẹn không tồn tại";
+                    return RedirectToPage("./Index");
+                }
                 var payment = await _paymentService.GetPaymentByAppointmentIdAsync(id);
                 if (payment != null)
                 {
@@ -70,6 +81,28 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                         return RedirectToPage("./Index");
                     }
                     TempData["SuccessMessage"] = "Appointment đã được tạo thành công. Vui lòng thanh toán: ";
+                    TempData["PaymentUrl"] = paymentUrl;
+                    return Redirect(paymentUrl);
+                }
+                else
+                {
+                    var newPayment = await _paymentService.CreatePaymentAsync(appointment);
+
+                    var orderInfo = new VnpayOrderInfo
+                    {
+                        Amount = newPayment.TotalAmount,
+                        AppointmentId = newPayment.AppointmentId,
+                        PaymentId = newPayment.Id
+                    };
+
+                    var paymentUrl = _vnPayService.CreateLink(orderInfo); // trả về url thanh toán vnpay
+
+                    if (paymentUrl == null)
+                    {
+                        TempData["ErrorMessage"] = "Đã có lỗi xảy ra trong quá trình tạo url.";
+                        return RedirectToPage("./Index");
+                    }
+                    //TempData["SuccessMessage"] = "Appointment đã được tạo thành công. Vui lòng thanh toán: ";
                     TempData["PaymentUrl"] = paymentUrl;
                     return Redirect(paymentUrl);
                 }
