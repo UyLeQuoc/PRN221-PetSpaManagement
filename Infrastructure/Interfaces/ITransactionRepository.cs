@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryLayer.Interfaces
 {
-    public interface IPaymentRepository : IGenericRepository<Payment>
+    public interface ITransactionRepository : IGenericRepository<Transaction>
     {
-        Task<List<Payment>> GetAllPaymentsAsync();
     }
 }

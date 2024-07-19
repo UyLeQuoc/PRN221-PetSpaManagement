@@ -23,6 +23,7 @@ namespace RepositoryLayer
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<SpaPackage> SpaPackages { get; set; }
         public virtual DbSet<Weight> Weight { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
 
         public PetSpaManagementDbContext(DbContextOptions<PetSpaManagementDbContext> options) : base(options)
         {

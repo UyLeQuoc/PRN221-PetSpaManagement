@@ -1,6 +1,8 @@
+using Amazon.S3;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using PetSpaManagementWeb.Pages.ManagerDashboard.Services;
 using RepositoryLayer;
@@ -15,11 +17,14 @@ using ServiceLayer.Services.VnPayConfig;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddAutoMapper(typeof(MapperConfigProfile).Assembly);
 builder.Services.AddScoped<ILogger<EditModel>, Logger<EditModel>>();
+builder.Services.AddDefaultAWSOptions(configuration.GetAWSOptions());
+builder.Services.AddAWSService<IAmazonS3>();
 
 builder.Services.AddDbContext<PetSpaManagementDbContext>(options =>
 {
@@ -50,6 +55,7 @@ builder.Services.AddScoped<ICurrentTime, CurrentTime>();
 builder.Services.AddScoped<IClaimsService, ClaimsService>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IStorageService, S3StorageService>();
+
 //user
 builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -72,6 +78,7 @@ builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IGenericRepository<Payment>, GenericRepository<Payment>>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IVnPayService, VnPayService>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 //UOW
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

@@ -28,11 +28,12 @@
                     <td>@Html.DisplayFor(modelItem => item.Pet.Name)</td>
                     <td>@Html.DisplayFor(modelItem => item.DateTime)</td>
                     <td>
-                        <span class="badge" style="background-color:@(item.Status == "PENDING" ? "#ffc107" :
-                                                                item.Status == "ASSIGNED" ? "#007bff" :
-                                                                item.Status == "COMPLETED" ? "#28a745" :
-                                                                item.Status == "CANCELLED" ? "#dc3545" :
-                                                                "gray")">
+                        <span class="badge bg-@(item.Status == "UNPAID" ? "secondary" :
+                    item.Status == "ASSIGNING" ? "warning" :
+                    item.Status == "ASSIGNED" ? "primary" :
+                    item.Status == "COMPLETED" ? "success" :
+                    item.Status == "CANCELLED" ? "danger" :
+                    "secondary")">
                             @Html.DisplayFor(modelItem => item.Status)
                         </span>
                     </td>
@@ -41,6 +42,7 @@
                     <td>
                         <a asp-page="/PetSitterDashboard/Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
                         <a asp-page="/PetSitterDashboard/Details" asp-route-id="@item.SpaPackageId" class="btn btn-primary">Detail</a>
+                        <a asp-page="/PetSitterDashboard/Pet" asp-route-id="@item.PetId" class="btn btn-primary">Pet</a>
                     </td>
                 </tr>
             }

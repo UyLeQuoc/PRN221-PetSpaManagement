@@ -17,6 +17,7 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.Weights
 
         [BindProperty]
         public Weight Weight { get; set; } = default!;
+        public string ErrorMessage { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -45,7 +46,23 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.Weights
 
             try
             {
-                await _weightService.UpdateWeight(id, Weight);
+                if (Weight.FromWeight > Weight.ToWeight)
+                {
+                    ErrorMessage = "From Weight must be less than To Weight";
+
+                }
+                else if (Weight.FromWeight <= 0)
+                {
+                    ErrorMessage = "From Weight must be more than 0";
+                }
+                else if (Weight.ToWeight <= 0)
+                {
+                    ErrorMessage = "To Weight must be more than 0";
+                }
+                else
+                {
+                    await _weightService.UpdateWeight(id, Weight);
+                }
             }
             catch (DbUpdateConcurrencyException)
             {

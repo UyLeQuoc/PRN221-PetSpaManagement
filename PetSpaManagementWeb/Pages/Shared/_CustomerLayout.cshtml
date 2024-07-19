@@ -58,6 +58,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="/SpaPackages" class="nav-link">Spa Packages</a></li>
                         @if (Context.Session.GetString("Email") != null)
                         {
                             <li class="nav-item active"><a href="#" class="nav-link">@Context.Session.GetString("Email")</a></li>
@@ -83,8 +85,8 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item">
-                            <a href="/CustomerDashboard" class="nav-link align-middle px-0">
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                            <a href="/CustomerDashboard/Users" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Profile</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -100,7 +102,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/CustomerDashboard/Payment" class="nav-link px-0 align-middle">
+                            <a href="/CustomerDashboard/Payments" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Payment history</span>
                             </a>
                         </li>
