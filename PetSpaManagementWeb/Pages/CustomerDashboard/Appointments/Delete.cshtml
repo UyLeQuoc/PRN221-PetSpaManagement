@@ -53,6 +53,8 @@
 
     <form method="post">
         <input type="hidden" asp-for="Appointment.Id" />
+        <input type="hidden" asp-for="Appointment.Status" />
+
         <input type="submit" value="Cancel" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to List</a>
     </form>

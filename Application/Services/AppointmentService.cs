@@ -70,7 +70,7 @@ namespace ServiceLayer.Services
                     SpaPackageId = existingPackage.Id,
                     PetId = existingPet.Id,
                     DateTime = appointment.DateTime,
-                    Status = "PENDING",
+                    Status = "UNPAID",
                     Notes = appointment.Notes,
                     Price = existingPackage.Price
                 };
@@ -114,7 +114,7 @@ namespace ServiceLayer.Services
             {
                 throw new Exception("Non-existed spa package");
             }
-            if (appointment.Status == "PENDING" || appointment.Status == "ASSIGNED" || appointment.Status == "COMPLETED" || appointment.Status == "CANCELLED" || appointment.Status == "ABSENT")
+            if (appointment.Status == "UNPAID" || appointment.Status == "ASSIGNING" || appointment.Status == "ASSIGNED" || appointment.Status == "COMPLETED" || appointment.Status == "CANCELLED" || appointment.Status == "ABSENT")
             {
                 throw new Exception("Invalid status");
             }
@@ -164,6 +164,10 @@ namespace ServiceLayer.Services
                 }
                 _unitOfWork.AppointmentRepository.SoftRemove(exist);
                 exist.Status = "CANCELLED";
+                if (exist.PetSitterId.HasValue && exist.Status == "ASSIGNED")
+                {
+                    exist.PetSitterId = null;
+                }
                 _unitOfWork.AppointmentRepository.Update(exist);
 
                 if (await _unitOfWork.AppointmentRepository.SaveChangesAsync() > 0)
