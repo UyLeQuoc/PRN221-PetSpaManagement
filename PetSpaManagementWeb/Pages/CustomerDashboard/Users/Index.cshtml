@@ -43,14 +43,18 @@
             </div>
            
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Update</button>
-                <a asp-page="./Index" class="btn btn-secondary">Cancel</a>
+                <form method="post">
+                    <input type="hidden" asp-for="User.Id" />
+                    <input type="hidden" asp-for="User.Email"/>
+
+                    <input type="submit" value="Update" class="btn btn-danger" /> 
+                </form>
             </div>
         </form>
     </div>
 
     <div class="col-md-8">
-        <h4>Incoming appointment</h4>
+        <h4>Incoming: @Model.paidQuantity appointments | @Model.unPaidQuantity unpaid</h4>
         <table class="table">
             <thead>
                 <tr>
@@ -108,8 +112,7 @@
                             @Html.DisplayFor(modelItem => item.SpaPackage.Price)
                         </td>
                         <td>
-                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-page="./Delete" asp-route-id="@item.Id">Cancel</a>
+                            <a asp-page="/CustomerDashboard/Appointments/Details" asp-route-id="@item.Id">Details</a> |
                         </td>
                     </tr>
                 }
