@@ -10,5 +10,6 @@ namespace ServiceLayer.ViewModels.PaymentDTOs
     {
         public int AppointmentId { get; set; }
         public decimal Amount { get; set; }
+        public int? PaymentId { get; set; }
     }
 }

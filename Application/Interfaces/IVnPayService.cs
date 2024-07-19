@@ -1,4 +1,5 @@
-﻿using ServiceLayer.Services.VnPayConfig;
+﻿using Microsoft.AspNetCore.Http;
+using ServiceLayer.Services.VnPayConfig;
 using ServiceLayer.ViewModels.PaymentDTOs;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace ServiceLayer.Interfaces
     public interface IVnPayService
     {
         string CreateLink(VnpayOrderInfo orderInfo);
-
+        PaymentResponseModel GetFullResponseData(IQueryCollection collection);
         Task<IPNReponse> IPNReceiver(string vnpTmnCode, string vnpSecureHash, string vnpTxnRef, string vnpTransactionStatus, string vnpResponseCode, string vnpTransactionNo, string vnpBankCode, string vnpAmount, string vnpPayDate, string vnpBankTranNo, string vnpCardType, NameValueCollection requestNameValue);
     }
 }

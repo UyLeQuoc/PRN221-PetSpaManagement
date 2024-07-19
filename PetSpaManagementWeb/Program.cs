@@ -16,7 +16,6 @@ using ServiceLayer.Services;
 using ServiceLayer.Services.VnPayConfig;
 using System.Text;
 
-
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
@@ -79,6 +78,7 @@ builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IGenericRepository<Payment>, GenericRepository<Payment>>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IVnPayService, VnPayService>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 //UOW
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

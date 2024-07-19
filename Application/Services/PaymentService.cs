@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
+using ServiceLayer.ViewModels.PaymentDTOs;
 
 namespace ServiceLayer.Services
 {
@@ -64,6 +65,66 @@ namespace ServiceLayer.Services
                 throw new Exception("Non-signup user");
             }
             return paymentsUser.Where(x => x.UserId == _claimsService.GetCurrentSessionUserId).ToList();
+        }
+
+        public async Task<List<Payment>> GetPaymentByAppointmentIdAsync(int id)
+        {
+            var paymentsUser = await _unitOfWork.PaymentRepository.GetAllAsync(x => x.AppointmentId == id);
+            if (_claimsService.GetCurrentSessionUserId == 0)
+            {
+                throw new Exception("Non-signup user");
+            }
+
+            return paymentsUser;
+        }
+
+        public async Task<PaymentResult> CreateTransactionOfPaymentAsync(PaymentResponseModel response)
+        {
+            var existingPayment = await _unitOfWork.PaymentRepository.GetByIdAsync(int.Parse(response.PaymentId), null, x => x.Appointment, x => x.User);
+            if (existingPayment == null)
+            {
+                throw new Exception("This payment is not existing please check again");
+            }
+
+            var newTracsaction = new Transaction
+            {
+                PaymentId = existingPayment.Id,
+                Date = response.PayDate,
+                AccountNumber = response.BanKTranNo,
+                TransactionToken = response.TransactionToken,
+                AmountOfMoney = (decimal)response.AmountOfMoney,
+                TransactionNo = response.TransactionNo,
+                PaymentType = "NCB",
+                Status = response.Success ? "SUCCESS" : "FAILED",
+            };
+
+            newTracsaction = await _unitOfWork.TransactionRepository.AddAsync(newTracsaction);
+
+            if (response.Success)
+            {
+                existingPayment.Status = "COMPLETED";
+                //existingPayment.
+            }
+            else
+            {
+                existingPayment.Status = "FAILED";
+            }
+            _unitOfWork.PaymentRepository.Update(existingPayment);
+
+            if (await _unitOfWork.SaveChangeAsync() > 0)
+            {
+                var result = new PaymentResult
+                {
+                    Payment = existingPayment,
+                    Transaction = newTracsaction
+                };
+
+                return result;
+            }
+            else
+            {
+                throw new Exception("Something has happened while adding transaction");
+            }
         }
     }
 }

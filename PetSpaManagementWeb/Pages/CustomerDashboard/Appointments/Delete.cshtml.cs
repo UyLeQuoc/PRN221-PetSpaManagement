@@ -48,9 +48,14 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
             try
             {
                 var result = await _appointmentService.CancelAppoimentById(id); // Sửa lại method
+
                 if (result)
                 {
-                    TempData["SuccessMessage"] = "Appointment đã được hủy thành công.";
+                    if (Appointment.Status == "ASSIGNING" || Appointment.Status == "ASSIGNED")
+                    {
+                        TempData["SuccessMessage"] = "Appointment đã được hủy thành công, chúng tôi xin hoàn tiền sau.";
+                    }
+                    TempData["SuccessMessage"] = "Appointment đã được hủy thành công";
                 }
                 else
                 {
