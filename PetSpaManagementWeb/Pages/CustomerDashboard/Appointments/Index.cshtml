@@ -11,7 +11,7 @@
 </script>
 @if (TempData["PaymentUrl"] != null)
 {
-   @*  <div class="alert alert-success">
+    @*  <div class="alert alert-success">
         @TempData["SuccessMessage"]
         <button type="button" class="btn btn-primary" onclick="redirectToPayment('@TempData["PaymentUrl"]')">
             Thanh toán ngay <i class="bi bi-arrow-right"></i>
@@ -56,14 +56,14 @@
             <th>
                 @Html.DisplayNameFor(model => model.Appointments[0].Status)
             </th>
-          
+
             <th>
                 @Html.DisplayNameFor(model => model.Appointments[0].Notes)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Appointments[0].Price)
             </th>
-           
+
             <th>Modify</th>
         </tr>
     </thead>
@@ -90,8 +90,8 @@
                     item.Status == "COMPLETED" ? "success" :
                     item.Status == "CANCELLED" ? "danger" :
                     "secondary")">
-    @Html.DisplayFor(modelItem => item.Status)
-</span>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </span>
                 </td>
 
                 <td>
