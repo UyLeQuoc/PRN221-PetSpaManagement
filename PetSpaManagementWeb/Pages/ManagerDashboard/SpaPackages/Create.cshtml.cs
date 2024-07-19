@@ -62,6 +62,12 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.SpaPackages
                     Services = await _serviceService.GetService();
                     return Page();
                 }
+                else if(SelectedServiceIds.Count == 0)
+                {
+                    ErrorMessage = "Services is required.";
+                    Services = await _serviceService.GetService();
+                    return Page();
+                }
                 else
                 {
                     SpaPackage.PictureUrl = await _storageService.UploadAsync(Picture);
