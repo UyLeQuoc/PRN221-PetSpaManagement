@@ -30,12 +30,12 @@
                 }
                 <form method="post">
                     <div class="form-group">
-                        <label class="text-left" asp-for="LoginModel.Email">Email address</label>
+                        <label style="display: block; text-align: left;" asp-for="LoginModel.Email">Email address</label>
                         <input asp-for="LoginModel.Email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
                         <span asp-validation-for="LoginModel.Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label class="text-left" asp-for="LoginModel.Password">Password</label>
+                        <label style="display: block; text-align: left;" asp-for="LoginModel.Password">Password</label>
                         <a href="#" style="float:right;font-size:12px;">Forgot password?</a>
                         <input asp-for="LoginModel.Password" type="password" class="form-control form-control-sm" id="exampleInputPassword1">
                         <span asp-validation-for="LoginModel.Password" class="text-danger"></span>
