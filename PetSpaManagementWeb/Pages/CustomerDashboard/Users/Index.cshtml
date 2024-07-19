@@ -7,13 +7,27 @@
     var userID = HttpContext.Session.GetInt32("UserID");
 
 }
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
 
 <h1>Profile</h1>
 
-<h4>User</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
+        <h4>User</h4>
+
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="User.Id" />
@@ -29,10 +43,83 @@
             </div>
            
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Update</button>
-                <a asp-page="./Index" class="btn btn-secondary">Cancel</a>
+                <form method="post">
+                    <input type="hidden" asp-for="User.Id" />
+                    <input type="hidden" asp-for="User.Email"/>
+
+                    <input type="submit" value="Update" class="btn btn-danger" /> 
+                </form>
             </div>
         </form>
+    </div>
+
+    <div class="col-md-8">
+        <h4>Incoming: @Model.paidQuantity appointments | @Model.unPaidQuantity unpaid</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointments[0].Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointments[0].SpaPackage)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointments[0].Pet)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointments[0].DateTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointments[0].Status)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Appointments[0].Price)
+                    </th>
+
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Appointments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SpaPackage.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pet.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateTime)
+                        </td>
+                        <td>
+                            <span class="badge bg-@(item.Status == "UNPAID" ? "secondary" :
+                    item.Status == "ASSIGNING" ? "warning" :
+                    item.Status == "ASSIGNED" ? "primary" :
+                    item.Status == "COMPLETED" ? "success" :
+                    item.Status == "CANCELLED" ? "danger" :
+                    "secondary")">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </span>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SpaPackage.Price)
+                        </td>
+                        <td>
+                            <a asp-page="/CustomerDashboard/Appointments/Details" asp-route-id="@item.Id">Details</a> |
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
     </div>
 </div>
 

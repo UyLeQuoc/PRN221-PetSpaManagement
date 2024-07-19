@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ServiceLayer.Interfaces;
 using ServiceLayer.Services;
 
@@ -21,6 +22,19 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
 
         public IList<Appointment> Appointments { get; set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string? StatusFilter { get; set; }
+
+        public SelectList StatusFilterItems { get; set; } = new SelectList(new List<SelectListItem>
+{
+    new SelectListItem { Value = "", Text = "All" },
+    new SelectListItem { Value = "UNPAID", Text = "UNPAID" },
+    new SelectListItem { Value = "ASSIGNING", Text = "ASSIGNING" },
+    new SelectListItem { Value = "ASSIGNED", Text = "ASSIGNED" },
+    new SelectListItem { Value = "COMPLETED", Text = "COMPLETED" },
+    new SelectListItem { Value = "CANCELLED", Text = "CANCELLED" },
+},"Value","Text");
+
         public async Task OnGetAsync()
         {
             try
@@ -35,7 +49,11 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                 var user = await _userService.GetUserByEmailAsync(email);
 
                 var data = await _appointmentService.GetAllAppointmentAsync();
-                Appointments = data.OrderByDescending(x=>x.CreatedAt).ToList();
+                Appointments = data.OrderByDescending(x => x.DateTime).ToList();
+                if (!string.IsNullOrEmpty(StatusFilter))
+                {
+                    Appointments = Appointments.Where(x => x.Status == StatusFilter).ToList();
+                }
             }
             catch (Exception ex)
             {

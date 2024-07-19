@@ -44,7 +44,7 @@ namespace PetSpaManagementWeb.Pages.ManagerDashboard.AppointmentManagement
                 return NotFound();
             }
 
-            await _appointmentService.DeleteAppoiment(id);
+            await _appointmentService.CancelAppoimentById(id);
 
 
             return RedirectToPage("./Index");

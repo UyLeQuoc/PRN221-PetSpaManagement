@@ -26,6 +26,10 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Users
         [BindProperty]
         public User User { get; set; }
 
+        public IList<Appointment> Appointments { get; set; } = default!;
+        public int paidQuantity { get; set; } = 0;
+        public int unPaidQuantity { get; set; } = 0;
+
         public async Task OnGet()
         {
             try
@@ -39,12 +43,42 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Users
                 }
                 User = await _userService.GetUserByEmailAsync(email);
                 ViewData["UserId"] = new SelectList(new[] { User }, "Id", "Email");
+
+                var data = await _appointmentService.GetAllAppointmentAsync();
+                Appointments = data
+            .OrderByDescending(x => x.Status == "ASSIGNING") // Ưu tiên ASSIGNING
+            .ThenBy(x => x.Status == "ASSIGNED")   // Ưu tiên ASSIGNED
+            .ThenBy(x => x.DateTime)              // Sau đó sắp xếp theo CreatedAt
+            .ToList();
+                paidQuantity = Appointments.Count;
+                unPaidQuantity = Appointments.Where(x => x.Status == "UNPAID").Count();
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = ex.ToString(); // (Chỉ trong môi trường development)
                 Console.Write(ex.ToString());
                 RedirectToPage("./Index");
+            }
+        }
+
+        public async Task<IActionResult> OnPostAsync(string email)
+        {
+            try
+            {
+                var user = await _userService.GetUserByEmailAsync(User.Email);
+                user.Name = User.Name;
+                var result = await _userService.UpdateAsync(user);
+                if (!result)
+                {
+                    TempData["ErrorMessage"] = "Update error";
+                }
+                TempData["SuccessMessage"] = "User updated successfully!";
+                return RedirectToPage();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return Page();
             }
         }
     }
