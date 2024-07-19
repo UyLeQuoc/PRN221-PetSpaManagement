@@ -208,28 +208,28 @@ namespace RepositoryLayer
                 await context.SaveChangesAsync();
             }
 
-            if (!context.Appointments.Any())
-            {
-                var appointments = new List<Appointment>
-                {
-                    new Appointment {UserId = 9, SpaPackageId = 1, PetId = 1, DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                    new Appointment {UserId = 10, SpaPackageId = 2, PetId = 2,  DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //if (!context.Appointments.Any())
+            //{
+            //    var appointments = new List<Appointment>
+            //    {
+            //        new Appointment {UserId = 9, SpaPackageId = 1, PetId = 1, DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //        new Appointment {UserId = 10, SpaPackageId = 2, PetId = 2,  DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
 
-                    new Appointment {UserId = 11, SpaPackageId = 3, PetId = 3, PetSitterId = 7, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                    new Appointment {UserId = 12, SpaPackageId = 1, PetId = 4, PetSitterId = 8, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                    new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                    new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                    new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "COMPLETED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                    new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "CANCELLED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                    new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "ABSENT", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                };
+            //        new Appointment {UserId = 11, SpaPackageId = 3, PetId = 3, PetSitterId = 7, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //        new Appointment {UserId = 12, SpaPackageId = 1, PetId = 4, PetSitterId = 8, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //        new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //        new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //        new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "COMPLETED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //        new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "CANCELLED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //        new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "ABSENT", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //    };
 
-                foreach (var pet in appointments)
-                {
-                    await context.Appointments.AddAsync(pet);
-                }
-                await context.SaveChangesAsync();
-            }
+            //    foreach (var pet in appointments)
+            //    {
+            //        await context.Appointments.AddAsync(pet);
+            //    }
+            //    await context.SaveChangesAsync();
+            //}
         }
     }
 }

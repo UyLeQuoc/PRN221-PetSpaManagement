@@ -99,16 +99,19 @@ namespace ServiceLayer.Services
             };
 
             newTracsaction = await _unitOfWork.TransactionRepository.AddAsync(newTracsaction);
+            var checkAppointment = await _unitOfWork.AppointmentRepository.GetByIdAsync(existingPayment.AppointmentId);
 
             if (response.Success)
             {
                 existingPayment.Status = "COMPLETED";
+                checkAppointment.Status = "ASSIGNING";
                 //existingPayment.
             }
             else
             {
                 existingPayment.Status = "FAILED";
             }
+
             _unitOfWork.PaymentRepository.Update(existingPayment);
 
             if (await _unitOfWork.SaveChangeAsync() > 0)

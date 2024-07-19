@@ -36,12 +36,12 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Payments
                     {
                         if (response.VnPayResponseCode == "00")
                         {
-                            TempData["SuccessMessage"] = "THANH TOÁN CHO APPOINTMENT NO:" + result.Payment.AppointmentId + " THÀNH CÔNG";
+                            TempData["PaymentSuccess"] = "THANH TOÁN CHO APPOINTMENT NO:" + result.Payment.AppointmentId + " THÀNH CÔNG";
                         }
-                        else
-                        {
-                            TempData["ErrorMessage"] = "THANH TOÁN KHÔNG THÀNH CÔNG XIN HÃY THỬ LẠI: " + result.Payment.AppointmentId;
-                        }
+                    }
+                    else
+                    {
+                        TempData["ErrorMessage"] = "THANH TOÁN KHÔNG THÀNH CÔNG XIN HÃY THỬ LẠI: " + result.Payment.AppointmentId;
                     }
                 }
             }

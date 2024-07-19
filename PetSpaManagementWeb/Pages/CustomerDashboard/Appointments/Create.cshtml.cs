@@ -36,7 +36,7 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
         [BindProperty]
         public string PaymentMethod { get; set; } = default!;
 
-        public async Task<IActionResult> OnGet(string? SpaPackageId)
+        public async Task OnGet(string? SpaPackageId)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                 if (string.IsNullOrEmpty(email))
                 {
                     TempData["ErrorMessage"] = "Please login to use this function"; // (Chỉ trong môi trường development)
-                    return RedirectToPage("/LoginPage"); // Chuyển hướng về Index của Appointment
+                    RedirectToPage("/LoginPage"); // Chuyển hướng về Index của Appointment
                 }
 
                 // Lấy danh sách user, pet, spa package (tương tự như trong EditModel)
@@ -57,8 +57,8 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
 
                 if (!string.IsNullOrEmpty(SpaPackageId))
                 {
-                    var spaPackage = spaPackages.FirstOrDefault(x => x.Name == SpaPackageId);
-                    ViewData["SpaPackageId"] = new SelectList(new[] { spaPackage }, "Id", "Name");
+                    var currentPackage = spaPackages.FirstOrDefault(x => x.Name == SpaPackageId || x.Id.ToString() == SpaPackageId);
+                    ViewData["SpaPackageId"] = new SelectList(new[] { currentPackage }, "Id", "Name");
                 }
                 else
                 {
@@ -72,14 +72,12 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                                 };
 
                 ViewData["Method"] = new SelectList(itemList, "Value", "Text");
-
-                return Page();
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while creating a new appointment.");
                 TempData["ErrorMessage"] = ex.ToString(); // (Chỉ trong môi trường development)
-                return RedirectToPage("./Index"); // Chuyển hướng về Index của Appointment
+                RedirectToPage("./Index"); // Chuyển hướng về Index của Appointment
             }
         }
 
@@ -91,6 +89,11 @@ namespace PetSpaManagementWeb.Pages.CustomerDashboard.Appointments
                 //{
                 //    return RedirectToPage();
                 //}
+                if (Appointment.DateTime < DateTime.UtcNow.AddHours(7))
+                {
+                    TempData["ErrorMessage"] = "Lịch hẹn không được nhỏ hơn hiện tại.";
+                    return RedirectToPage(new { SpaPackageId = Appointment.SpaPackageId });
+                }
                 var paymentUrl = await _appointmentService.CreateNewAppointment(Appointment);
                 if (paymentUrl == null)
                 {
