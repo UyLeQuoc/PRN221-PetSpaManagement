@@ -96,20 +96,19 @@ namespace RepositoryLayer
 
                     await context.Pets.AddRangeAsync(pets);
                     await context.SaveChangesAsync();
-
                     if (!context.Appointments.Any())
                     {
                         var appointments = new List<Appointment>
                         {
-                            new Appointment {User = users.First(u => u.Name == "customer1"), SpaPackageId = 1, Pet = pets.First(u => u.Name == "Calico"), DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                            new Appointment {User = users.First(u => u.Name == "customer2"), SpaPackageId = 2, Pet = pets.First(u => u.Name == "Shiba"),  DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                            new Appointment {User = users.First(u => u.Name == "customer1"), SpaPackageId = 1, Pet = pets.First(u => u.Name == "Calico"), DateTime = DateTime.Now, Status = "UNPAID", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                            new Appointment {User = users.First(u => u.Name == "customer2"), SpaPackageId = 2, Pet = pets.First(u => u.Name == "Shiba"),  DateTime = DateTime.Now, Status = "ASSIGNING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
                             new Appointment {User = users.First(u => u.Name == "customer3"), SpaPackageId = 3, Pet = pets.First(u => u.Name == "Corgi"), PetSitterId = 7, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
                             new Appointment {User = users.First(u => u.Name == "customer4"), SpaPackageId = 1, Pet = pets.First(u => u.Name == "Ginger"), PetSitterId = 8, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                            new Appointment {User = users.First(u => u.Name == "customer"), SpaPackageId = 1, Pet = pets.First(u => u.Name == "BullDog"),  DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                            new Appointment {User = users.First(u => u.Name == "customer"), SpaPackageId = 1, Pet = pets.First(u => u.Name == "BullDog"),  DateTime = DateTime.Now, Status = "ASSIGNING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
                             new Appointment {User = users.First(u => u.Name == "customer"), SpaPackageId = 2, Pet = pets.First(u => u.Name == "British Shorthair"),  PetSitterId = 3, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
                             new Appointment {User = users.First(u => u.Name == "customer"), SpaPackageId = 3, Pet = pets.First(u => u.Name == "BullDog"),  PetSitterId = 3, DateTime = DateTime.Now, Status = "COMPLETED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
                             new Appointment {User = users.First(u => u.Name == "customer"), SpaPackageId = 1, Pet = pets.First(u => u.Name == "British Shorthair"),  PetSitterId = 3, DateTime = DateTime.Now, Status = "CANCELLED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-                            new Appointment {User = users.First(u => u.Name == "customer"), SpaPackageId = 2, Pet = pets.First(u => u.Name == "BullDog"),  PetSitterId = 3, DateTime = DateTime.Now, Status = "ABSENT", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+                            new Appointment {User = users.First(u => u.Name == "customer"), SpaPackageId = 2, Pet = pets.First(u => u.Name == "BullDog"),  PetSitterId = 3, DateTime = DateTime.Now, Status = "CANCELLED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
                         };
 
                         await context.Appointments.AddRangeAsync(appointments);
@@ -212,12 +211,12 @@ namespace RepositoryLayer
             //{
             //    var appointments = new List<Appointment>
             //    {
-            //        new Appointment {UserId = 9, SpaPackageId = 1, PetId = 1, DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-            //        new Appointment {UserId = 10, SpaPackageId = 2, PetId = 2,  DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //        new Appointment {UserId = 9, SpaPackageId = 1, PetId = 1, DateTime = DateTime.Now, Status = "ASSIGNING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //        new Appointment {UserId = 10, SpaPackageId = 2, PetId = 2,  DateTime = DateTime.Now, Status = "ASSIGNING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
 
             //        new Appointment {UserId = 11, SpaPackageId = 3, PetId = 3, PetSitterId = 7, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
             //        new Appointment {UserId = 12, SpaPackageId = 1, PetId = 4, PetSitterId = 8, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
-            //        new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  DateTime = DateTime.Now, Status = "PENDING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
+            //        new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  DateTime = DateTime.Now, Status = "ASSIGNING", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
             //        new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "ASSIGNED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
             //        new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "COMPLETED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
             //        new Appointment {UserId = 4, SpaPackageId = 2, PetId = 2,  PetSitterId = 3, DateTime = DateTime.Now, Status = "CANCELLED", Notes = "a", CreatedAt = DateTime.Now, Price = 100},
