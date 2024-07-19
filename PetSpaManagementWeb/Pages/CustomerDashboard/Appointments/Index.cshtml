@@ -41,9 +41,9 @@
 <table class="table">
     <thead>
         <tr>
-         @*    <th>
-                @Html.DisplayNameFor(model => model.Appointments[0].User)
-            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].Id)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Appointments[0].SpaPackage)
             </th>
@@ -56,9 +56,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Appointments[0].Status)
             </th>
-            <th>
-                Payment status
-            </th>
+          
             <th>
                 @Html.DisplayNameFor(model => model.Appointments[0].Notes)
             </th>
@@ -73,9 +71,9 @@
         @foreach (var item in Model.Appointments)
         {
             <tr>
-             @*    <td>
-                    @Html.DisplayFor(modelItem => item.User.Email)
-                </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SpaPackage.Name)
                 </td>
@@ -86,7 +84,7 @@
                     @Html.DisplayFor(modelItem => item.DateTime)
                 </td>
                 <td>
-                   <span class="badge bg-@(item.Status == "UNPAID" ? "gray" :
+                    <span class="badge bg-@(item.Status == "UNPAID" ? "secondary" :
                     item.Status == "ASSIGNING" ? "warning" :
                     item.Status == "ASSIGNED" ? "primary" :
                     item.Status == "COMPLETED" ? "success" :
@@ -95,31 +93,7 @@
     @Html.DisplayFor(modelItem => item.Status)
 </span>
                 </td>
-                <td>
-                    @{
-                        string status ="";
-                        if (item.Payments.Any())
-                        {
-                            if (item.Payments.First().Status == "PENDING" || item.Payments.First().Status == "FAILED")
-                            {
-                                status = "UNPAID";
-                            }
-                            else
-                            {
-                                status = "PAID";
 
-                            }
-                        }
-                        else
-                        {
-                            status = "UNPAID";
-                        }
-
-
-
-                    }
-                    @status
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)
                 </td>
